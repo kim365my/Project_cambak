@@ -1,9 +1,6 @@
 package view.campingcar;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,15 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import biz.campingcar.CampingcarDAO;
-import biz.campingcar.CampingcarVO;
 import biz.review.ReviewDAO;
-import biz.review.ReviewVO;
 
 /**
- * 캠핑카 상세보기 페이지 Ctrl
+ * 캠핑카 삭제
  */
-@WebServlet("/GetCampingcarCtrl")
-public class GetCampingcarCtrl extends HttpServlet {
+@WebServlet("/DeleteCampingcarCtrl")
+public class DeleteCampingcarCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,33 +26,24 @@ public class GetCampingcarCtrl extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		// 파라미터 갑 받기
+		// 파라미터 값 받기
 		int campingcar_no = Integer.parseInt(request.getParameter("campingcar_no"));
 		
-		
-		// 비지니스 로직 실행
-		CampingcarDAO cdao = new CampingcarDAO();
-		CampingcarVO vo = cdao.getCampingcar(campingcar_no);
-		// 리뷰 불러오기
+		// 리뷰 데이터 삭제
 		ReviewDAO rdao = new ReviewDAO();
-		ArrayList<ReviewVO> reviewList = rdao.getAllReview(campingcar_no);
-
-		// 결과에 따라 값 출력
-		if(vo != null && rdao != null) {
-			// 리뷰 불러오는 데 성공한 경우
-			// 바인딩
-			request.setAttribute("reviewList", reviewList);
-			request.setAttribute("vo", vo);
-			// 포워드
-			RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
-			dis.forward(request, response);
+		rdao.deleteReview(campingcar_no);
+		
+		// 캠핑카 데이터 삭제
+		CampingcarDAO cdao = new CampingcarDAO();
+		int cnt = cdao.deleteCampingcar(campingcar_no);
+		
+		if(cnt != 0) {
+			// 성공했을 경우
+			response.sendRedirect("index.jsp");
 		} else {
-			// 실패한 경우
-			System.out.println("상세보기 Ctrl 처리 중 오류, vo 값이 null");
+			// 실패했을 경우
 			response.sendRedirect("index.jsp");
 		}
-
 	}
 
 }
-

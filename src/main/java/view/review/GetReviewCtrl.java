@@ -26,15 +26,18 @@ public class GetReviewCtrl extends HttpServlet {
    }
 
    protected void doGetPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	   int campingcar_no = Integer.parseInt(request.getParameter("campingcar_no"));
+		// 인코딩 설정
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+	    int campingcar_no = Integer.parseInt(request.getParameter("campingcar_no"));
 		
-      ReviewDAO rdao = new ReviewDAO();
-      ArrayList<ReviewVO> reviewList = rdao.getAllReview(campingcar_no);
-      // 바인딩
-      request.setAttribute("reviewList", reviewList);
-      // 포워드
-      RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
-      dis.forward(request, response);
+	    ReviewDAO rdao = new ReviewDAO();
+	    ArrayList<ReviewVO> reviewList = rdao.getAllReview(campingcar_no);
+	    // 바인딩
+	    request.setAttribute("reviewList", reviewList);
+	    // 포워드
+	    RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
+	    dis.forward(request, response);
    }
 
 

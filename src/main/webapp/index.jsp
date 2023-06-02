@@ -37,6 +37,7 @@
 				<li><a href="#dashBoard">리뷰페이지</a></li>
 				<li><a href="#campingcar">캠핑카페이지</a></li>
 				<li><a href="#addreview">리뷰 등록</a></li>
+				<li><a href="#dashBoard">대시보드 페이지</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -97,6 +98,44 @@
 		</section>
 		
 		<section>
+			<h2>회원 데이터 수정 페이지</h2>
+			<form action="updateUserCtrl" method="post">
+	            <table class="table table-bordered">
+	               <tr>
+	                  <th>아이디</th>
+	                  <td>
+	                     <input type="text" name="user_id" value="<%= user_id %>" class="form-control" readonly="readonly">
+	                  </td>
+	               </tr>
+	               <tr>
+	                  <th>비밀번호</th>
+	                  <td>
+	                     <input type="password" name="user_pw" id="user_pw" class="form-control">
+	                  </td>
+	               </tr>
+	               <tr>
+	                  <th>이메일</th>
+	                  <td>
+	                     <input type="email" name="user_email" id="user_email" class="form-control">
+	                  </td>
+	               </tr>
+	               <tr>
+	                  <th>전화번호</th>
+	                  <td>
+	                     <input type="tel" name="user_tel" id="user_tel" class="form-control">
+	                  </td>
+	               </tr>
+	               <tr>
+	                  <td colspan="2">
+	                     <input type="submit" value="회원가입" class="btn btn-primary">
+	                     <input type="reset" value="취소" class="btn btn-secondary">
+	                  </td>
+	               </tr>
+	            </table>
+			</form>
+		</section>
+		
+		<section>
 			<h2><a href="getAllUserList">회원가입정보 불러오기</a></h2>
 			<%
 			ArrayList<UserVO> userList = (ArrayList<UserVO>) request.getAttribute("userList");
@@ -121,6 +160,7 @@
 								<td>${list.user_pw }</td>
 								<td>${list.user_tel }</td>
 								<td>${list.user_email }</td>
+								<td><a href="deleteUserCtrl?user_id=${list.user_id }">회원탈퇴</a></td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
@@ -269,7 +309,7 @@
 		</section>
 		
 		<section id="dashBoard">
-			<h2><a href="GetCampingcarListCtrl">캠핑카 상세페이지 불러오기</a></h2>
+			<h2><a href="GetCampingcarListCtrl">캠핑카 모든 데이터 불러오기</a></h2>
 			<%
 			ArrayList<CampingcarVO> campingcarList = (ArrayList<CampingcarVO>) request.getAttribute("campingcarList");
 			%>
@@ -311,9 +351,11 @@
 								<td>${vo.campingcar_address }</td>
 								<td>${vo.campingcar_website }</td>
 								<td>${vo.campingcar_img }</td>
-								<c:forEach var="op" items="${vo.campingcar_option }">								
-									<td>${op }</td>
-								</c:forEach>
+								<td>
+									<c:forEach var="op" items="${vo.campingcar_option }">								
+										${op } 
+									</c:forEach>
+								</td>
 								<td>${vo.campingcar_rider }</td>
 								<td>${vo.campingcar_sleeper }</td>
 								<td>${vo.campingcar_release_time }</td>
@@ -325,6 +367,8 @@
 								<td>${vo.user_id }</td>
 								<td>${vo.campingcar_cnt }</td>
 								<td>${vo.campingcar_regdate }</td>
+								<td><a href="upCampingcar.jsp?campingcar_no=${vo.campingcar_no }">수정</a></td>
+								<td><a href="DeleteCampingcarCtrl?campingcar_no=${vo.campingcar_no }">삭제</a></td>
 							</tr>						
 						</c:forEach>
 	
@@ -334,10 +378,12 @@
 			
 		</section>
 		<section id="campingcar">
-			<h2><a href="GetCampingcarCtrl?campingcar_no=107">캠핑카 상세페이지</a></h2>
+			<h2><a href="GetCampingcarCtrl?campingcar_no=107">캠핑카 상세 데이터 불러오기</a></h2>
 			<%
-			ArrayList<ReviewVO> reviewList = (ArrayList)request.getAttribute("reviewList");
-			CampingcarVO vo = (CampingcarVO)request.getAttribute("vo");
+			// 캠핑카 상세 데이터
+			CampingcarVO vo = (CampingcarVO) request.getAttribute("vo");
+			// 캠핑카 후기 리스트
+			ArrayList<ReviewVO> reviewList = (ArrayList) request.getAttribute("reviewList");
 			if(vo != null && reviewList != null) {
 				// null이 아닐 경우 데이터 처리
 				String[] options = vo.getCampingcar_option();	
@@ -392,9 +438,9 @@
 						<%
 							for(int j = 0; j<options.length; j++){
 						%>
-						<button>
-		    					<%=options[j] %>				
-						</button>
+							
+			    					<%=options[j] %>
+							
 						<%
 							}
 						%>
@@ -407,7 +453,7 @@
 					<h3>후기</h3>
 						<table>
 						<%
-							for(int i = 0; i<reviewList.size(); i++){
+							for(int i = 0; i < reviewList.size(); i++){
 								ReviewVO rvo = reviewList.get(i);
 						%>
 							<tr>
@@ -416,8 +462,8 @@
 		    					<td><%=rvo.getReview_no() %></td>
 		    					<td><%=rvo.getReview_score() %></td>
 		    					<td><%=rvo.getUser_id() %></td>
-		    					<td><a href="UpdateReviewCtrl?review_no=<%=rvo.getCampingcar_no() %>">리뷰 수정</a></td>
-		    					<td><a href="DeleteReviewCtrl?review_no=<%=rvo.getCampingcar_no() %>">리뷰 삭제</a></td>
+		    					<td><a href="./updateReview.jsp?review_no=<%=rvo.getReview_no() %>&idck=<%=rvo.getUser_id() %>">리뷰 수정</a></td>
+		    					<td><a href="DeleteReviewCtrl?review_no=<%=rvo.getReview_no() %>&idck=<%=rvo.getUser_id() %>">리뷰 삭제</a></td>
 		    				</tr>
 						<%
 							}
@@ -436,7 +482,6 @@
 			<h2>리뷰 등록 페이지</h2>
 			<form action="AddReviewCtrl" method="post">
 	            <input type="hidden" value="107" name="campingcar_no" />
-	            <input type="hidden" value="ezon" name="user_id" />
 	            <table class="table table-bordered">
 	               <tr>
 	                  <td>작성자</td>
@@ -465,17 +510,45 @@
 	         </form>
 		</section>
 		
+		<section id="dashBoard">
+			<h2><a href="GetDashBoardCampingcarListCtrl">대시보드 페이지</a></h2>
+			<%
+			ArrayList<CampingcarViewVO> campingcarListDash = (ArrayList<CampingcarViewVO>) request.getAttribute("campingcarListDash");
+			%>
+			<table>
+				<c:choose>
+					<c:when test="<%= campingcarListDash != null %>">
+							<tr>
+								<td>번호</td>
+								<td>생성일</td>
+								<td>평균별점</td>
+								<td>조회수</td>
+								<td>유저아이디</td>
+							</tr>
+						<c:forEach var="vo" items="<%= campingcarListDash %>">
+							<tr>
+								<td>${vo.campingcar_no }</td>
+								<td>${vo.campingcar_regdate }</td>
+								<td>${vo.review_score }</td>
+								<td>${vo.campingcar_cnt }</td>
+								<td>${vo.user_id }</td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td>데이터가 없어요. 불러오기 해주세요</td>
+						</tr>					
+					</c:otherwise>
+				</c:choose>
+			</table>
+		</section>
+		
+		
 		<section>
 			<script type="text/javascript" src="./resouce/smarteditor2-2.8.2.3/js/HuskyEZCreator.js" charset="utf-8"></script>
 			<form action="sample/viewer/index.php" method="post">
 				<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;"></textarea>
-				<!--textarea name="ir1" id="ir1" rows="10" cols="100" style="width:100%; height:412px; min-width:610px; display:none;"></textarea-->
-				<p>
-					<input type="button" onclick="pasteHTML();" value="본문에 내용 넣기" />
-					<input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
-					<input type="button" onclick="submitContents(this);" value="서버로 내용 전송" />
-					<input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" />
-				</p>
 			</form>
 			
 			<script type="text/javascript">

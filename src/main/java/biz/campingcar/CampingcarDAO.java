@@ -20,9 +20,10 @@ public class CampingcarDAO {
 	public int addCampingcar(CampingcarVO vo) {
 		int cnt = 0;
 		String option = "";
-		for(String op : vo.getCampingcar_option()) {
-			option += op + ", ";
+		if (vo.getCampingcar_option() != null) {			
+			for(String op : vo.getCampingcar_option()) option += op + ", ";
 		}
+
 		
 		try {
 			// DB 연결
@@ -87,7 +88,8 @@ public class CampingcarDAO {
 				vo.setCampingcar_img(rs.getString(7)); // 이미지
 				// 배열로 전환
 				String op = rs.getString(8);
-				vo.setCampingcar_option(op.split(", ")); // 옵션
+				if(op != null) vo.setCampingcar_option(op.split(", ")); // 옵션
+
 				vo.setCampingcar_rider(rs.getInt(9)); // 탑승가능 인원수
 				vo.setCampingcar_sleeper(rs.getInt(10)); // 취침가능 인원수
 				vo.setCampingcar_release_time(rs.getString(11)); // 대여일 대여시간
@@ -134,7 +136,8 @@ public class CampingcarDAO {
 				vo.setCampingcar_img(rs.getString(7)); // 이미지
 				// 배열로 전환
 				String op = rs.getString(8);
-				vo.setCampingcar_option(op.split(", ")); // 옵션
+				if (op != null) vo.setCampingcar_option(op.split(", ")); // 옵션
+				
 				vo.setCampingcar_rider(rs.getInt(9)); // 탑승가능 인원수
 				vo.setCampingcar_sleeper(rs.getInt(10)); // 취침가능 인원수
 				vo.setCampingcar_release_time(rs.getString(11)); // 대여일 대여시간
@@ -203,23 +206,73 @@ public class CampingcarDAO {
 	
 	
 	// 수정
-	/** 캠핑카 데이터 개별 수정하는 메소드 
-	 * 전체 수정하는건 나중에
-	 * */
-	public int upCampingcar(String column, String data) {
+	/** 캠핑카 수정 메서드*/
+	   public int updateCampingcar(CampingcarVO vo) {
+	      int cnt = 0;
+				String option = "";
+				if (vo.getCampingcar_option() != null) {			
+					for(String op : vo.getCampingcar_option()) option += op + ", ";
+				}
+	      try {
+	         // DB 연결
+	         conn = JDBCConnection.getConnection();
+	         String sql = "update cb_campingcar "
+	         		+ "set campingcar_name=?, campingcar_infos=?, campingcar_tel=?, "
+	               + "campingcar_address=?, campingcar_website=?, campingcar_img=?, campingcar_option=?, "
+	               + "campingcar_rider=?, campingcar_sleeper=?, campingcar_release_time=?, campingcar_return_time=?, "
+	               + "campingcar_license=?, campingcar_wd_fare=?, campingcar_ph_fare=?, campingcar_detail=?"
+	               + "where campingcar_no = ?";
+	         stmt = conn.prepareStatement(sql);
+	         // 매핑
+	         stmt.setString(1, vo.getCampingcar_name());
+	         stmt.setString(2, vo.getCampingcar_infos());
+	         stmt.setString(3, vo.getCampingcar_tel());
+	         stmt.setString(4, vo.getCampingcar_address());
+	         stmt.setString(5, vo.getCampingcar_website());
+	         stmt.setString(6, vo.getCampingcar_img());
+	   
+	         stmt.setString(7, option);
+	         stmt.setInt(8, vo.getCampingcar_rider());
+	         stmt.setInt(9, vo.getCampingcar_sleeper());
+	         stmt.setString(10, vo.getCampingcar_release_time());
+	         stmt.setString(11, vo.getCampingcar_return_time());
+	         stmt.setString(12, vo.getCampingcar_license());
+	         stmt.setInt(13, vo.getCampingcar_wd_fare());
+	         stmt.setInt(14, vo.getCampingcar_ph_fare());
+	         stmt.setString(15, vo.getCampingcar_detail());
+	         stmt.setInt(16, vo.getCampingcar_no());
+	         
+	         // 실행
+	         cnt = stmt.executeUpdate();
+	         // 오류처리
+	         if (cnt == 0) System.out.println("캠핑카 업데이트 로직에서 오류남");
+	         
+	      } catch (ClassNotFoundException e) {
+	         e.printStackTrace();
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         JDBCConnection.close(stmt, conn);
+	      }
+	      return cnt;
+	   }
+	
+	
+	// 삭제
+	/** 캠핑카 데이터 개별 삭제하는 메소드로, 캠핑카에 포함된 리뷰도 함께 삭제해야함 */
+	public int deleteCampingcar(int campingcar_no) {
 		int cnt = 0;
 		try {
 			// DB 연결
 			conn = JDBCConnection.getConnection();
-			String sql = "update table cb_campingcar set "+column+" = ?";
+			String sql = "delete cb_campingcar where campingcar_no = ?";
 			stmt = conn.prepareStatement(sql);
 			// 맴핑
-			stmt.setString(1, data);
-			
+			stmt.setInt(1, campingcar_no);
 			// 실행
 			cnt = stmt.executeUpdate();
 			// 오류처리
-			if (cnt == 0) System.out.println("캠핑카 업데이트 로직에서 오류남");
+			if (cnt == 0) System.out.println("캠핑카 삭제 로직에서 오류남");
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -231,18 +284,16 @@ public class CampingcarDAO {
 		return cnt;
 	}
 	
-	
-	// 삭제
-	/** 캠핑카 데이터 개별 삭제하는 메소드 */
-	public int deleteCampingcar(int campingcar_no) {
+	/** 아이디를 기준으로 캠핑카 전부 삭제 */
+	public int deleteCampingcar(String user_id) {
 		int cnt = 0;
 		try {
 			// DB 연결
 			conn = JDBCConnection.getConnection();
-			String sql = "delete cb_campingcar where campingcar_no = ?";
+			String sql = "delete cb_campingcar where user_id = ?";
 			stmt = conn.prepareStatement(sql);
 			// 맴핑
-			stmt.setInt(1, campingcar_no);
+			stmt.setString(1, user_id);
 			// 실행
 			cnt = stmt.executeUpdate();
 			// 오류처리

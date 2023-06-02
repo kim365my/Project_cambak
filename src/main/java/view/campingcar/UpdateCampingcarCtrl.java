@@ -15,15 +15,16 @@ import biz.campingcar.CampingcarVO;
 import biz.user.loginCK;
 
 /**
- * Servlet implementation class AddCampingcarCtrl
+ * Servlet implementation class UpdateCampingcarCtrl
  */
-@WebServlet("/AddCampingcarCtrl")
-public class AddCampingcarCtrl extends HttpServlet {
+@WebServlet("/UpdateCampingcarCtrl")
+public class UpdateCampingcarCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 인코딩 설정
@@ -40,6 +41,7 @@ public class AddCampingcarCtrl extends HttpServlet {
 		
 		if(!bool) {
 			// 파라미터 값 받기
+			int campingcar_no = Integer.parseInt(request.getParameter("campingcar_no"));
 			String campingcar_name = request.getParameter("campingcar_name");
 			String campingcar_infos = request.getParameter("campingcar_infos");
 			String campingcar_tel = request.getParameter("campingcar_tel");
@@ -57,25 +59,24 @@ public class AddCampingcarCtrl extends HttpServlet {
 			String campingcar_release_time = request.getParameter("campingcar_release_time");
 			String campingcar_return_time = request.getParameter("campingcar_return_time");
 			String campingcar_license = request.getParameter("campingcar_license");
-
+			
 			String wd_fare = request.getParameter("campingcar_wd_fare");
 			int campingcar_wd_fare = (wd_fare == null) ? 0 :Integer.parseInt(wd_fare); // 이것만 not null이므로 null 체크 필요
 			
 			String ph_fare = request.getParameter("campingcar_ph_fare");
-			int campingcar_ph_fare = (ph_fare == null) ? 0 : Integer.parseInt(ph_fare);
+			int campingcar_ph_fare = (ph_fare == null) ? 0 :Integer.parseInt(ph_fare);
 			
 			String campingcar_detail = request.getParameter("campingcar_detail");
 		
 				
 			// no와 조회수와 생성일은 DB에서 초기값으로 넣음
-			CampingcarVO vo = new CampingcarVO(0, campingcar_name, campingcar_infos, campingcar_tel, campingcar_address, campingcar_website, campingcar_img, campingcar_option, campingcar_rider, campingcar_sleeper, campingcar_release_time, campingcar_return_time, campingcar_license, campingcar_wd_fare, campingcar_ph_fare, campingcar_detail, user_id, 00, null);
+			CampingcarVO vo = new CampingcarVO(campingcar_no, campingcar_name, campingcar_infos, campingcar_tel, campingcar_address, campingcar_website, campingcar_img, campingcar_option, campingcar_rider, campingcar_sleeper, campingcar_release_time, campingcar_return_time, campingcar_license, campingcar_wd_fare, campingcar_ph_fare, campingcar_detail, user_id, 0, null);
 			
 			// 비지니스 로직 실행
 			CampingcarDAO cdao = new CampingcarDAO();
-			int cnt = cdao.addCampingcar(vo);
+			int cnt = cdao.updateCampingcar(vo);
 			
 			// 결과에 따라 값 출력
-			
 			if(cnt != 0) {
 				// 성공했을 경우,  페이지 이동 일단 임의로 인덱스 페이지로
 				response.sendRedirect("index.jsp");
@@ -87,8 +88,6 @@ public class AddCampingcarCtrl extends HttpServlet {
 		}
 		// 자원 반납
 		out.close();
-
 	}
 
 }
-

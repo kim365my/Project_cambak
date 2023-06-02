@@ -1,6 +1,7 @@
 package view.campingcar;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import biz.campingcar.CampingcarDAO;
 import biz.campingcar.CampingcarViewVO;
+import biz.user.loginCK;
 
 /**
  * Servlet implementation class GetCampingcarCtrl
@@ -34,23 +36,30 @@ public class GetDashBoardCampingcarListCtrl extends HttpServlet {
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");
 		
-		// 비지니스 로직 실행
-		CampingcarDAO cdao = new CampingcarDAO();
-		ArrayList<CampingcarViewVO> campingcarList = cdao.getALLCampingcar(user_id);
-
-		// 결과에 따라 값 출력
-		if(campingcarList != null) {
-			// 성공했을 경우, 페이지 이동 일단 임의로 인덱스 페이지로
-			// 바인딩
-		      request.setAttribute("campingcarList", campingcarList);
-		      // 포워드
-		      RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
-		      dis.forward(request, response);
-		} else {
-			// 실패했을 경우
-			response.sendRedirect("index.jsp");
+		// 로그인 처리
+		PrintWriter out = response.getWriter();
+		boolean bool = loginCK.moveLoginPage(session, out, user_id);
+		if(!bool) {
+			// 비지니스 로직 실행
+			CampingcarDAO cdao = new CampingcarDAO();
+			ArrayList<CampingcarViewVO> campingcarListDash = cdao.getALLCampingcar(user_id);
 			
+			// 결과에 따라 값 출력
+			if(campingcarListDash != null) {
+				// 성공했을 경우, 페이지 이동 일단 임의로 인덱스 페이지로
+				// 바인딩
+				request.setAttribute("campingcarListDash", campingcarListDash);
+				// 포워드
+				RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
+				dis.forward(request, response);
+			} else {
+				// 실패했을 경우
+				response.sendRedirect("index.jsp");
+			}
 		}
+			
+
+		
 
 	}
 

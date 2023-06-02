@@ -71,6 +71,7 @@ select * from cb_user;
 select * from cb_review;
 select review_no_seq.nextval from dual;
 select * from cb_campingcar;
+desc cb_campingcar;
 select CAMPINGCAR_NO_SEQ.nextval from dual;
 select * from cd_deshBoard_view; -- view 조회
 
@@ -101,4 +102,8 @@ insert into cb_campingcar values(CAMPINGCAR_NO_SEQ.nextval, '캠핑카', '멋진
 -- 유저 로그인 정보 조회
 select count(max(user_id)) from cb_user where user_id='ezon' and user_pw='111' group by user_id;
 
+delete from cb_review where review_no = 1034;
+commit;
 
+-- up
+update cb_user set  user_pw = '1111' where user_id = 'ezon';

@@ -96,7 +96,52 @@ public class UserDAO {
    }
    
    // 수정
+   /** 유저 데이터 수정 
+    * 	수정 가능한 데이터 : 비번, 이메일, 전화번호
+    * 	아이디는 PK로 잡혀있기에 수정이 불가능함
+    * */
+   public int updateUser(UserVO vo) {
+	   int cnt = 0;
+	   try {
+		   conn = JDBCConnection.getConnection();
+		   String sql = "update cb_user set  user_pw = ?, user_tel = ?, user_email = ? where user_id = ?";
+		   stmt = conn.prepareStatement(sql);
+		   // 맵핑
+		   stmt.setString(1, vo.getUser_pw());
+		   stmt.setString(2, vo.getUser_tel());
+		   stmt.setString(3, vo.getUser_email());
+		   stmt.setString(4, vo.getUser_id());
+		   
+		   // 실행
+		   cnt = stmt.executeUpdate();
+		   if(cnt == 0) System.out.println("유저 데이터 수정시 DB 오류");
+		   
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	   
+	   return cnt;
+   }
    
    // 삭제
-   
+   public int deleteUser(String user_id) {
+	   int cnt = 0;
+	   try {
+			conn = JDBCConnection.getConnection();
+			// 자식 데이터를 먼저 삭제해야 오류가 나지 않음
+			String sql = "delete from cb_user where user_id = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, user_id);
+			cnt = stmt.executeUpdate();
+			if(cnt == 0) System.out.println("유저 삭제가 되지 않음");
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	   return cnt;
+   }
 }

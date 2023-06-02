@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import biz.review.ReviewDAO;
-import biz.review.ReviewVO;
+import biz.user.loginCK;
 
 
 @WebServlet("/DeleteReviewCtrl")
@@ -27,31 +27,41 @@ public class DeleteReviewCtrl extends HttpServlet {
    }
 
    protected void doGetPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      request.setCharacterEncoding("utf-8");
-      response.setContentType("text/html;charset=utf-8");
-      // 세션
-      HttpSession session = request.getSession();
-      String user_id = (String)session.getAttribute("user_id");
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+        // 세션
+        HttpSession session = request.getSession();
+        String user_id = (String)session.getAttribute("user_id");
       
-      PrintWriter out = response.getWriter();
-      // 로그인이 안되어 있으면 login.jsp로 이동
-      if(user_id == null) {
-   		  out.println("<script>alert('로그인해주세요');"
-				  + "location.href='index.jsp;'"
-				  + "</script>");
-      } else {
-         // 파라미터
-         int review_no = Integer.parseInt(request.getParameter("review_no"));
-         // 할당
-         ReviewVO vo = new ReviewVO();
-         vo.setReview_no(review_no);
-         // DAO
-         ReviewDAO rdao = new ReviewDAO();
-         int cnt = rdao.deleteReview(review_no);
-         if(cnt != 0) {
-            response.sendRedirect("GetReviewCtrl");
-         }
+        // 파라이터로 넘겨온 아이디
+        String idck = request.getParameter("idck");
+      
+        PrintWriter out = response.getWriter();
+        // 로그인이 안되어 있으면 login.jsp로 이동
+        // 로그인이 되어있어도, 회원정보가 일치해야 삭제 가능하도록 변경
+        out.println("<script>");
+	    boolean bool = loginCK.moveLoginPage(session, out, user_id);
+		
+	    if(!bool && user_id.equals(idck)) {
+	         // 파라미터 받아오기
+	         int review_no = Integer.parseInt(request.getParameter("review_no"));
+	         
+	         // DAO
+	         ReviewDAO rdao = new ReviewDAO();
+	         int cnt = rdao.deleteReview(review_no);
+	         
+	         if(cnt != 0) {
+	 			out.println("alert('리뷰 삭제 처리되었습니다.');");
+	 			// 로그인 후 이동할 페이지 *일단 임의로 뒤로가게해서 새로고침
+	 			out.println("location.href=document.referrer;");
+	 		} else {
+	 			// 실패했을 경우
+	 			out.println("alert('오류가 발생했습니다');");
+	 			// 로그인 후 이동할 페이지 *일단 임의로 뒤로가게해서 새로고침
+	 			out.println("history.back();");	
+	 		}
       }
+      out.println("</script>");
       out.close();
       
    }

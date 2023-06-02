@@ -6,7 +6,16 @@ public class UserVO {
    private String   user_email;
    private String   user_tel;
    
+   // 생성자
    public UserVO() {}
+   public UserVO(String user_id, String user_pw, String user_email, String user_tel) {
+	this.user_id = user_id;
+	this.user_pw = user_pw;
+	this.user_email = user_email;
+	this.user_tel = user_tel;
+}
+
+// get, set
    public String getUser_id() {
       return user_id;
    }

@@ -29,7 +29,7 @@ public class joinCtrl extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 	      // 폼데이터
-	      String id = request.getParameter("user_id");
+	      String user_id = request.getParameter("user_id");
 	      String pw = request.getParameter("user_pw");
 	      String pw2 = request.getParameter("pw2");
 	      String email = request.getParameter("user_email");
@@ -38,14 +38,11 @@ public class joinCtrl extends HttpServlet {
 	      
 	      // 비밀번호가 동일한 지 확인 결과 출력
 	      PrintWriter out = response.getWriter();
+	      out.println("<script>");
 	      if(pw.equals(pw2)) {
 	    	  // 비밀번호가 동일한 경우 회원가입처리
 	    	  // 자바빈에 데이터 저장
-	    	  UserVO bean = new UserVO();
-	    	  bean.setUser_id(id);
-	    	  bean.setUser_pw(pw);
-	    	  bean.setUser_email(email);
-	    	  bean.setUser_tel(tel);
+	    	  UserVO bean = new UserVO(user_id, user_id, email, tel);
 	         UserDAO udao = new UserDAO();
 	         udao.addUser(bean);
 	         out.println("alert('회원가입 처리되었습니다.');");
@@ -54,6 +51,7 @@ public class joinCtrl extends HttpServlet {
 	    	  out.println("alert('비밀번호가 달라요.');");
 	    	  out.println("location.href='index.jsp';");
 	      } //end of if
+	      out.println("</script>");
 	      out.close();
 	}
 

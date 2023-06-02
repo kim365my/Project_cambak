@@ -29,7 +29,6 @@ public class GetCampingcarListCtrl extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		// 파라미터 갑 받기
 		
 		// 비지니스 로직 실행
 		CampingcarDAO cdao = new CampingcarDAO();
@@ -43,9 +42,7 @@ public class GetCampingcarListCtrl extends HttpServlet {
 	        dis.forward(request, response);
 		} else {
 			// 실패했을 경우
-			System.out.println("campingcarList가 null이에요");
 			response.sendRedirect("index.jsp");
-			
 		}
 
 	}

@@ -82,13 +82,13 @@ public class ReviewDAO {
 		int cnt = 0;
 		try {
 			conn = JDBCConnection.getConnection();
-			String sql = "update table cb_review set review_score = ?, review_content = ? "
+			String sql = "update cb_review set review_score = ?, review_content = ? "
 					+ "where review_no = ?";
 			stmt = conn.prepareStatement(sql);
 			// 맵핑
 			stmt.setInt(1, vo.getReview_score());
 			stmt.setString(2, vo.getReview_content());
-			stmt.setInt(3, vo.getCampingcar_no());
+			stmt.setInt(3, vo.getReview_no());
 			
 			// 실행
 			cnt = stmt.executeUpdate();
@@ -105,11 +105,12 @@ public class ReviewDAO {
 	}
 	
 	// 삭제
+	/**하나의 리뷰만 삭제하는 메소드*/
 	public int deleteReview(int review_no) {
 		int cnt = 0;
 		try {
 			conn = JDBCConnection.getConnection();
-			String sql = "delete cb_review where review_no = ?";
+			String sql = "delete from cb_review where review_no = ?";
 			stmt = conn.prepareStatement(sql);
 			// 맵핑
 			stmt.setInt(1, review_no);
@@ -127,4 +128,28 @@ public class ReviewDAO {
 		}
 		return cnt;
 	}
+	/**유저를 기준으로 리뷰를 전부 삭제*/
+	public int deleteReview(String user_id) {
+		int cnt = 0;
+		try {
+			conn = JDBCConnection.getConnection();
+			String sql = "delete from cb_review where user_id = ?";
+			stmt = conn.prepareStatement(sql);
+			// 맵핑
+			stmt.setString(1, user_id);
+			
+			// 실행
+			cnt = stmt.executeUpdate();
+			if(cnt == 0) System.out.println("리뷰 데이터 삭제중 오류가 발생");
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCConnection.close(stmt, conn);
+		}
+		return cnt;
+	}
+	
 }
