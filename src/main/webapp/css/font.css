@@ -1,0 +1,186 @@
+@charset "utf-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Seymour+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dongle&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gugi&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Single+Day&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kirang+Haerang&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Stylish&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dokdo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sunflower:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap");
+
+@font-face {
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 100;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format("woff"),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format("opentype");
+}
+@font-face {
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 300;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format("woff"),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format("opentype");
+}
+@font-face {
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 400;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format("woff"),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format("opentype");
+}
+@font-face {
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 500;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format("woff"),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format("opentype");
+}
+@font-face {
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 700;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format("woff"),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format("opentype");
+}
+@font-face {
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 900;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format("woff"),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format("opentype");
+}
+
+/* 영문폰트 */
+.rubikBubbles {
+    font-family: "Rubik Bubbles", cursive;
+}
+.one {
+    font-family: "Seymour One", sans-serif;
+}
+.righteous {
+    font-family: "Righteous", cursive;
+}
+.shadows {
+    font-family: "Shadows Into Light", cursive;
+}
+.lato {
+    font-family: "Lato", sans-serif;
+}
+.lobster {
+    font-family: "Lobster", cursive;
+}
+.marker {
+    font-family: "Permanent Marker", cursive;
+}
+.montserrat {
+    font-family: "Montserrat", sans-serif;
+}
+.amatic {
+    font-family: "Amatic SC", cursive;
+}
+.sourcecodepro {
+    font-family: "Source Code Pro", monospace;
+}
+.pacifico {
+    font-family: "Pacifico", cursive;
+}
+.play {
+    font-family: "Play", sans-serif;
+}
+.pt {
+    font-family: "PT Serif", serif;
+}
+.caveat {
+    font-family: "Caveat", cursive;
+}
+.monoton {
+    font-family: "Monoton", cursive;
+}
+.raleway {
+    font-family: "Raleway", sans-serif;
+}
+.righteous {
+    font-family: "Righteous", cursive;
+}
+
+/* 한글폰트 */
+.notosankr {
+    font-family: "Noto Sans KR", sans-serif;
+}
+.notoserif {
+    font-family: "Noto Serif KR", serif;
+}
+.yeon {
+    font-family: "Yeon Sung", cursive;
+}
+.jua {
+    font-family: "Jua", sans-serif;
+}
+.dongle {
+    font-family: "Dongle", sans-serif;
+}
+.gugi {
+    font-family: "Gugi", cursive;
+}
+.gamjaflower {
+    font-family: "Gamja Flower", cursive;
+}
+.melody {
+    font-family: "Hi Melody", cursive;
+}
+.singleday {
+    font-family: "Single Day", cursive;
+}
+.haerang {
+    font-family: "Kirang Haerang", cursive;
+}
+.gowun {
+    font-family: "Gowun Batang", serif;
+}
+.stylish {
+    font-family: "Stylish", sans-serif;
+}
+.dokdo {
+    font-family: "Dokdo", cursive;
+}
+.sunflower {
+    font-family: "Sunflower", sans-serif;
+}
+.hansan {
+    font-family: "Black Han Sans", sans-serif;
+}
+.nanumbrushscript {
+    font-family: "Nanum Brush Script", cursive;
+}
+.fjallaone {
+    font-family: "Fjalla One", sans-serif;
+}

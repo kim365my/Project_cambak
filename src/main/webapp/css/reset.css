@@ -1,0 +1,184 @@
+@charset "utf-8";
+
+/* CSS 초기화 */
+html,
+body,
+div,
+span,
+iframe,
+h1, h2, h3, h4, h5, h6,
+p,
+blockquote,
+pre,
+cite,
+code,
+del,
+em,
+img,
+ins,
+q,
+small,
+strong,
+sub,
+sup,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+legend,
+table,
+caption,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    font-weight: normal;
+    vertical-align: baseline;
+}
+
+/* 문서전체 CSS/적용 */
+body {
+    line-height: 1;
+}
+
+/* HTML5 시멘틱 태그들 IE 구버전 인식 설정 */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+nav,
+section {
+    display: block;
+}
+
+/* List 요소 */
+ul, ol, li {
+    list-style: none;
+}
+/* A 요소 */
+a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1em;
+    vertical-align: baseline;
+    background: none;
+}
+
+/* img 요소 */
+img {
+    vertical-align: top;
+}
+
+/* hr 요소 */
+hr {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* button 요소 */
+button {
+    background: none;
+}
+
+/* 박스사이징 */
+* {
+    box-sizing: border-box;
+}
+
+/* input, textarea 요소 */
+input, textarea {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+}
+
+/* 플롯 해제 */
+.cf::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* 모든 환경에 안 보여도 되지만, 반드시 입력해야 할 html태그가 존재
+(웹 접근성 때문에) */
+/* 그때, 해당 요소를 숨기기 위해 사용하는 class */
+.blind {
+    position: absolute;
+    left: -9999px;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+/* 패딩, 마진값 초기화 클래스 */
+.no_mt {margin-top: 0 !important;}
+.no_mr {margin-right: 0 !important;}
+.no_mb {margin-bottom: 0 !important;}
+.no_ml {margin-left: 0 !important;}
+
+.no_pt {padding-top: 0 !important;}
+.no_pr {padding-right: 0 !important;}
+.no_pb {padding-bottom: 0 !important;}
+.no_pl {padding-left: 0 !important;}
+
+/* 보더 */
+.no_bt {border-top: 0 !important;}
+.no_br {border-right: 0 !important;}
+.no_bb {border-bottom: 0 !important;}
+.no_bl {border-left: 0 !important;}
+
+
+/* 기본 input의 x버튼 숨기기 */
+/* IE의 경우 */
+input::-ms-clear,
+input::-ms-reveal{
+       opacity: 0;
+      position: absolute;
+      right: 0;
+}
+/* 크롬의 경우 */
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration{
+       opacity: 0;
+      position: absolute;
+      right: 0;
+}
