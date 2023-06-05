@@ -1,2 +1,271 @@
-/* 대시보드 css */
 @charset "utf-8";
+/* 대시보드 css */
+
+/* safe area */
+.w1140{
+    padding: 0 20px;
+}
+.wid_1140 {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+html, body {
+    font-size: 62.5%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    background: #f7f7f7;
+}
+#wrap {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+/* header */
+header {
+    width: 100%;
+    height: 60px;
+    padding: 0 24px;
+    background-color: rgb(255, 255, 255, 0.8);
+    box-shadow: 0 1px 15px 0 rgba(0,0,0,.045);
+    /* 플렉스 */
+    display: flex;
+    justify-content: space-between;
+    /* 포지션 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999999;
+}
+.logo {
+    /* 플렉스 */
+    display: flex;
+    align-items: center;
+}
+.logo li img{
+    width: 117px;
+    height: 50px;
+}
+.logo li {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.logo li:nth-child(2){
+    margin: 0 24px 0 34px;
+}
+.header_icon {
+    /* 플렉스 */
+    display: flex;
+    align-items: center;
+}
+.header_icon li div{
+    width: 27px;
+    height: 27px;
+    font-size: 17px;
+    border-radius: 50%;
+    background-color: #dddddd;
+    text-align: center;
+    line-height: 27px;
+}
+.header_icon .bell {
+    margin: 20px 12px;
+}
+.name{
+    height: 27px;
+    line-height: 27px;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+.name .span {
+    margin-left: 12px;
+    vertical-align: top;
+    font-weight: 700;
+}
+.name span:last-child {
+    vertical-align: middle;
+}
+.header_icon p {
+    width: 135px;
+    height: 37px;
+    margin-left: 10px;
+    background-color: #3974d9;
+    border-radius: 10px;
+    color: #fff;
+    line-height: 37px;
+    text-align: center;
+    font-size: 1.2rem;   
+    font-weight: 700; 
+    cursor: pointer;
+}
+.header_gnb{
+    width: 230px;
+    padding: 19px 0;
+    border-radius: 7px;
+    background-color: #ffffff;
+    cursor: pointer;
+    /* 포지션 */
+    position: absolute;
+    /* 대시보드 페이지 헤더 패딩변경으로 right값 변경 */
+    right: 155px;
+    top: 76px;
+    z-index: 999999999;
+
+    /*  로딩 시  메뉴 숨기기 */
+    display: none;
+}
+.header_gnb li {
+    padding: 4px 24px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #111111;
+}
+.header_gnb .list {
+    margin: 8px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* gnb */
+aside {
+    width: 70px;
+    height: 100%;
+}
+.dash_icons {
+    position: fixed;
+    width: 70px;
+    height: 100%;
+    top: 57px;
+
+}
+.gnb {
+    width: 70px;
+    height: 100%;
+    border-right: 1px solid #eee;
+    background: white;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.gnb li {
+    width: 100%;
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 10px 15px;
+    text-align: center;
+    line-height: 36px;
+    color: black;
+    /* gnb_info의 위치기준값 */
+    position: relative;
+}
+.gnb li:first-child {
+    color: #3974d9;
+}
+.gnb li:hover i {
+    color: #3974d9;
+}
+/* 호버시 아이콘 설명 나오게 하기 */
+.gnb li .gnb_info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    transition: all .15s;
+    padding: 0 15px;
+    background-color: rgba(0,0,0,.9);
+    font-size: 13px;
+    line-height: 36px;
+    white-space: nowrap;
+    border-radius: 0 6px 6px 0;
+    opacity: 0;
+    z-index: 0;
+    transition: all 0.5s;
+}
+.gnb li:hover .gnb_info {
+    top: 5px;
+    left: 70px;
+    opacity: 1;
+
+}
+
+/* 메인콘텐츠 */
+#main_wrap {
+    width: 1850px;
+}
+
+.dashboard_title h3 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-top: 110px;
+    margin-bottom: 50px;
+}
+.dashboard_title p {
+    color: #3974d9;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: right;
+    margin-bottom: 40px;
+}
+
+.boxes {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.resist_box, .reserve_box, .chat_box {
+    width: 364px;
+    padding: 24px;
+    background: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+.resist_box section, .reserve_box section, .chat_box section {
+    width: 50px;
+    height: 50px;
+    background: black;
+    text-align: left;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.resist_box section i, .reserve_box section i, .chat_box section i {
+    line-height: 50px;
+    font-size: 2rem;
+    color: white;
+    padding: 0 17px;
+}
+.reserve_box section i, .chat_box section i {
+    font-size: 1.8rem;
+    padding: 0 16px;
+}
+.resist_box:hover section, .reserve_box:hover section ,.chat_box:hover section {
+    background: #3974d9;
+    transition: all .3s;
+}
+.resist_box p, .reserve_box p, .chat_box p {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: black;
+    text-align: left;
+}
+.copyright {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.copyright p {
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: #777;
+}
+.copyright p a {
+    text-decoration: underline;
+    color: #3974d9;
+}
+
+
+
+
+

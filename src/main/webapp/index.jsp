@@ -1,611 +1,623 @@
-<%@page import="biz.review.ReviewVO"%>
-<%@page import="biz.campingcar.CampingcarVO"%>
-<%@page import="biz.campingcar.CampingcarViewVO"%>
-<%@page import="biz.user.UserVO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="biz.user.UserDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-		pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	//인코딩 설정
-	request.setCharacterEncoding("UTF-8");
-	response.setContentType("text/html; charset=UTF-8");
-	
-	String user_id = (String) session.getAttribute("user_id");
-%>
-
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Test Page</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="JGM" />
+    <meta name="description" content="중꺾마 캠박 클론" />
+    <title>캠박</title>
+    <!-- 파비콘 -->
+    <link rel="shortcut icon" href="./images/favicon/fav32.png">
+    <link rel="apple-touch-icon=precomposed" href="./images/favicon/fav180.png">
+    <!-- 폰트어썸 -->
+    <!-- 버전 4.7 -->
+    <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- 버전 5.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+    <!-- metertial cdn -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"  rel="stylesheet">
+    <!-- 스와이퍼 css -->
+    <link rel="stylesheet" href="./css/swiper-bundle.css">
+    <!-- 페이지 CSS -->
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/main_calendar_area.css">
+    <link rel="stylesheet" href="./css/chatbot.css">
+    <!-- 기본 코딩 JS 파일 -->
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="./js/prefixfree.min.js"></script>
+    <!-- 제이쿼리 플러그인 -->
+    <!-- <script src="./js/jquery-ui.min.js"></script> -->
+    <!-- <script src="./js/jquery.scrollTo.min.js"></script> -->
 </head>
 <body>
-	<header>
-		<h1>Test Page</h1>
-		<nav>
-			<ul class="gnb">
-				<c:choose>
-					<c:when test="<%= user_id == null %>">						
-						<li><a href="#login">로그인</a></li>
-					</c:when>
-					<c:otherwise>
-						<li><a href="LogoutCtrl">로그아웃</a></li>					
-					</c:otherwise>
-				</c:choose>
-				<li><a href="#dashBoard">리뷰페이지</a></li>
-				<li><a href="#campingcar">캠핑카페이지</a></li>
-				<li><a href="#addreview">리뷰 등록</a></li>
-				<li><a href="#dashBoard">대시보드 페이지</a></li>
-			</ul>
-		</nav>
-	</header>
-	<main>
-		<section id="login">
-			<div class="pavel-body">
-				<h2>로그인 페이지</h2>
-				<form action="loginCtrl" method="post">
-					아이디 : <input type="text" name="user_id" id="user_id"> <br><br>
-					비밀번호 : <input type="password" name="user_pw" id="user_pw"> <br>
-					<br>
-					<input type="submit" value="제출">
-				</form>
-			</div>
-		</section>
-		<section>
-			<h2>회원가입 페이지</h2>
-			<form action="joinCtrl" method="post">
-	            <table class="table table-bordered">
-	               <tr>
-	                  <th>아이디</th>
-	                  <td>
-	                     <input type="text" name="user_id" id="user_id" class="form-control">
-	                  </td>
-	               </tr>
-	               <tr>
-	                  <th>비밀번호</th>
-	                  <td>
-	                     <input type="password" name="user_pw" id="user_pw" class="form-control">
-	                  </td>
-	               </tr>
-	               <tr>
-	                  <th>비밀번호 확인</th>
-	                  <td>
-	                     <input type="password" name="pw2" id="pw2" class="form-control">
-	                  </td>
-	               </tr>
-	               <tr>
-	                  <th>이메일</th>
-	                  <td>
-	                     <input type="email" name="user_email" id="user_email" class="form-control">
-	                  </td>
-	               </tr>
-	               <tr>
-	                  <th>전화번호</th>
-	                  <td>
-	                     <input type="tel" name="user_tel" id="user_tel" class="form-control">
-	                  </td>
-	               </tr>
-	               <tr>
-	                  <td colspan="2">
-	                     <input type="submit" value="회원가입" class="btn btn-primary">
-	                     <input type="reset" value="취소" class="btn btn-secondary">
-	                  </td>
-	               </tr>
-	            </table>
-			</form>
-		</section>
-		
-		<section>
-			<h2>회원 데이터 수정 페이지</h2>
-			<form action="updateUserCtrl" method="post">
-	            <table class="table table-bordered">
-	               <tr>
-	                  <th>아이디</th>
-	                  <td>
-	                     <input type="text" name="user_id" value="<%= user_id %>" class="form-control" readonly="readonly">
-	                  </td>
-	               </tr>
-	               <tr>
-	                  <th>비밀번호</th>
-	                  <td>
-	                     <input type="password" name="user_pw" id="user_pw" class="form-control">
-	                  </td>
-	               </tr>
-	               <tr>
-	                  <th>이메일</th>
-	                  <td>
-	                     <input type="email" name="user_email" id="user_email" class="form-control">
-	                  </td>
-	               </tr>
-	               <tr>
-	                  <th>전화번호</th>
-	                  <td>
-	                     <input type="tel" name="user_tel" id="user_tel" class="form-control">
-	                  </td>
-	               </tr>
-	               <tr>
-	                  <td colspan="2">
-	                     <input type="submit" value="회원가입" class="btn btn-primary">
-	                     <input type="reset" value="취소" class="btn btn-secondary">
-	                  </td>
-	               </tr>
-	            </table>
-			</form>
-		</section>
-		
-		<section>
-			<h2><a href="getAllUserList">회원가입정보 불러오기</a></h2>
-			<%
-			ArrayList<UserVO> userList = (ArrayList<UserVO>) request.getAttribute("userList");
-			%>
-			<table border="1">
-				<c:choose>
-					<c:when test="<%= userList == null %>">
-						<tr>
-							<td>데이터가 없어요</td>
-						</tr>	
-					</c:when>
-					<c:otherwise>
-						<tr>
-							<td>아이디</td>
-							<td>비밀번호</td>
-							<td>전화번호</td>
-							<td>이메일</td>
-						</tr>
-						<c:forEach var="list" items="<%= userList %>">
-							<tr>
-								<td>${list.user_id }</td>
-								<td>${list.user_pw }</td>
-								<td>${list.user_tel }</td>
-								<td>${list.user_email }</td>
-								<td><a href="deleteUserCtrl?user_id=${list.user_id }">회원탈퇴</a></td>
-							</tr>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</table>
-		</section>
-		
-		<section id="addCampingcar">
-			<h2>캠핑카 추가페이지</h2>
-			<form action="AddCampingcarCtrl" method="post">
-			  <table class="table table-bordered">
-			     <tr>
-			        <th>캠핑카 이름</th>
-			        <td>
-			           <input type="text" name="campingcar_name" class="form-control">
-			        </td>
-			     </tr>
-			     <tr>
-			        <th>캠핑카 정보</th>
-			        <td>
-			           <input type="text" name="campingcar_infos" class="form-control">
-			        </td>
-			     </tr>
-			     <tr>
-			        <th>전화번호</th>
-			        <td>
-			           <input type="tel" name="campingcar_tel" class="form-control">
-			        </td>
-			     </tr>
-			     <tr>
-			        <th>주소</th>
-			        <td>
-			           <input type="text" name="campingcar_address" class="form-control">
-			        </td>
-			     </tr>
-			     <tr>
-			        <th>웹사이트</th>
-			        <td>
-			           <input type="text" name="campingcar_website"  class="form-control">
-			        </td>
-			     </tr>
-			     <tr>
-			        <th>이미지</th>
-			        <td>
-			           <input type="text" name="campingcar_img" class="form-control" >
-			        </td>
-			     </tr>
-			     <tr>
-			        <th>옵션선택</th>
-			        <td>
-	                  <label>
-	                      <input type="checkbox" name="campingcar_option" value="옵션1">옵션1
-	                  </label>
-	                  <label>
-	                      <input type="checkbox" name="campingcar_option" value="옵션2">옵션2
-	                  </label>
-	                  <label>
-	                      <input type="checkbox" name="campingcar_option" value="옵션3">옵션3
-	                  </label>
-	                  <label>
-	                      <input type="checkbox" name="campingcar_option" value="옵션4">옵션4
-	                  </label>
-	                  <label>
-	                      <input type="checkbox" name="campingcar_option" value="옵션5">옵션5
-	                  </label>
-	                  <label>
-	                      <input type="checkbox" name="campingcar_option" value="옵션6">옵션6
-	                  </label>
-	                  <label>
-	                      <input type="checkbox" name="campingcar_option" value="옵션7">옵션7
-	                  </label>
-	                  <label>
-	                      <input type="checkbox" name="campingcar_option" value="옵션8">옵션8
-	                  </label>
-	                  <label>
-	                      <input type="checkbox" name="campingcar_option" value="옵션9">옵션9
-	                  </label>
-			        </td>
-			     </tr>
-			     <tr>
-			        <th>동승인원</th>
-			        <td>
-	                  <select name="campingcar_rider">
-	                      <option value="1">1명</option>
-	                      <option value="2">2명</option>
-	                      <option value="3">3명</option>
-	                      <option value="4">4명</option>
-	                  </select>
-			        </td>
-			     </tr>
-			     <tr>
-			        <th>취침인원</th>
-			        <td>
-	                  <select name="campingcar_sleeper">
-	                      <option value="1">1명</option>
-	                      <option value="2">2명</option>
-	                      <option value="3">3명</option>
-	                      <option value="4">4명</option>
-	                  </select>
-			        </td>
-			     </tr>
-			     <tr>
-			        <th>캠핑카 출고 시간</th>
-			        <td>
-			           <input type="text" name="campingcar_release_time" class="form-control" value="15:00">
-			        </td>
-			     </tr>
-			     <tr>
-			        <th>캠핑카 반납 시간</th>
-			        <td>
-			           <input type="text" name="campingcar_return_time" class="form-control" value="12:00" >
-			        </td>
-			     </tr>
-			     <tr>
-			        <th>면허 종류</th>
-			        <td>
-			           <input type="text" name="campingcar_license" class="form-control" >
-			        </td>
-			     </tr>
-			     <tr>
-			        <th>주중 요금</th>
-			        <td>
-			           <input type="text" name="campingcar_wd_fare" class="form-control" >
-			        </td>
-			     </tr>
-			     <tr>
-			        <th>주말 요금</th>
-			        <td>
-			           <input type="text" name="campingcar_ph_fare" class="form-control" >
-			        </td>
-			     </tr>
-		          <tr>
-		              <th>상세 정보</th>
-		              <td>
-		                  <textarea name="campingcar_detail" cols="20" rows="10" class="form-control"></textarea>
-		              </td>
-		          </tr>
-			     <tr>
-			        <td colspan="2">
-			           <input type="submit" value="회원가입" class="btn btn-primary">
-			           <input type="reset" value="취소" class="btn btn-secondary">
-			        </td>
-			     </tr>
-			  </table>
-			</form>
-		</section>
-		
-		<section id="dashBoard">
-			<h2><a href="GetCampingcarListCtrl">캠핑카 모든 데이터 불러오기</a></h2>
-			<%
-			ArrayList<CampingcarVO> campingcarList = (ArrayList<CampingcarVO>) request.getAttribute("campingcarList");
-			%>
-			<table>
-				<c:choose>
-					<c:when test="<%= campingcarList == null %>">
-						<tr>
-							<td>데이터가 없어요</td>
-						</tr>	
-					</c:when>
-					<c:otherwise>
-						<tr>
-							<td>번호</td>
-							<td>상품명</td>
-							<td>정보</td>
-							<td>전화번호</td>
-							<td>주소</td>
-							<td>웹사이트</td>
-							<td>이미지 주소</td>
-							<td>옵션</td>
-							<td>탑승인원</td>
-							<td>취침가능인원</td>
-							<td>대여일 대여시간</td>
-							<td>반납일 반납시간</td>
-							<td>면허증 종류</td>
-							<td>주중요금</td>
-							<td>휴일요금</td>
-							<td>상세설명 파일 주소</td>
-							<td>작성한 유저명</td>
-							<td>조회수</td>
-							<td>생성일</td>
-						</tr>
-						<c:forEach var="vo" items="<%=  campingcarList%>">
-							<tr>
-								<td>${vo.campingcar_no }</td>
-								<td>${vo.campingcar_name }</td>
-								<td>${vo.campingcar_infos }</td>
-								<td>${vo.campingcar_tel }</td>
-								<td>${vo.campingcar_address }</td>
-								<td>${vo.campingcar_website }</td>
-								<td>${vo.campingcar_img }</td>
-								<td>
-									<c:forEach var="op" items="${vo.campingcar_option }">								
-										${op } 
-									</c:forEach>
-								</td>
-								<td>${vo.campingcar_rider }</td>
-								<td>${vo.campingcar_sleeper }</td>
-								<td>${vo.campingcar_release_time }</td>
-								<td>${vo.campingcar_return_time }</td>
-								<td>${vo.campingcar_license }</td>
-								<td>${vo.campingcar_wd_fare }</td>
-								<td>${vo.campingcar_ph_fare }</td>
-								<td>${vo.campingcar_detail }</td>
-								<td>${vo.user_id }</td>
-								<td>${vo.campingcar_cnt }</td>
-								<td>${vo.campingcar_regdate }</td>
-								<td><a href="upCampingcar.jsp?campingcar_no=${vo.campingcar_no }">수정</a></td>
-								<td><a href="DeleteCampingcarCtrl?campingcar_no=${vo.campingcar_no }">삭제</a></td>
-							</tr>						
-						</c:forEach>
-	
-					</c:otherwise>
-				</c:choose>
-			</table>
-			
-		</section>
-		<section id="campingcar">
-			<h2><a href="GetCampingcarCtrl?campingcar_no=107">캠핑카 상세 데이터 불러오기</a></h2>
-			<%
-			// 캠핑카 상세 데이터
-			CampingcarVO vo = (CampingcarVO) request.getAttribute("vo");
-			// 캠핑카 후기 리스트
-			ArrayList<ReviewVO> reviewList = (ArrayList) request.getAttribute("reviewList");
-			if(vo != null && reviewList != null) {
-				// null이 아닐 경우 데이터 처리
-				String[] options = vo.getCampingcar_option();	
-				%>
-					<ul>
-						<li>
-    					<%=vo.getCampingcar_address() %> 
-						</li>
-						<li>
-    					<%=vo.getCampingcar_cnt() %> 
-						</li>
-						<li>
-    					<%=vo.getCampingcar_img() %>
-						</li>
-						<li>
-    					<%=vo.getCampingcar_infos() %>
-						</li>
-						<li>
-    					<%=vo.getCampingcar_license() %>
-						</li>
-						<li>
-    					<%=vo.getCampingcar_name() %>
-						</li>
-						<li>
-    					<%=vo.getCampingcar_no() %>
-						</li>
-						<li>
-    					<%=vo.getCampingcar_ph_fare() %>
-						</li>
-						<li>
-    					<%=vo.getCampingcar_release_time() %>
-						</li>
-						<li>
-    					<%=vo.getCampingcar_return_time() %>
-						</li>
-						<li>
-    					<%=vo.getCampingcar_rider() %>
-						</li>
-						<li>
-    					<%=vo.getCampingcar_sleeper() %>
-						</li>
-						<li>
-    					<%=vo.getCampingcar_tel() %>
-						</li>
-						<li>
-    					<%=vo.getCampingcar_wd_fare() %>
-						</li>
-						<li>
-    					<%=vo.getCampingcar_website() %>
-						</li>
-						<li>
-						<%
-							for(int j = 0; j<options.length; j++){
-						%>
-							
-			    					<%=options[j] %>
-							
-						<%
-							}
-						%>
-						</li>
-						<li>
-    					<%=vo.getCampingcar_regdate() %>
-						</li>
-					</ul>
-					<hr>
-					<h3>후기</h3>
-						<table>
-						<%
-							for(int i = 0; i < reviewList.size(); i++){
-								ReviewVO rvo = reviewList.get(i);
-						%>
-							<tr>
-		    					<td><%=rvo.getCampingcar_no() %></td>
-		    					<td><%=rvo.getReview_content() %></td>
-		    					<td><%=rvo.getReview_no() %></td>
-		    					<td><%=rvo.getReview_score() %></td>
-		    					<td><%=rvo.getUser_id() %></td>
-		    					<td><a href="./updateReview.jsp?review_no=<%=rvo.getReview_no() %>&idck=<%=rvo.getUser_id() %>">리뷰 수정</a></td>
-		    					<td><a href="DeleteReviewCtrl?review_no=<%=rvo.getReview_no() %>&idck=<%=rvo.getUser_id() %>">리뷰 삭제</a></td>
-		    				</tr>
-						<%
-							}
-						%>
-						</table>
-				<%
-			} else {
-				// null 일 경우 
-				%>
-				데이터가 없습니다. 불러오기를 해주세요
-				<%
-			}
-			%>
-		</section>
-		<section id="addreview">
-			<h2>리뷰 등록 페이지</h2>
-			<form action="AddReviewCtrl" method="post">
-	            <input type="hidden" value="107" name="campingcar_no" />
-	            <table class="table table-bordered">
-	               <tr>
-	                  <td>작성자</td>
-	                  <td>
-	                     작성자
-	                  </td>
-	               </tr>
-	               <tr>
-	                  <td>별점</td>
-	                  <td>
-	                     <input name="review_score" type="range" max="5" min="1">
-	                  </td>
-	               </tr>
-	               <tr>
-	                  <td>내용</td>
-	                  <td>
-	                     <textarea name="review_content" cols='40' rows='10' class="form-control"></textarea>
-	                  </td>
-	               </tr>
-	               <tr>
-	                  <td colspan="2">
-	                     <input type="submit" class="btn btn-primary" value="새글등록">
-	                  </td>
-	               </tr>
-	            </table>
-	         </form>
-		</section>
-		
-		<section id="dashBoard">
-			<h2><a href="GetDashBoardCampingcarListCtrl">대시보드 페이지</a></h2>
-			<%
-			ArrayList<CampingcarViewVO> campingcarListDash = (ArrayList<CampingcarViewVO>) request.getAttribute("campingcarListDash");
-			%>
-			<table>
-				<c:choose>
-					<c:when test="<%= campingcarListDash != null %>">
-							<tr>
-								<td>번호</td>
-								<td>생성일</td>
-								<td>평균별점</td>
-								<td>조회수</td>
-								<td>유저아이디</td>
-							</tr>
-						<c:forEach var="vo" items="<%= campingcarListDash %>">
-							<tr>
-								<td>${vo.campingcar_no }</td>
-								<td>${vo.campingcar_regdate }</td>
-								<td>${vo.review_score }</td>
-								<td>${vo.campingcar_cnt }</td>
-								<td>${vo.user_id }</td>
-							</tr>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<tr>
-							<td>데이터가 없어요. 불러오기 해주세요</td>
-						</tr>					
-					</c:otherwise>
-				</c:choose>
-			</table>
-		</section>
-		
-		
-		<section>
-			<script type="text/javascript" src="./resouce/smarteditor2-2.8.2.3/js/HuskyEZCreator.js" charset="utf-8"></script>
-			<form action="sample/viewer/index.php" method="post">
-				<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;"></textarea>
-			</form>
-			
-			<script type="text/javascript">
-			var oEditors = [];
-			
-			// 추가 글꼴 목록
-			//var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-			
-			nhn.husky.EZCreator.createInIFrame({
-				oAppRef: oEditors,
-				elPlaceHolder: "ir1",
-				sSkinURI: "./resouce/smarteditor2-2.8.2.3/SmartEditor2Skin.html",	
-				htParams : {
-					bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-					bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-					bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-					//bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
-					//aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-					fOnBeforeUnload : function(){
-						//alert("완료!");
-					}
-				}, //boolean
-				fOnAppLoad : function(){
-					//예제 코드
-					//oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-				},
-				fCreator: "createSEditor2"
-			});
-			
-			function pasteHTML() {
-				var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-				oEditors.getById["ir1"].exec("PASTE_HTML", [sHTML]);
-			}
-			
-			function showHTML() {
-				var sHTML = oEditors.getById["ir1"].getIR();
-				alert(sHTML);
-			}
-				
-			function submitContents(elClickedObj) {
-				oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
-				
-				// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("ir1").value를 이용해서 처리하면 됩니다.
-				
-				try {
-					elClickedObj.form.submit();
-				} catch(e) {}
-			}
-			
-			function setDefaultFont() {
-				var sDefaultFont = '궁서';
-				var nFontSize = 24;
-				oEditors.getById["ir1"].setDefaultFont(sDefaultFont, nFontSize);
-			}
-			</script>
-		</section>
-	</main>
-</body>
+  <div id="wrap">
+    <header class="header w1140">
+    	<!-- header include -->
+      <jsp:include page="./module/header.jsp" />
+    </header>
+    <main role="main">
+      <div class="main_img">
+        <h1>
+          <p>잠시, <br></p>
+          <div class="cover">
+            <span>캠박</span>
+            <span>차박</span>
+            <span>캠핑</span>
+          </div>
+          <span class="fix_text">가자</span>
+        </h1>
+        <div class="rent_date">
+          <p>캠핑카, 간편하게 예약 후 바로 떠나세요!</p>
+          <ul class="rent_table">
+            <li>대여기간을 선택하세요</li>
+            <!-- 캘린더 -->
+            <div class = "calendar_container">
+              <div class="calendar_title">
+                <button class = "left_button"><i class="fas fa-chevron-circle-left"></i></button>
+                <p class = "calendar_month_title">2월</p>
+                <button class = "right_button"><i class="fas fa-chevron-circle-right"></i></button>
+              </div>    
+              <table class = "calendar">
+                <tbody>
+                  <tr class = "week">
+                      <td class = "day">일</td>
+                      <td class = "day">월</td>
+                      <td class = "day">화</td>
+                      <td class = "day">수</td>
+                      <td class = "day">목</td>
+                      <td class = "day">금</td>
+                      <td class = "day">토</td>
+                  </tr>
+                  <tr>    <!-- 달력 첫 번째 줄-->
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                  </tr>
+                  <tr>    <!-- 달력 두 번째 줄-->
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                  </tr>
+                  <tr>    <!-- 달력 세 번째 줄-->
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                  </tr>
+                  <tr>    <!-- 달력 네 번째 줄-->
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                  </tr>
+                  <tr>    <!-- 달력 다섯 번째 줄-->
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                  </tr>
+                  <tr>    <!-- 달력 여섯 번째 줄-->
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                      <td class = "calendar_days" roll = "button"> </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="area_footer">
+                <button>선택완료</button>
+              </div> 
+            </div>
+          </ul>
+          <ul class="rent_table">
+            <li>대여를 원하는 지역을 선택하세요</li>
+            <!-- 지역 선택 체크박스 -->
+            <div class="check">
+              <div class="check_area">
+                <h3>지역선택</h3>
+                <p>복수선택 가능</p>
+                <label>
+                    <input type="checkbox" name="area" value="강원" />
+                    <span></span>
+                    강원
+                </label>
+                <label>
+                    <input type="checkbox" name="area" value="경기/인천" />
+                    <span></span>
+                    경기/인천
+                </label>
+                <label>
+                    <input type="checkbox" name="area" value="광주/전라" />
+                    <span></span>
+                    광주/전라
+                </label>
+                <label>
+                    <input type="checkbox" name="area" value="대구/울산/경북" />
+                    <span></span>
+                    대구/울산/경북
+                </label>
+                <label>
+                    <input type="checkbox" name="area" value="대전/충청" />
+                    <span></span>
+                    대전/충청
+                </label>
+                <label>
+                    <input type="checkbox" name="area" value="부산/경남" />
+                    <span></span>
+                    부산/경남
+                </label>
+                <label>
+                    <input type="checkbox" name="area" value="서울" />
+                    <span></span>
+                    서울
+                </label>
+                <label>
+                    <input type="checkbox" name="area" value="제주" />
+                    <span></span>
+                    제주
+                  </label>
+                </div>
+                <div class="area_footer">
+                  <button>선택완료</button>
+                </div>
+            </div>
+            <li>
+              <button class="date_search"><i class="fas fa-search"></i></button>
+            </li>
+          </ul> 
+        </div>
+      </div>
+      <!-- 실시간 인기 캠핑카 -->
+      <!-- 추후 조회수 순으로 DB 연결 -->
+      <section class="w1140">
+        <h2 class="h2">캠박 실시간 인기캠핑카</h2>
+        <!-- 렌트카1 -->
+        <div class="realtime">
+          <div class="rent_car">
+            <a href="./detail.jsp">
+              <div class="car_img">
+              <!-- 상세보기 링크 -->
+                <p>즉시예약가능</p>
+                <span class="material-symbols-outlined">favorite</span>
+              </div>
+            </a>
+            <div class="car_info">
+              <div class="car_name">
+                <h3><i class="rz--verified fas fa-check-circle"></i>[위캠프] 2인승 로디 캠핑카</h3>
+                <h4>2인 캠퍼에게 최적화된 레이 캠핑카</h4>
+              </div>
+              <ul class="car_option">
+                <li>
+                  <i class="fas fa-map-marker-alt"></i>차고지: 대한민국 경기도 하남시
+                </li>
+                <li>
+                  <i class="fas fa-address-card"></i>2종 보통
+                </li>
+                <li class="no_mr">
+                  <i class="fas fa-user-friends"></i>동승 2명
+                </li>
+                <li>
+                  <i class="fas fa-bed"></i>취침 2명
+                </li>
+              </ul>
+              <p>
+                <i class="far fa-calendar-check"></i>잊지못할 밤, 95,000원 부터
+              </p>
+            </div>
+          </div>
+          <!-- 렌트카2 -->
+          <div class="rent_car">
+            <div class="car_img">
+              <p>즉시예약가능</p>
+              <span class="material-symbols-outlined">favorite</span>
+            </div>
+            <div class="car_info">
+              <div class="car_name">
+                <h3><i class="rz--verified fas fa-check-circle"></i>[미니칸 김포본점] 레이캠핑카 2인승 3호차</h3>
+                <h4>작지만 강한 감성 차박 캠핑카</h4>
+              </div>
+              <ul class="car_option">
+                <li>
+                  <i class="fas fa-map-marker-alt"></i>차고지: 대한민국 경기도 김포시
+                </li>
+                <li>
+                  <i class="fas fa-address-card"></i>2종 보통
+                </li>
+                <li class="no_mr">
+                  <i class="fas fa-user-friends"></i>동승 2명
+                </li>
+                <li>
+                  <i class="fas fa-bed"></i>취침 2명
+                </li>
+              </ul>
+              <p>
+                <i class="far fa-calendar-check"></i>잊지못할 밤, 150,000원 부터
+              </p>
+            </div>
+          </div>
+          <!-- 렌트카3 -->
+          <div class="rent_car no_pr">
+            <div class="car_img">
+              <p>즉시예약가능</p>
+              <span class="material-symbols-outlined">favorite</span>
+            </div>
+            <div class="car_info">
+              <div class="car_name">
+                <h3><i class="rz--verified fas fa-check-circle"></i>[블랙바이슨 캠핑카] 바이슨 오라이온</h3>
+                <h4>유럽감성의 최고급 럭셔리 캠핑카</h4>
+              </div>
+              <ul class="car_option">
+                <li>
+                  <i class="fas fa-map-marker-alt"></i>차고지: 대한민국 경상북도 경주시
+                </li>
+                <li>
+                  <i class="fas fa-address-card"></i>1종 보통
+                </li>
+                <li class="no_mr">
+                  <i class="fas fa-user-friends"></i>동승 1명
+                </li>
+                <li class="no_mr">
+                  <i class="fas fa-bed"></i>취침 5명
+                </li>
+              </ul>
+              <p>
+                <i class="far fa-calendar-check"></i>잊지못할 밤, 480,000원 부터
+              </p>
+            </div>
+          </div>
+          <!-- 렌트카4 -->
+          <div class="rent_car no_pb">
+            <div class="car_img">
+              <p>즉시예약가능</p>
+              <span class="material-symbols-outlined">favorite</span>
+            </div>
+            <div class="car_info">
+              <div class="car_name">
+                <h3><i class="rz--verified fas fa-check-circle"></i>[세이브카] 쏠라티 호텔급 모터홈 캠핑카</h3>
+                <h4>호캉스 캠핑으로 만들어주는 쏠라티와 떠나보세요!</h4>
+              </div>
+              <ul class="car_option">
+                <li>
+                  <i class="fas fa-map-marker-alt"></i>차고지: 대한민국 서울특별시
+                </li>
+                <li>
+                  <i class="fas fa-address-card"></i>1종 보통
+                </li>
+                <li class="no_mr">
+                  <i class="fas fa-user-friends"></i>동승 4명
+                </li>
+                <li class="no_mr">
+                  <i class="fas fa-bed"></i>취침 4명
+                </li>
+              </ul>
+              <p>
+                <i class="far fa-calendar-check"></i>잊지못할 밤, 380,000원 부터
+              </p>
+            </div>
+          </div>
+          <!-- 렌트카5 -->
+          <div class="rent_car no_pb">
+            <div class="car_img">
+              <p>즉시예약가능</p>
+              <span class="material-symbols-outlined">favorite</span>
+            </div>
+            <div class="car_info">
+              <div class="car_name">
+                <h3><i class="rz--verified fas fa-check-circle"></i>[캠핑카랑] 스타렉스 캠핑카</h3>
+                <h4>저렴하고 쾌적하게 떠나보세요!</h4>
+              </div>
+              <ul class="car_option">
+                <li>
+                  <i class="fas fa-map-marker-alt"></i>차고지: 대한민국 광주광역시
+                </li>
+                <li>
+                  <i class="fas fa-address-card"></i>2종 보통
+                </li>
+                <li class="no_mr">
+                  <i class="fas fa-user-friends"></i>동승 5명
+                </li>
+                <li class="no_mr">
+                  <i class="fas fa-bed"></i>취침 5명
+                </li>
+              </ul>
+              <p>
+                <i class="far fa-calendar-check"></i>잊지못할 밤, 200,000원 부터
+              </p>
+            </div>
+          </div>
+          <!-- 렌트카6 -->
+          <div class="rent_car no_pr no_pb">
+            <div class="car_img">
+              <p>즉시예약가능</p>
+              <span class="material-symbols-outlined">favorite</span>
+            </div>
+            <div class="car_info">
+              <div class="car_name">
+                <h3><i class="rz--verified fas fa-check-circle"></i>[캠핑에 반하다 부산] 코치맨 오라이온 24tb</h3>
+                <h4>부산 캠핑카 렌트, 6인승의 모터홈</h4>
+              </div>
+              <ul class="car_option">
+                <li>
+                  <i class="fas fa-map-marker-alt"></i>차고지: 대한민국 부산광역시
+                </li>
+                <li>
+                  <i class="fas fa-address-card"></i>2종 보통
+                </li>
+                <li class="no_mr">
+                  <i class="fas fa-user-friends"></i>동승 1명
+                </li>
+                <li class="no_mr">
+                  <i class="fas fa-bed"></i>취침 5명
+                </li>
+              </ul>
+              <p>
+                <i class="far fa-calendar-check"></i>잊지못할 밤, 450,000원 부터
+              </p>
+            </div>
+          </div>
+          <div class="more">
+            더 많은 차량 보러가기<i class="fas fa-arrow-right rz-ml-1"></i>
+          </div>
+        </div>
+      </section>
+      <!-- 키워드 -->
+      <section class="keyword w1140">
+        <h2 class="h2">캠박 키워드 추천</h2>
+        <h3 class="h3">캠박이 엄선한 캠핑카들을 키워드별로 만나보세요.</h3>
+        <div class="card_section">
+          <div class="card_box1 card_box">
+            <h3>작지만 있을건 다 있어</h3>
+            <p>#가성비&nbsp;#2종보통&nbsp;#소형&nbsp;#레이</p>
+          </div>
+          <div class="card_box2 card_box">
+            <h3>애견동반</h3>
+            <p>#애견동반가능</p>
+          </div>
+          <div class="card_box3 no_mr card_box">
+            <h3>프리미엄</h3>
+            <p>#대형&nbsp;#샤워부스&nbsp;#고급</p>
+          </div>
+          <div class="card_box4 card_box">
+            <h3>가족여행</h3>
+            <p>#4인이상&nbsp;#넓은내부</p>
+          </div>
+          <div class="card_box5 card_box">
+            <h3>감성차박</h3>
+            <p>#인스타</p>
+          </div>
+          <div class="card_box6 no_mr card_box">
+            <h3>장비대여</h3>
+            <p>#캠핑용품&nbsp;#수면용품</p>
+          </div>
+        </div>
+      </section>
+      <!-- 차박지도 -->
+      <section class="map w1140">
+        <h2 class="h2">차박 지도</h2>
+        <h3 class="h3">어디로 떠날까? 캠박이 준비한 차박/오토캠핑 장소들을 만나보세요</h3>
+        <div class="map_section">
+          <!-- 지도1 -->
+          <div class="map_contents">
+            <div class="map_img1">
+              <span class="material-symbols-outlined">favorite</span>
+            </div>
+            <div class="map_name">
+              <h3>옥계해변</h3>
+              <h4>강릉에 위치한 해변으로 넓은 주차장이 있어 쾌적한 환경을 제공함</h4>
+            </div>
+            <ul class="map_icon">
+              <li>
+                <i class="fa fa-usd"></i>유료
+              </li>
+              <li>
+                <i class="fas fa-toilet"></i>화장실
+              </li>
+            </ul>
+            <p><i class="fas fa-map-marker-alt"></i>대한민국 전라남도 해남군</p>
+          </div>
+          <!-- 지도2 -->
+          <div class="map_contents">
+            <div class="map_img2">
+              <span class="material-symbols-outlined">favorite</span>
+            </div>
+            <div class="map_name">
+              <h3>소래습지생태공원</h3>
+              <h4>생태전시관을 비롯하여 풍차의 갈대밭, 염전 소금창고가 있는 생태공원</h4>
+            </div>
+            <ul class="map_icon">
+              <li>
+                <i class="material-icons">money_off</i>무료
+              </li>
+              <li>
+                <i class="fas fa-toilet"></i>화장실
+              </li>
+              <li>
+                <i class="fas fa-store"></i>편의점/마트
+              </li>
+            </ul>
+            <p><i class="fas fa-map-marker-alt"></i>대한민국 인천광역시</p>
+          </div>
+          <!-- 지도3 -->
+          <div class="map_contents">
+            <div class="map_img3">
+              <span class="material-symbols-outlined">favorite</span>
+            </div>
+            <div class="map_name">
+              <h3>나아해변</h3>
+              <h4>파도소리를 들으며 해돋이를 감상할 수 있는 해변입니다. 그리고 바다풍경도</h4>
+            </div>
+            <ul class="map_icon">
+              <li>
+                <i class="material-icons">money_off</i>무료
+              </li>
+              <li>
+                <i class="fas fa-toilet"></i>화장실
+              </li>
+              <li>
+                <i class="fas fa-store"></i>편의점/마트
+              </li>
+            </ul>
+            <p><i class="fas fa-map-marker-alt"></i>대한민국 경상북도 경주시</p>
+          </div>
+          <!-- 지도4 -->
+          <div class="map_contents">
+            <div class="map_img4">
+              <span class="material-symbols-outlined">favorite</span>
+            </div>
+            <div class="map_name">
+              <h3>몽산포오션캠핑장</h3>
+              <h4>소나무숲과 바다가 만나는 캠핑장입니다. 인잡해있는 몽산포해수욕장은</h4>
+            </div>
+            <ul class="map_icon">
+              <li>
+                <i class="fa fa-usd"></i>유료
+              </li>
+              <li>
+                <i class="fas fa-toilet"></i>화장실
+              </li>
+              <li>
+                <i class="fas fa-store"></i>편의점/마트
+              </li>
+            </ul>
+            <p><i class="fas fa-map-marker-alt"></i>대한민국 충청남도 태안군</p>
+          </div>
+          <!-- 지도5 -->
+          <div class="map_contents">
+            <div class="map_img5">
+              <span class="material-symbols-outlined">favorite</span>
+            </div>
+            <div class="map_name">
+              <h3>석갱이 오토캠핑장</h3>
+              <h4>구례포, 학암포해수욕장을 비롯하여 다양한 해수욕장이 인접해있는</h4>
+            </div>
+            <ul class="map_icon">
+              <li>
+                <i class="fa fa-usd"></i>유료
+              </li>
+              <li>
+                <i class="fas fa-toilet"></i>화장실
+              </li>
+              <li>
+                <i class="fas fa-store"></i>편의점/마트
+              </li>            
+            </ul>
+            <p><i class="fas fa-map-marker-alt"></i>대한민국 충청남도 태안군</p>
+          </div>
+          <!-- 지도6 -->
+          <div class="map_contents">
+            <div class="map_img6">
+              <span class="material-symbols-outlined">favorite</span>
+            </div>
+            <div class="map_name">
+              <h3>진위천유원진 캠핑장</h3>
+              <h4>레일바이크 체험을 할 수 있는 캠핑장으로, 이외에도 다양한 체험을</h4>
+            </div>
+            <ul class="map_icon">
+              <li>
+                <i class="fa fa-usd"></i>유료
+              </li>
+              <li>
+                <i class="fas fa-toilet"></i>화장실
+              </li>
+              <li>
+                <i class="fas fa-store"></i>편의점/마트
+              </li>              
+            </ul>
+            <p><i class="fas fa-map-marker-alt"></i>대한민국 경기도 평택시</p>
+          </div>
+        </div>
+        <div class="more">
+          더 많은 장소 보러가기<i class="fas fa-arrow-right rz-ml-1"></i>
+        </div>
+      </section>
+      <!-- 배너 -->
+      <div id="banner">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <!-- 배너 슬라이드1 -->
+            <div class="swiper-slide">
+              <img src="./images/main/banner/banner01.png" alt="배너1">
+            </div> 
+            <!-- 배너 슬라이드2 -->
+            <div class="swiper-slide">
+              <img src="./images/main/banner/banner02.png" alt="배너2">
+            </div>
+            <!-- 배너 슬라이드3 -->
+            <div class="swiper-slide">
+              <img src="./images/main/banner/banner03.png" alt="배너3">
+            </div>
+            <!-- 배너 슬라이드4 -->
+            <div class="swiper-slide">
+              <img src="./images/main/banner/banner04.png" alt="배너4">
+            </div>
+          </div>
+          <!-- 스와이퍼 좌우 화살표 -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <!-- /스와이퍼 좌우 화살표 -->
+        </div>
+      </div>
+      <!-- 스폰서 -->
+      <section class="sponsor">
+        <div class="w1140">
+          <div class="apply">
+            <h3>캠핑카 렌트 사업자님!</h3>
+            <p>국내 최고의 차박 렌트 대여 플랫폼 캠박의 파트너가 되어주세요!</p>
+            <p>지금 바로 사업자 등록후 고객들을 만나보세요.</p>
+          </div>
+          <button>신청하기</button>
+        </div>
+      </section>
+      <ul class="sponsor_name w1140">
+        <li><img src="./images/main/sponsor/sponsor01.jpg" alt="스폰서1"></li>
+        <li><img src="./images/main/sponsor/sponsor02.jpg" alt="스폰서2"></li>
+        <li><img src="./images/main/sponsor/sponsor03.jpg" alt="스폰서3"></li>
+        <li><img src="./images/main/sponsor/sponsor04.jpg" alt="스폰서4"></li>
+      </ul>
+    </main>
+    <footer class="footer">
+      <jsp:include page="./module/footer.jsp" />
+    </footer>
 
+    <!-- 챗봇 -->
+    <aside class="chatbot" id="chatbotFloatIcon">
+      <jsp:include page="./module/chatbot.jsp" />
+    </aside>
+  </div>
+<!-- 스와이퍼 플러그인 -->
+<script src="./js/swiper-bundle.js"></script>
+<!-- 페이지 JS -->
+<script src="./js/main.js"></script>
+<script src="./js/load.js"></script>
+<script src="./js/common.js"></script>
+</body>
 </html>

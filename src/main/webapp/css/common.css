@@ -1,2 +1,337 @@
-/* 공통 css */
 @charset "utf-8";
+/* 공통 css */
+
+/* header */
+.header {
+  width: 100%;
+  height: 60px;
+  background-color: rgb(255, 255, 255, 0.8);
+  box-shadow: 0 1px 15px 0 rgba(0,0,0,.045);
+  /* 플렉스 */
+  display: flex;
+  justify-content: space-between;
+  /* 포지션 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999999999;
+}
+.logo {
+  /* 플렉스 */
+  display: flex;
+  align-items: center;
+}
+.logo li img{
+  width: 117px;
+  height: 50px;
+}
+.logo li {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.logo li:nth-child(2){
+  margin: 0 24px 0 34px;
+}
+.header_icon {
+  /* 플렉스 */
+  display: flex;
+  align-items: center;
+}
+.header_icon li div{
+  width: 27px;
+  height: 27px;
+  font-size: 17px;
+  border-radius: 50%;
+  background-color: #dddddd;
+  text-align: center;
+  line-height: 27px;
+}
+.header_icon .bell {
+  margin: 20px 12px;
+}
+.name{
+  height: 27px;
+  line-height: 27px;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.name .span {
+  margin: 0 12px;
+  vertical-align: top;
+  font-weight: 700;
+}
+.name span:last-child {
+  vertical-align: middle;
+}
+.header_icon p {
+  width: 135px;
+  height: 37px;
+  margin-left: 10px;
+  background-color: #3974d9;
+  border-radius: 10px;
+  color: #fff;
+  line-height: 37px;
+  text-align: center;
+  font-size: 1.2rem;   
+  font-weight: 700; 
+  cursor: pointer;
+}
+.header_gnb{
+  width: 230px;
+  padding: 19px 0;
+  border-radius: 7px;
+  background-color: #ffffff;
+  cursor: pointer;
+  /* 포지션 */
+  position: absolute;
+  right: 531px;
+  top: 76px;
+  z-index: 999999999;
+
+  /*  로딩 시  메뉴 숨기기 */
+  display: none;
+}
+.header_gnb li {
+  padding: 4px 24px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111111;
+}
+.header_gnb .list {
+  margin: 8px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* footer */
+.footer {
+  padding: 48px 390px;
+  height: 286px;
+  font-size: 1.2rem;
+  background-color: #f5f5f5;
+}
+.footer p {
+  line-height: 1.5;
+  color: #111;
+}
+.footer h4 {
+  margin: 24px 0 63px;
+  font-weight: 700;
+  color: #3974d9;
+}
+.footer h4 span {
+  color: #111;
+}
+.copyright {
+  font-size: 1.4rem;
+}
+
+/* ============ 로그인 모달창 css ============ */
+.login_modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 99999999;
+  background: rgba(255, 255, 255, 0.95);
+  display: none;
+}
+.login_modal_content {
+  width: 480px;
+  background: white;
+  border: 1px solid #ddd;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 10px;
+  box-shadow: 0 6px 32px rgba(0,0,0,.03);
+  z-index: 99999999999;
+}
+.login_modal_content .title {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+}
+.login_modal_content .title h1 {
+  font-size: 1.9rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 30px 0 24px 210px;
+}
+
+.login_modal_content .title p {
+  border: 1px solid #ddd;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 2px;
+  border-radius: 50%;
+  text-align: center;
+  margin: 24px 24px 24px 0;
+  cursor: pointer;
+}
+.login_modal_content .title p:hover {
+  background: black;
+  transition: all .5s ease;
+}
+.login_modal_content .title p:hover i {
+  color: white;
+}
+.login_modal_content .title p i {
+  font-size: 1.6rem;
+  color: #111;
+}
+
+/* login_tabmenu */
+.login_tabmenu {
+  width: 480px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding-top: 24px;
+}
+.login_tabmenu label {
+  font-size: 1.3rem;
+  color: #000;
+  font-weight: 800;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* input 커스텀 */
+.login_input, .join_input {
+  padding: 24px 24px 0 24px;
+}
+.login_input input, .join_input input {
+  width: 432px;
+  height: 41px;
+  background: #f1f1f1;
+  color: black;
+  padding: 9px 15px;
+  border-radius: 10px;
+  margin-bottom: 28px;
+}
+input::placeholder{
+  color: #767676;
+  font-size: 1.6rem;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.forget_pw {
+  text-align: center;
+  color: #3974d9;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+/* 구분선 */
+.line {
+  width: 480px;
+  padding: 0;
+  margin: 0;
+  height: 1px;
+  border-bottom: 1px solid #ddd;
+}
+.submit_btn {
+  padding: 24px;
+  text-align: center;
+  /* border-top: 1px solid #ddd; */
+}
+input[type="submit"] {
+  width: 370px;
+  height: 43px;
+  background: #3974d9;
+  color: white;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+input[type="password"] {
+  width: 203px;
+  margin-right: 20px;
+}
+
+.password {
+  width: 432px !important;
+  margin-right: 0;
+}
+
+.lg_check {
+  width: 480px;
+  margin-bottom: 30px;
+}
+
+.lg_check label {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-left: 40px;
+  cursor: auto;
+}
+
+/* =========체크박스 커스텀========= */
+/* 기본 체크박스 숨기기 */
+.lg_check input[type="checkbox"] {
+  display: none;
+}
+/* 선택 안된 체크박스 꾸미기 */
+.lg_check label span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #222;
+  box-shadow: 1px 1px 4px gray;
+  border-radius: 4px;
+  background: white;
+  margin-right: 10px;
+  position: relative;
+  top: 4px;
+  margin-left: 30px;
+}
+.lg_check input[type="checkbox"]:checked + span::after {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: #000;
+  color: white;
+  content: "✔";
+  line-height: 16px;
+  text-align: center;
+  position: absolute;
+  font-size: 13px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 4px gray;
+  left: -1.5px;
+  top: -1.5px;
+}
+
+/* ========== 탭구현 ========== */
+/* 버튼 숨기기 */
+input[type="radio"] {
+  display: none;
+}
+/* 탭버튼 효과 */
+input[type="radio"]:checked +label {
+  padding-bottom: 5px;
+  border-bottom: 2px solid #111;
+}
+
+/* 로딩시 가리기 */
+.con01, .con02 {
+  width: 480px;
+  display: none;
+}
+
+/* 내용 나오게 하기 */
+input[id="tab01"]:checked ~ .con01 {
+  display: block;
+}
+input[id="tab02"]:checked ~ .con02 {
+  display: block;
+}

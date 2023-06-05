@@ -1,0 +1,303 @@
+@charset "utf-8";
+/* 등록 슬롯 css */
+html,body {
+  font-size: 62.5%;
+  font-family: 'Noto sans KR', sans-serif;
+  background-color: #f7f7f7;
+}
+#wrap {
+  margin: 0 auto;
+}
+select, button {
+  font-family: 'Noto sans KR', sans-serif;
+}
+/* header */
+header {
+  width: 100%;
+  height: 60px;
+  padding: 0 24px;
+  background-color: rgb(255, 255, 255, 0.8);
+  box-shadow: 0 1px 15px 0 rgba(0,0,0,.045);
+  /* 플렉스 */
+  display: flex;
+  justify-content: space-between;
+  /* 포지션 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999999999;
+}
+.logo {
+  /* 플렉스 */
+  display: flex;
+  align-items: center;
+}
+.logo li img{
+  width: 117px;
+  height: 50px;
+}
+.logo li {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.logo li:nth-child(2){
+  margin: 0 24px 0 34px;
+}
+.header_icon {
+  /* 플렉스 */
+  display: flex;
+  align-items: center;
+}
+.header_icon li div{
+  width: 27px;
+  height: 27px;
+  font-size: 17px;
+  border-radius: 50%;
+  background-color: #dddddd;
+  text-align: center;
+  line-height: 27px;
+}
+.header_icon .bell {
+  margin: 20px 12px;
+}
+.name{
+  height: 27px;
+  line-height: 27px;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.name .span {
+  margin-left: 12px;
+  vertical-align: top;
+  font-weight: 700;
+}
+.name span:last-child {
+  vertical-align: middle;
+}
+.header_icon p {
+  width: 135px;
+  height: 37px;
+  margin-left: 10px;
+  background-color: #3974d9;
+  border-radius: 10px;
+  color: #fff;
+  line-height: 37px;
+  text-align: center;
+  font-size: 1.2rem;   
+  font-weight: 700; 
+  cursor: pointer;
+}
+.header_gnb{
+  width: 230px;
+  padding: 19px 0;
+  border-radius: 7px;
+  background-color: #ffffff;
+  cursor: pointer;
+  /* 포지션 */
+  position: absolute;
+  /* 대시보드 페이지 헤더 패딩변경으로 right값 변경 */
+  right: 155px;
+  top: 76px;
+  z-index: 999999999;
+
+  /*  로딩 시  메뉴 숨기기 */
+  display: none;
+}
+.header_gnb li {
+  padding: 4px 24px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111111;
+}
+.header_gnb .list {
+  margin: 8px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* aside */
+aside {
+  width: 70px;
+  height: 100%;
+}
+.dash_icons {
+  position: fixed;
+  width: 70px;
+  height: 100%;
+  top: 57px;
+
+}
+.gnb {
+  width: 70px;
+  height: 100%;
+  border-right: 1px solid #eee;
+  background: white;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.gnb li {
+  width: 100%;
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding: 10px 15px;
+  text-align: center;
+  line-height: 36px;
+  color: black;
+  /* gnb_info의 위치기준값 */
+  position: relative;
+}
+.gnb li:first-child {
+  color: #3974d9;
+}
+.gnb li:hover i {
+  color: #3974d9;
+}
+/* 호버시 아이콘 설명 나오게 하기 */
+.gnb li .gnb_info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  transition: all .15s;
+  padding: 0 15px;
+  background-color: rgba(0,0,0,.9);
+  font-size: 13px;
+  line-height: 36px;
+  white-space: nowrap;
+  border-radius: 0 6px 6px 0;
+  opacity: 0;
+  z-index: 0;
+  transition: all 0.5s;
+}
+.gnb li:hover .gnb_info {
+  top: 5px;
+  left: 70px;
+  opacity: 1;
+
+}
+
+/* main */
+main {
+  margin-top: 60px;
+}
+.resist {
+  padding: 48px 380px 17px;
+  background-color: #f7f7f7;
+}
+.resist h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+.resist select {
+  width: 440px;
+  height: 50px;
+  margin: 44px 0;
+  padding: 0 10px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px #ddd;
+  appearance: none;
+}
+.resist button {
+  padding: 15px 37px;
+  margin-left: 16px;
+  background-color: #3974D9;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 900;
+  border-radius: 10px;
+}
+.slot {
+  width: 364px;
+  /* height: 370px; */
+  background-color: #ffffff;
+  box-shadow: 5px 5px 10px #ddd;
+  border-radius: 10px;
+  padding: 2rem;
+}
+.slot p {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #222;
+}
+.slot p i {
+  font-size: 16px;
+  font-weight: 900;
+  color: #cccccc;
+  /* 포지션 */
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.slot_info {
+  margin: 20px 0 18px;
+  padding-top: 20px;
+  border-bottom: 1px solid #dddddd;
+  border-top: 1px solid #dddddd;
+}
+.slot_info .confirm {
+  height: 28px;
+  padding: 5px 14px;
+  line-height: 28px;
+  border-radius: 50px;
+  background-color: #f2e1bb;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #b48726;
+}
+.slot .info_text {
+  margin: 20px 0;
+}
+.slot .info_text dl{
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  /* 플렉스 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.info_icon ul{
+  /* 플렉스 */
+  display: flex;
+  align-items: center;
+}
+.info_icon ul li {
+  width: 32px;
+  height: 32px;
+  margin: 0 3px;
+  line-height: 32px;
+  text-align: center;
+  background-color: #eee;
+  border-radius: 50%;
+}
+.info_icon ul li i {
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+.resist_footer {
+  margin-top: 55px;
+}
+.resist_footer dl{
+  /* 플렉스 */
+  display: flex;
+  justify-content: space-between;
+}
+.resist_footer dt,
+.resist_footer dd {
+  color: #777777;
+  font-size: 1.4rem;
+  padding: 0 12px;
+}
+.resist_footer a {
+  text-decoration: underline;
+  color: #3974d9;
+}
+
+.gnb li:first-child {
+  color: black;
+}
+.gnb li:nth-child(2) {
+  color: #3974d9;
+}

@@ -1,0 +1,39 @@
+.w1620 {
+    width: 1620px;
+    margin: 0 auto;
+}
+.other_check {
+    position: fixed;
+    left: 800px;
+    margin: 350px auto;
+    text-align: center;
+}
+.other_check h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 28px;
+}
+.other_check p {
+    font-size: 14px;
+    margin: 14px;
+}
+.fas {
+    font-size: 40px;
+    text-align: center;
+}
+/* 바의 배경 */
+.pogress_container {
+    width: 100%;
+    height: 2px;
+    background: #f3f3f3;
+}
+
+/* 진행률 표시 */
+.pogress_container .progress_bar {
+    height: 2px;
+    background-color: #3974d9;
+    width: 100%;
+}
+.image {
+    opacity: 1;
+}

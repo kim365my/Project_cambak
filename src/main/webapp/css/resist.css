@@ -1,2 +1,487 @@
-/* 차량 등록페이지 css */
 @charset "utf-8";
+/* 차량 등록페이지 css */
+body {
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+#wrapper {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0 auto;
+}
+.w700 {
+    width: 700px;
+    margin: 0 auto;
+}
+/* 왼쪽 gnb */
+aside {
+    position: relative;
+    width: 300px;
+    height: 100%;
+}
+nav {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+}
+.gnb {
+    width: 300px;
+    background-color: #f5f5f5;
+    height: 100%;
+}
+.gnb article {
+    padding: 20px;
+}
+.gnb article img {
+    width: 84.19px;
+    height: 36px;
+    margin-bottom: 40px;
+}
+.gnb ul {
+    padding: 0 23px;
+}
+.gnb ul li {
+    margin-bottom: 12px;
+    color: #888888;
+}
+
+/* 오른쪽 gnb */
+.right {
+    position: relative;
+    width: 1603px;
+}
+.header {
+    position: fixed;
+    right: 0;
+    top: 0;
+    background: white;
+    width: 1603px;
+    height: 70px;
+    padding: 20px;
+    border-bottom: 1px solid #dddddd;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    z-index: 99;
+}
+.header article img {
+    width: 33px;
+    height: 33px;
+}
+.header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 5px;
+    margin-left: -1300px;
+}
+.header p {
+    color: #3974d9;
+    font-weight: 600;
+    padding-top: 5px;
+}
+/* 등록 form */
+#container {
+    width: 1603px;
+    position: relative;
+}
+.form_part {
+    width: 700px;
+    margin-top: 100px;
+}
+.form_part h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 32px 0 40px 0;
+}
+.form_part p,
+.person {
+    font-size: 15px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+.form_part .button {
+    background: #f1f1f1;
+    color: black;
+    padding: 8px 12px;
+    border: 1px solid #f1f1f1;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: "Noto Sans KR", sans-serif;
+    margin-bottom: 30px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+.btn {
+    background: black !important;
+    color: white !important;
+    padding: 8px 12px !important;
+    border: 1px solid #f1f1f1 !important;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    font-family: "Noto Sans KR", sans-serif !important;
+    margin-bottom: 30px !important;
+    margin-right: 12px !important;
+    cursor: pointer !important;
+}
+.form_part .second_title {
+    font-weight: normal;
+}
+.form_part .text_input {
+    width: 700px;
+    height: 40px;
+    background: #f1f1f1;
+    color: black;
+    padding: 9px 15px;
+    border-radius: 10px;
+    margin-bottom: 28px;
+}
+.form_part iframe {
+    border-radius: 15px;
+    margin-bottom: 42px;
+}
+.form_part .mb_btn {
+    margin-bottom: 98px;
+}
+.form_part .upload {
+    width: 107px;
+    height: 40px;
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 12px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    background: linear-gradient(to right, black, rgb(58, 57, 57));
+    color: white;
+    display: block;
+}
+/* 사진 업로드 파트 */
+#input-file {
+    visibility: hidden;
+}
+/* imaged preview */
+.filebox .upload-display {
+    /* 이미지가 표시될 지역 */
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.filebox .upload-thumb-wrap {
+    /* 추가될 이미지를 감싸는 요소 */
+    display: inline-block;
+    width: 100px;
+    padding: 2px;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-bottom: 30px;
+}
+.filebox .upload-display img {
+    /* 추가될 이미지 */
+    display: block;
+    max-width: 100%;
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+}
+
+.form_part .upload_notice {
+    color: #a5a5a5;
+    font-size: 12px;
+}
+.form_part .upload_notice strong {
+    font-weight: 600;
+}
+
+/* 기본 보유시설 */
+.basic_option {
+    margin-top: 30px;
+}
+
+.check_flx {
+    width: 280px;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.check {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 20px;
+    margin-bottom: 88px;
+}
+.check label {
+    width: 300px;
+    margin-bottom: 12px;
+}
+
+/* =========체크박스 커스텀========= */
+/* 기본 체크박스 숨기기 */
+.check input[type="checkbox"] {
+    display: none;
+}
+/* 선택 안된 체크박스 꾸미기 */
+.check label span {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #222;
+    box-shadow: 1px 1px 4px gray;
+    border-radius: 3px;
+    background: white;
+    margin-right: 10px;
+    position: relative;
+}
+.check input[type="checkbox"]:checked + span::after {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: #000;
+    color: white;
+    content: "✔";
+    line-height: 16px;
+    text-align: center;
+    position: absolute;
+    font-size: 13px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 4px gray;
+    left: -1.5px;
+    top: -1.5px;
+}
+
+/* 인원 선택 영역 */
+.rider {
+    margin-bottom: 54px;
+}
+.rider tr td {
+    width: 300px;
+    height: 30px;
+}
+.rider td input {
+    width: 30px;
+    margin: 8px 10px 0 20px;
+}
+.rider button {
+    color: white;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 600;
+    width: 34px;
+    height: 34px;
+    background: black;
+    border: 1px solid #000;
+    border-radius: 50%;
+    cursor: pointer;
+}
+._count input[value="1명"] {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 15px;
+}
+
+/* 운전면허종류 선택영역 */
+.select_box {
+    width: 700px;
+    height: 40px;
+    background: url("../images/resist/drop_icon.png") no-repeat 97% 50%/15px auto #f1f1f1;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 28px;
+}
+.form_part select {
+    width: 100%;
+    height: 100%;
+    padding: 0 28px 0 20px;
+    font-size: 15px;
+    border: 0;
+    -webkit-appearance: none; /* for chrome */
+    -moz-appearance: none; /*for firefox*/
+    appearance: none;
+    background: transparent;
+}
+
+/* 요금 영역 */
+.price {
+    display: flex;
+    flex-flow: row nowrap;
+}
+.price p {
+    width: 350px;
+}
+.required_check {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffc4c4;
+    margin-left: 10px;
+}
+.price input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.price input[type=number]{
+    width: 300px;
+    margin-right: 50px;
+}
+/* 뒤로가기 버튼 */
+.back {
+    width: 130px;
+    height: 40px;
+    line-height: 40px;
+    background: #f1f1f1;
+    font-weight: 600;
+    font-family: "Noto Sans KR", sans-serif;
+    color: #aaa;
+    padding: 0 15px 14px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.back i {
+    background: #f1f1f1;
+    color: #aaa;
+    text-align: center;
+    margin-right: 10px;
+}
+/* 계속가기 버튼 */
+.forward {
+    width: 130px;
+    height: 40px;
+    background: #3974d9;
+    color: #fff;
+    padding: 0 15px 14px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.forward input[value="등록하기"] {
+    cursor: pointer;
+    background: #3974d9;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 40px;
+    color: #fff;
+    font-family: "Noto Sans KR", sans-serif;
+}
+.forward i {
+    background: #3974d9;
+    color: #fff;
+    line-height: 40px;
+    margin-left: 10px;
+}
+
+.btn_area {
+    margin: 20px 16px 80px 16px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.footer {
+    width: 1603px;
+    height: 85px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    /* z-index: 9999; */
+    background: white;
+}
+
+/* 진행바 */
+
+/* 바의 배경 */
+.pogress_container {
+    width: 100%;
+    height: 2px;
+    background: #f3f3f3;
+}
+
+/* 진행률 표시 */
+.pogress_bar {
+    height: 2px;
+    background-color: #3974d9;
+    width: 0%;
+    transition: all .3s ease;
+}
+
+/* 스크롤시 체크이미지 나타나게 하기 */
+.gnb ul li {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.image {
+    opacity: 0;
+    width: 15px;
+    height: 15px;
+    margin-top: 4px;
+}
+
+.detail_area textarea {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 30px;
+}
+.detail_img_upload {
+    height: 250px;
+}
+
+/* 상세보기 이미지 업로드 */
+/* 사진 업로드 파트 */
+#detail_input_file {
+    visibility: hidden;
+}
+/* imaged preview */
+.detail_filebox .detail_upload_display {
+    /* 이미지가 표시될 지역 */
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.detail_filebox .detail_upload_thumb_wrap {
+    /* 추가될 이미지를 감싸는 요소 */
+    display: inline-block;
+    width: 100px;
+    padding: 2px;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-bottom: 30px;
+}
+.detail_filebox .detail_upload_display img {
+    /* 추가될 이미지 */
+    display: block;
+    max-width: 100%;
+    width: 100px;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* 추가 구현 */
+/* 이미지 클릭시 모달창으로 확대 */
+.modal { /* 모달 배경 넣기 */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 99999;
+}
+.modal_content {
+    position: relative; 
+    top:50%; 
+    left:50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    vertical-align: middle;
+    cursor:pointer;
+    margin: 0 auto;
+}
+.modal_content img {
+    width: 35%;
+    height: auto;
+    border-radius: 10px;
+}

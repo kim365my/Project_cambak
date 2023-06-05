@@ -42,7 +42,7 @@ public class joinCtrl extends HttpServlet {
 	      if(pw.equals(pw2)) {
 	    	  // 비밀번호가 동일한 경우 회원가입처리
 	    	  // 자바빈에 데이터 저장
-	    	  UserVO bean = new UserVO(user_id, user_id, email, tel);
+	    	  UserVO bean = new UserVO(user_id, pw, email, tel);
 	         UserDAO udao = new UserDAO();
 	         udao.addUser(bean);
 	         out.println("alert('회원가입 처리되었습니다.');");

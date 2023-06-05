@@ -1,0 +1,272 @@
+@charset "utf-8";
+
+
+/* ===============================================================
+                            챗  봇
+=============================================================== */
+a,button {
+    cursor: pointer !important;
+}
+/* 챗봇 위치 */
+.chatbot section.chatbot-guide {
+    position: fixed;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    right: 100px;
+    z-index: 1000;
+    width: auto;
+    min-height: 56px;
+    bottom: 100px;
+    /* padding: 0 24px; */
+    /* text-align: left; */
+}
+
+/* 탑버튼 */
+.top_icon {
+    /* 로딩시 숨기기 */
+    display: none;
+}
+.top_icon > button {
+    position: absolute;
+    right: 24px;
+    bottom: 68px;
+    width: 56px;
+    height: 56px;
+    
+    overflow: hidden;
+    border-radius: 28px;
+    box-shadow: 0 0 24px rgba(0,0,0,.15);
+}
+
+.chatbot section.chatbot-guide .chatbot-icon > button {
+    position: absolute;
+    right: 24px;
+    bottom: 0;
+    width: 56px;
+    height: 56px;
+}
+
+.chatbot section.chatbot-guide .chatbot-icon > button:after,
+.chatbot section.chatbot-guide .chatbot-icon > button:before{
+    content: '';
+    display: inline-block;
+    width: 56px;
+    height: 56px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.chatbot section.chatbot-guide .chatbot-icon > button.animated.mo1,
+.top_btn_icon {
+    overflow: hidden;
+    border-radius: 28px;
+    box-shadow: 0 0 24px rgba(0,0,0,.15);
+}
+
+.chatbot section.chatbot-guide .chatbot-icon > button.animated.mo1:after {
+    background-image: url("../images/aside/mo1.png");
+    background-position: 0 0;
+    background-size: 11200px 56px;
+    animation: chatbotFloat 10s infinite alternate;
+    animation-timing-function: steps(1);
+}
+
+@keyframes chatbotFloat {
+    from{background-position: 0px 0px; width: 56px; height: 56px;}
+    0.5%{background-position: 56px 0px; width: 56px; height: 56px;}
+    1%{background-position: 112px 0px; width: 56px; height: 56px;}
+    1.5%{background-position: 168px 0px; width: 56px; height: 56px;}
+    2%{background-position: 224px 0px; width: 56px; height: 56px;}
+    2.5%{background-position: 280px 0px; width: 56px; height: 56px;}
+    3%{background-position: 336px 0px; width: 56px; height: 56px;}
+    3.5%{background-position: 392px 0px; width: 56px; height: 56px;}
+    4%{background-position: 448px 0px; width: 56px; height: 56px;}
+    4.5%{background-position: 504px 0px; width: 56px; height: 56px;}
+    5%{background-position: 560px 0px; width: 56px; height: 56px;}
+    5.5%{background-position: 616px 0px; width: 56px; height: 56px;}
+    6%{background-position: 672px 0px; width: 56px; height: 56px;}
+    6.5%{background-position: 728px 0px; width: 56px; height: 56px;}
+    7%{background-position: 784px 0px; width: 56px; height: 56px;}
+    7.5%{background-position: 840px 0px; width: 56px; height: 56px;}
+    8%{background-position: 896px 0px; width: 56px; height: 56px;}
+    8.5%{background-position: 952px 0px; width: 56px; height: 56px;}
+    9%{background-position: 1008px 0px; width: 56px; height: 56px;}
+    9.5%{background-position: 1064px 0px; width: 56px; height: 56px;}
+    10%{background-position: 1120px 0px; width: 56px; height: 56px;}
+    10.5%{background-position: 1176px 0px; width: 56px; height: 56px;}
+    11%{background-position: 1232px 0px; width: 56px; height: 56px;}
+    11.5%{background-position: 1288px 0px; width: 56px; height: 56px;}
+    12%{background-position: 1344px 0px; width: 56px; height: 56px;}
+    12.5%{background-position: 1400px 0px; width: 56px; height: 56px;}
+    13%{background-position: 1456px 0px; width: 56px; height: 56px;}
+    13.5%{background-position: 1512px 0px; width: 56px; height: 56px;}
+    14%{background-position: 1568px 0px; width: 56px; height: 56px;}
+    14.5%{background-position: 1624px 0px; width: 56px; height: 56px;}
+    15%{background-position: 1680px 0px; width: 56px; height: 56px;}
+    15.5%{background-position: 1736px 0px; width: 56px; height: 56px;}
+    16%{background-position: 1792px 0px; width: 56px; height: 56px;}
+    16.5%{background-position: 1848px 0px; width: 56px; height: 56px;}
+    17%{background-position: 1904px 0px; width: 56px; height: 56px;}
+    17.5%{background-position: 1960px 0px; width: 56px; height: 56px;}
+    18%{background-position: 2016px 0px; width: 56px; height: 56px;}
+    18.5%{background-position: 2072px 0px; width: 56px; height: 56px;}
+    19%{background-position: 2128px 0px; width: 56px; height: 56px;}
+    19.5%{background-position: 2184px 0px; width: 56px; height: 56px;}
+    20%{background-position: 2240px 0px; width: 56px; height: 56px;}
+    20.5%{background-position: 2296px 0px; width: 56px; height: 56px;}
+    21%{background-position: 2352px 0px; width: 56px; height: 56px;}
+    21.5%{background-position: 2408px 0px; width: 56px; height: 56px;}
+    22%{background-position: 2464px 0px; width: 56px; height: 56px;}
+    22.5%{background-position: 2520px 0px; width: 56px; height: 56px;}
+    23%{background-position: 2576px 0px; width: 56px; height: 56px;}
+    23.5%{background-position: 2632px 0px; width: 56px; height: 56px;}
+    24%{background-position: 2688px 0px; width: 56px; height: 56px;}
+    24.5%{background-position: 2744px 0px; width: 56px; height: 56px;}
+    25%{background-position: 2800px 0px; width: 56px; height: 56px;}
+    25.5%{background-position: 2856px 0px; width: 56px; height: 56px;}
+    26%{background-position: 2912px 0px; width: 56px; height: 56px;}
+    26.5%{background-position: 2968px 0px; width: 56px; height: 56px;}
+    27%{background-position: 3024px 0px; width: 56px; height: 56px;}
+    27.5%{background-position: 3080px 0px; width: 56px; height: 56px;}
+    28%{background-position: 3136px 0px; width: 56px; height: 56px;}
+    28.5%{background-position: 3192px 0px; width: 56px; height: 56px;}
+    29%{background-position: 3248px 0px; width: 56px; height: 56px;}
+    29.5%{background-position: 3304px 0px; width: 56px; height: 56px;}
+    30%{background-position: 3360px 0px; width: 56px; height: 56px;}
+    30.5%{background-position: 3416px 0px; width: 56px; height: 56px;}
+    31%{background-position: 3472px 0px; width: 56px; height: 56px;}
+    31.5%{background-position: 3528px 0px; width: 56px; height: 56px;}
+    32%{background-position: 3584px 0px; width: 56px; height: 56px;}
+    32.5%{background-position: 3640px 0px; width: 56px; height: 56px;}
+    33%{background-position: 3696px 0px; width: 56px; height: 56px;}
+    33.5%{background-position: 3752px 0px; width: 56px; height: 56px;}
+    34%{background-position: 3808px 0px; width: 56px; height: 56px;}
+    34.5%{background-position: 3864px 0px; width: 56px; height: 56px;}
+    35%{background-position: 3920px 0px; width: 56px; height: 56px;}
+    35.5%{background-position: 3976px 0px; width: 56px; height: 56px;}
+    36%{background-position: 4032px 0px; width: 56px; height: 56px;}
+    36.5%{background-position: 4088px 0px; width: 56px; height: 56px;}
+    37%{background-position: 4144px 0px; width: 56px; height: 56px;}
+    37.5%{background-position: 4200px 0px; width: 56px; height: 56px;}
+    38%{background-position: 4256px 0px; width: 56px; height: 56px;}
+    38.5%{background-position: 4312px 0px; width: 56px; height: 56px;}
+    39%{background-position: 4368px 0px; width: 56px; height: 56px;}
+    39.5%{background-position: 4424px 0px; width: 56px; height: 56px;}
+    40%{background-position: 4480px 0px; width: 56px; height: 56px;}
+    40.5%{background-position: 4536px 0px; width: 56px; height: 56px;}
+    41%{background-position: 4592px 0px; width: 56px; height: 56px;}
+    41.5%{background-position: 4648px 0px; width: 56px; height: 56px;}
+    42%{background-position: 4704px 0px; width: 56px; height: 56px;}
+    42.5%{background-position: 4760px 0px; width: 56px; height: 56px;}
+    43%{background-position: 4816px 0px; width: 56px; height: 56px;}
+    43.5%{background-position: 4872px 0px; width: 56px; height: 56px;}
+    44%{background-position: 4928px 0px; width: 56px; height: 56px;}
+    44.5%{background-position: 4984px 0px; width: 56px; height: 56px;}
+    45%{background-position: 5040px 0px; width: 56px; height: 56px;}
+    46.5%{background-position: 5096px 0px; width: 56px; height: 56px;}
+    47%{background-position: 5152px 0px; width: 56px; height: 56px;}
+    47.5%{background-position: 5208px 0px; width: 56px; height: 56px;}
+    48%{background-position: 5264px 0px; width: 56px; height: 56px;}
+    48.5%{background-position: 5320px 0px; width: 56px; height: 56px;}
+    49%{background-position: 5376px 0px; width: 56px; height: 56px;}
+    49.5%{background-position: 5432px 0px; width: 56px; height: 56px;}
+    50%{background-position: 5488px 0px; width: 56px; height: 56px;}
+    50.5%{background-position: 5544px 0px; width: 56px; height: 56px;}
+    51%{background-position: 5600px 0px; width: 56px; height: 56px;}
+    51.5%{background-position: 5656px 0px; width: 56px; height: 56px;}
+    52%{background-position: 5712px 0px; width: 56px; height: 56px;}
+    52.5%{background-position: 5768px 0px; width: 56px; height: 56px;}
+    53%{background-position: 5824px 0px; width: 56px; height: 56px;}
+    53.5%{background-position: 5880px 0px; width: 56px; height: 56px;}
+    54%{background-position: 5936px 0px; width: 56px; height: 56px;}
+    54.5%{background-position: 5992px 0px; width: 56px; height: 56px;}
+    55%{background-position: 6048px 0px; width: 56px; height: 56px;}
+    55.5%{background-position: 6104px 0px; width: 56px; height: 56px;}
+    56%{background-position: 6160px 0px; width: 56px; height: 56px;}
+    56.5%{background-position: 6216px 0px; width: 56px; height: 56px;}
+    57%{background-position: 6272px 0px; width: 56px; height: 56px;}
+    57.5%{background-position: 6328px 0px; width: 56px; height: 56px;}
+    58%{background-position: 6384px 0px; width: 56px; height: 56px;}
+    58.5%{background-position: 6440px 0px; width: 56px; height: 56px;}
+    59%{background-position: 6496px 0px; width: 56px; height: 56px;}
+    59.5%{background-position: 6552px 0px; width: 56px; height: 56px;}
+    60%{background-position: 6608px 0px; width: 56px; height: 56px;}
+    60.5%{background-position: 6664px 0px; width: 56px; height: 56px;}
+    61%{background-position: 6720px 0px; width: 56px; height: 56px;}
+    61.5%{background-position: 6776px 0px; width: 56px; height: 56px;}
+    62%{background-position: 6832px 0px; width: 56px; height: 56px;}
+    62.5%{background-position: 6888px 0px; width: 56px; height: 56px;}
+    63%{background-position: 6944px 0px; width: 56px; height: 56px;}
+    63.5%{background-position: 7000px 0px; width: 56px; height: 56px;}
+    64%{background-position: 7056px 0px; width: 56px; height: 56px;}
+    64.5%{background-position: 7112px 0px; width: 56px; height: 56px;}
+    65%{background-position: 7168px 0px; width: 56px; height: 56px;}
+    65.5%{background-position: 7224px 0px; width: 56px; height: 56px;}
+    66%{background-position: 7280px 0px; width: 56px; height: 56px;}
+    66.5%{background-position: 7336px 0px; width: 56px; height: 56px;}
+    67%{background-position: 7392px 0px; width: 56px; height: 56px;}
+    67.5%{background-position: 7448px 0px; width: 56px; height: 56px;}
+    68%{background-position: 7504px 0px; width: 56px; height: 56px;}
+    68.5%{background-position: 7560px 0px; width: 56px; height: 56px;}
+    69%{background-position: 7616px 0px; width: 56px; height: 56px;}
+    69.5%{background-position: 7672px 0px; width: 56px; height: 56px;}
+    70%{background-position: 7728px 0px; width: 56px; height: 56px;}
+    70.5%{background-position: 7784px 0px; width: 56px; height: 56px;}
+    71%{background-position: 7840px 0px; width: 56px; height: 56px;}
+    72.5%{background-position: 7896px 0px; width: 56px; height: 56px;}
+    73%{background-position: 7952px 0px; width: 56px; height: 56px;}
+    73.5%{background-position: 8008px 0px; width: 56px; height: 56px;}
+    74%{background-position: 8064px 0px; width: 56px; height: 56px;}
+    74.5%{background-position: 8120px 0px; width: 56px; height: 56px;}
+    75%{background-position: 8176px 0px; width: 56px; height: 56px;}
+    75.5%{background-position: 8232px 0px; width: 56px; height: 56px;}
+    76%{background-position: 8288px 0px; width: 56px; height: 56px;}
+    76.5%{background-position: 8344px 0px; width: 56px; height: 56px;}
+    77%{background-position: 8400px 0px; width: 56px; height: 56px;}
+    77.5%{background-position: 8456px 0px; width: 56px; height: 56px;}
+    78%{background-position: 8512px 0px; width: 56px; height: 56px;}
+    78.5%{background-position: 8568px 0px; width: 56px; height: 56px;}
+    79%{background-position: 8624px 0px; width: 56px; height: 56px;}
+    79.5%{background-position: 8680px 0px; width: 56px; height: 56px;}
+    80%{background-position: 8736px 0px; width: 56px; height: 56px;}
+    80.5%{background-position: 8792px 0px; width: 56px; height: 56px;}
+    81%{background-position: 8848px 0px; width: 56px; height: 56px;}
+    81.5%{background-position: 8904px 0px; width: 56px; height: 56px;}
+    82%{background-position: 8960px 0px; width: 56px; height: 56px;}
+    82.5%{background-position: 9016px 0px; width: 56px; height: 56px;}
+    83%{background-position: 9072px 0px; width: 56px; height: 56px;}
+    83.5%{background-position: 9128px 0px; width: 56px; height: 56px;}
+    84%{background-position: 9184px 0px; width: 56px; height: 56px;}
+    84.5%{background-position: 9240px 0px; width: 56px; height: 56px;}
+    85%{background-position: 9296px 0px; width: 56px; height: 56px;}
+    85.5%{background-position: 9352px 0px; width: 56px; height: 56px;}
+    86%{background-position: 9408px 0px; width: 56px; height: 56px;}
+    86.5%{background-position: 9464px 0px; width: 56px; height: 56px;}
+    87%{background-position: 9520px 0px; width: 56px; height: 56px;}
+    87.5%{background-position: 9576px 0px; width: 56px; height: 56px;}
+    88%{background-position: 9632px 0px; width: 56px; height: 56px;}
+    88.5%{background-position: 9688px 0px; width: 56px; height: 56px;}
+    89%{background-position: 9744px 0px; width: 56px; height: 56px;}
+    89.5%{background-position: 9800px 0px; width: 56px; height: 56px;}
+    90%{background-position: 9856px 0px; width: 56px; height: 56px;}
+    90.5%{background-position: 9912px 0px; width: 56px; height: 56px;}
+    91%{background-position: 9968px 0px; width: 56px; height: 56px;}
+    91.5%{background-position: 10024px 0px; width: 56px; height: 56px;}
+    92%{background-position: 10080px 0px; width: 56px; height: 56px;}
+    92.5%{background-position: 10136px 0px; width: 56px; height: 56px;}
+    93%{background-position: 10192px 0px; width: 56px; height: 56px;}
+    93.5%{background-position: 10248px 0px; width: 56px; height: 56px;}
+    94%{background-position: 10304px 0px; width: 56px; height: 56px;}
+    94.5%{background-position: 10360px 0px; width: 56px; height: 56px;}
+    95%{background-position: 10416px 0px; width: 56px; height: 56px;}
+    95.5%{background-position: 10472px 0px; width: 56px; height: 56px;}
+    96%{background-position: 10528px 0px; width: 56px; height: 56px;}
+    96.5%{background-position: 10584px 0px; width: 56px; height: 56px;}
+    97%{background-position: 10640px 0px; width: 56px; height: 56px;}
+    97.5%{background-position: 10696px 0px; width: 56px; height: 56px;}
+    98%{background-position: 10752px 0px; width: 56px; height: 56px;}
+    98.5%{background-position: 10808px 0px; width: 56px; height: 56px;}
+    99%{background-position: 10864px 0px; width: 56px; height: 56px;}
+    99.5%{background-position: 10920px 0px; width: 56px; height: 56px;}
+}

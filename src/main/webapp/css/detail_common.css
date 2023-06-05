@@ -1,0 +1,35 @@
+/* 공통 css */
+@charset "utf-8";
+
+.w1140 {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+html, body {
+    font-size: 62.5%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#wrap {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+/* header */
+.header {
+    padding: 0 390px; 
+}
+
+
+.map{
+    width: 760px;
+    cursor: url(https://maps.gstatic.com/mapfiles/openhand_8_8.cur), default;
+}
+
+
+a {
+    cursor: pointer !important;
+}
+

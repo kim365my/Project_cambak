@@ -1,2 +1,555 @@
-/* 메인페이지 css */
 @charset "utf-8";
+/* 메인페이지 css */
+html,body {
+    font-size: 62.5%;
+    font-family: 'Noto sans KR', sans-serif;
+  }
+#wrap {
+    margin: 0 auto;
+  }
+/* safe area */
+.w1140{
+    padding: 0 390px;
+}
+/* 제목 font-face */
+@font-face {
+    font-family:'KOTRA_BOLD-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'KOTRA_GOTHIC';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/KOTRA_GOTHIC.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 제목 공통 css */
+.h2 {
+    margin: 42px 0 11px;
+    font-family: 'KOTRA_BOLD-Bold';
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #3974d9;
+}
+.h3 {
+    margin-bottom: 36px;
+    font-family: 'KOTRA_GOTHIC';
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: #767676;
+    letter-spacing: -0.8px;
+}
+
+
+/* contents */
+main {
+    /* header부분 보이게 하기위해서 높이만큼 띄어줌 */
+    margin-top: 60px;
+}
+.main_img {
+    height: 780px;
+    background: url("../images/main/visual_key.png") no-repeat center;
+    background-size: 100% 100%;
+    /* 포지션 기준값 */
+    position: relative;
+}
+/* 메인 텍스트 */
+.main_img h1 p{
+    font-size: 7.4rem;
+    font-weight: 900;
+    color: #ffffff;
+    /* 포지션 */
+    position: absolute;
+    left: 390px;
+    top: 107px;
+}
+.main_img h1
+.cover {
+    display: block;
+    position: relative;
+}
+.cover span {
+    margin-top: 10px;
+    font-size: 7.4rem;
+    font-weight: 900;
+    color: #ffffff;
+    /* 포지션 */
+    position: absolute;
+    left: 390px;
+    top: 180px;
+    opacity: 0;
+    transform: translate(-100%, 0);
+    z-index: 99;
+}
+.main_img .fix_text {
+    font-size: 7.4rem;
+    font-weight: 900;
+    color: #ffffff;
+     /* 포지션 */
+     position: absolute;
+     left: 545px;
+     top: 190px;
+     z-index: 99;
+}
+.cover::after{
+    content: '  ';
+}
+  /* .active {
+    animation: starting 1.6s
+  } */
+.active {
+    animation: starting ease-in-out 1.2s;
+}
+@keyframes starting {
+    0% {
+        transform: translate(-50%,0);
+        opacity: 1
+    }
+    25% {
+        transform: translate(0,0);
+        opacity: 1
+    }
+    50% {
+        transform: translate(0,0);
+        opacity: 1
+    }
+    to {
+        transform: translate(50%, -15%);
+        opacity: 0
+    }
+}
+
+.rent_date {
+    width: 566px;
+    height: 311px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    /* 포지션 */
+    position: absolute;
+    left: 390px;
+    top: 298px;
+}
+.rent_date p {
+    margin: 39px 0 24px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #3a3a3a;
+    /* 포지션 */
+    position: relative;
+    left: 0;
+    top: 0;
+}
+.rent_table{
+    margin: 0 auto;
+    width: 491px;
+}
+.rent_date>p+ul li{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.rent_table li {
+    height: 61px;
+    padding: 0 20px;
+    font-size: 1.5rem;
+    color: #111111;
+    border: 1px solid #dddddd;
+    cursor: pointer;
+    /* 플렉스 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 대여기간 선택 테이블 화살표 */
+.rent_table li{
+    background: url("../images/main/down_arrow.png") no-repeat 80%;
+    background-position: 95% center;
+}
+.rent_table li.up {
+    background: url("../images/main/up_arrow.png") no-repeat 80%;
+    background-position: 95% center;
+}
+.rent_table:last-child li:last-child {
+  line-height: 61px;
+  border: 1px solid #dddddd;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.date_search {
+    width: 470px;
+    height: 47px;
+    background-color: #3974d9;
+    font-weight: 700;
+    border-radius: 30px;
+    text-align: center;
+  }
+  .date_search i {
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+
+
+
+/* 실시간 인기 캠핑카 */
+.realtime {
+    margin-top: 30px;
+    /* 플렉스 */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.realtime .more {
+    margin: 29px auto 24px;
+    cursor: pointer;
+}
+.rent_car {
+    padding-bottom: 24px;
+    cursor: pointer;
+}
+.car_img {
+    width: 357px;       
+    height: 237px;
+    padding: 9px 10px 0;
+    box-shadow: -5px -5px 10px rgb(211, 211, 211);
+    background: url("../images/main/realtime/realtime01.jpg") no-repeat center;
+    background-size: 100% 100%;
+    border-radius: 10px;
+    /* 플렉스 */
+    display: flex;
+    justify-content: space-between;
+}
+.car_img p {
+    width: 100px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 50px;
+    background-color: #3974d9;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 700;
+}
+.car_img span {
+    font-size: 2.1rem;
+    color: #ffffff;
+}
+.car_img span:hover {
+    color: #3974d9;
+}
+.car_info {
+    width: 363px;
+}
+.car_info .car_name {
+    margin: 16px 0 7px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.car_info .car_name i {
+    margin-right: 5px;
+    color: #3974d9;
+    font-weight: 900;
+}
+.car_info .car_name h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.car_info .car_name h4 {
+    margin: 7px 0 14px;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+.car_info .car_option {
+    font-size: 1.3rem;
+    color: #aaa;
+    /* 플렉스 */
+    display: flex;
+    flex-flow: row wrap;
+}
+.car_info .car_option li {
+    margin-right: 7px;
+    padding-top: 14px;
+    font-weight: 700;
+}
+.car_info i {
+    margin-right: 7px;
+}
+.car_info p {
+    font-family: 'Poppins', sans-serif;
+    margin-top: 17px;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #3974d9;
+}
+/* 키워드 추천 */
+.keyword {
+    margin: 30px 0 85px 0;
+}
+.card_box:hover {
+    display: block;
+    cursor: pointer;
+    animation: keyword 0.6s ease normal forwards;
+    box-shadow: -5px -5px 20px rgb(165, 165, 165);
+    transition: all 0.3s linear;
+/*     transform: scale(1.1); */
+}
+/* 키워드 이미지 호버시 애니메이션 */
+@keyframes keyword{
+    from {
+        transform: translateY(0);
+    } 
+    to {
+        transform: translateY(-10px);
+    }
+}
+.card_section {
+    /* 플렉스 */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.card_section div {
+    padding: 170px 0 0 30px;
+}
+.card_box1 {
+    width: 554px;
+    height: 247px;
+    border-radius: 10px;
+    background: url("../images/main/keyword/keyword01.jpg") no-repeat center;
+    background-size: cover;
+}
+.card_box2 {
+    width: 264px;
+    height: 247px;
+    border-radius: 10px;
+    background: url("../images/main/keyword/keyword02.jpg") no-repeat center;
+    background-size: cover;
+}
+.card_box3 {
+    width: 264px;
+    height: 247px;
+    border-radius: 10px;
+    background: url("../images/main/keyword/keyword03.jpg") no-repeat center;
+    background-size: cover;
+}
+.card_box4 {
+    width: 554px;
+    height: 247px;
+    margin-top: 17px;
+    border-radius: 10px;
+    background: url("../images/main/keyword/keyword04.jpg") no-repeat center;
+    background-size: cover;
+}
+.card_box5 {
+    width: 264px;
+    height: 247px;
+    margin-top: 17px;
+    border-radius: 10px;
+    background: url("../images/main/keyword/keyword05.jpg") no-repeat center;
+    background-size: cover;
+}
+.card_box6 {
+    width: 264px;
+    height: 247px;
+    margin-top: 17px;
+    border-radius: 10px;
+    background: url("../images/main/keyword/keyword06.jpg") no-repeat center;
+    background-size: cover;
+}
+.card_section div h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+.card_section div p {
+    margin-top: 8px;
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+/* 차박지도 */
+.map_section {
+    margin-bottom: 29px;
+    /* 플렉스 */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.map_section div {
+    cursor: pointer;
+    /* 포지션 기준값 */
+    position: relative;
+}
+.map_section div span {
+    margin: 10px 5px 0 0;
+    color: #ffffff;
+    /* 포지션 */
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.map_section div span:hover {
+    color: #3974d9;
+}
+.map_section .map_contents {
+    padding: 12px;
+    width: 373px;
+}
+.map_contents div:first-child {
+    box-shadow: -5px -5px 10px rgb(211, 211, 211);
+}
+.map_section .map_img1 {
+    height: 237px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    background: url("../images/main/map/map01.png") no-repeat 50%;
+    background-size: cover;
+}
+.map_section .map_img2 {
+    height: 237px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    background: url("../images/main/map/map02.png") no-repeat 50%;
+    background-size: cover;
+}
+.map_section .map_img3 {
+    height: 237px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    background: url("../images/main/map/map03.png") no-repeat 50%;
+    background-size: cover;
+}
+.map_section .map_img4 {
+    height: 237px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    background: url("../images/main/map/map04.png") no-repeat 50%;
+    background-size: cover;
+}
+.map_section .map_img5 {
+    height: 237px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    background: url("../images/main/map/map05.png") no-repeat 50%;
+    background-size: cover;
+}
+.map_section .map_img6 {
+    height: 237px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    background: url("../images/main/map/map06.png") no-repeat 50%;
+    background-size: cover;
+}
+.map_section .map_name {
+    line-height: 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.map_section .map_name h3{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.map_section .map_name h4{
+    margin-bottom: 7px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    opacity: 0.7;
+    /* 넘치는 텍스트 점 표시 */
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+.map_section .map_icon {
+    margin-top: 5px;
+    /* 플렉스 */
+    display: flex;
+    flex-flow: row wrap;
+}
+.map_section .map_icon li {
+    margin: 5px 6px;
+    font-size: 1.3rem;
+    color: #aaa;
+}
+.map_section .map_icon li i,
+.map_section .map_icon li span{
+    margin-right: 5px;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.map_section p {
+    margin-top: 9px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    color: #3974d9;
+}
+.map_section p i {
+    margin-right: 0.56rem;
+}
+.more {
+    width: 210px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-radius: 10px;
+    text-align: center;
+    color: #3974d9;
+    border: 2px solid #3974d9;
+    cursor: pointer;
+}
+.more i {
+    margin-left: 8px;
+}
+/* 배너 */
+#banner {
+    margin: 79px 0 74px;
+    padding: 0 360px;
+}
+.swiper-button-prev {
+    padding: 0 80px; 
+}
+.swiper-button-next {
+    padding: 0 100px; 
+}
+/* 스폰서 */
+.sponsor {
+    height: 208px;
+    background-color: #3974d9;
+}
+.sponsor>div{
+    /* 플렉스 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.sponsor h3 {
+    margin: 40px 0 20px;
+    font-family:'KOTRA_BOLD-Bold';
+    font-size: 3.5rem;
+    color: #ffffff;
+}
+.sponsor p {
+    font-family: 'KOTRA_GOTHIC';
+    font-size: 1.6rem;
+    line-height: 19px;
+    color: #ffffff;
+}
+.sponsor button {
+    margin-top: 83px;
+    height: 46px;
+    padding: 12px 24px;
+    font-family:'KOTRA_BOLD-Bold';
+    font-size: 1.9rem;
+    border-radius: 5px;
+    color: #3974d9;
+    background-color: #ffffff;
+}
+.sponsor_name {
+    height: 120px;
+    background-color: #ffffff;
+    /* 플렉스 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
