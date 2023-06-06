@@ -343,7 +343,6 @@
                         </div>
                         <p>상세페이지</p>
                         <textarea name="campingcar_detail" id="ir1" rows="10" cols="100" style="width:100%; height:412px;"></textarea>
-
                         <!-- 하단 진행바 -->
                         <footer class="footer">
                             <div class="pogress_container">

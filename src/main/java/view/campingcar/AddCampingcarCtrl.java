@@ -53,25 +53,23 @@ public class AddCampingcarCtrl extends HttpServlet {
 		boolean bool = loginCK.moveLoginPage(session, out, user_id);
 
 		if (!bool) {
-			// 실제로 서버에 저장되는 경로 구하기
-			ServletContext context = getServletContext();
-			// 파일을 저장할 URL 지정
-			String url = "images/detail";
-			String path = context.getRealPath(url);
+			
+			ServletContext context = getServletContext(); 
+			
+			String url = "images/detail"; // 파일을 저장할 URL 지정
+			String path = context.getRealPath(url); // 실제로 서버에 저장되는 경로 구하기
 			
 			// 폴더 생성하기
 			CampingcarDAO cdao = new CampingcarDAO();
 			String no = Integer.toString(cdao.getNextNo());
-			// 번호에 따라 폴더 생성
-			File file = new File(path + "\\" + no);
-			// 파일이 생성 된 것이 맞을 경우 url 수정
-			if(file.mkdir()) path += "\\" + no;
+			
+			File file = new File(path + File.separator + no); // 번호에 따라 폴더 생성
+			if(file.mkdir()) path += File.separator + no; // 파일이 생성 된 것이 맞을 경우 url 수정
+			System.out.println("절대 경로 : " + path);
 			
 			
 			try {
-				int size = 1024 * 1024 * 256; // 파일 사이즈 설정 : 256M
-				
-				System.out.println("절대 경로 : " + path + "<br/>");
+				int size = 1024 * 1024 * 256; // 파일 사이즈 설정 : 256M				
 				MultipartRequest multi = new MultipartRequest(request, path, size, "UTF-8", new DefaultFileRenamePolicy());
 
 				// 파라미터 값 받기

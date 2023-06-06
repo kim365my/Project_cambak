@@ -69,10 +69,16 @@ ORDER by a1.campingcar_no DESC;
 -- 조회구문
 select * from cb_user;
 select * from cb_review;
-select review_no_seq.nextval from dual;
+select review_no_seq.nextval from dual; 
+-- 시퀀스 조회시마다 1씩 증가하니까 수정구문 필요
+ALTER SEQUENCE review_no_seq INCREMENT BY -1;
+
 select * from cb_campingcar;
 desc cb_campingcar;
+select max(campingcar_no) from cb_campingcar;
 select CAMPINGCAR_NO_SEQ.nextval from dual;
+ALTER SEQUENCE CAMPINGCAR_NO_SEQ INCREMENT BY -1;
+
 select * from cd_deshBoard_view; -- view 조회
 
 -- 삭제구문

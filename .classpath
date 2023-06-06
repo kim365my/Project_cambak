@@ -14,5 +14,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Users/ringingm88/Documents/GitHub/Project_cambak/src/main/webapp/WEB-INF/lib/cos.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ringingm88/Documents/GitHub/Project_cambak/src/main/webapp/WEB-INF/lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ringingm88/Documents/GitHub/Project_cambak/src/main/webapp/WEB-INF/lib/commons-io-1.4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

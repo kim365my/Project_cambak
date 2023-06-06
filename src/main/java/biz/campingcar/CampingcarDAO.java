@@ -207,7 +207,7 @@ public class CampingcarDAO {
 		int no = 0;
 		try {
 			conn = JDBCConnection.getConnection();
-			String sql = "select CAMPINGCAR_NO_SEQ.nextval from dual";
+			String sql = "select max(campingcar_no) from cb_campingcar";
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
@@ -216,6 +216,8 @@ public class CampingcarDAO {
 			} else {
 				System.out.println("캠핑카 다음 시퀀스 조회 실패");
 			}
+
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
