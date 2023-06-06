@@ -52,7 +52,7 @@
                     <!-- 현재 DB연결 안돼 있어서 method가 get인 상태 추후 post로 수정  -->
                     <!-- 이미지 데이터로 넘길 때 enctype 추가해야 함 -->
                     <!-- action 주소값 수정 ctrl로 수정 -->
-                    <form action="#" method="get" enctype="multipart/form-data">
+                    <form action="UpdateCampingcarCtrl" method="get" enctype="multipart/form-data">
                         <h2>일반</h2>
                         <p>카테고리 구분</p>
                         <button type="button" class="checked_button">캠핑카</button>

@@ -70,7 +70,7 @@
       <label for="tab02" class="no_ml">회원가입</label>
       <div class="con01">
         <!-- 추후 로그인 ctrl로 주소 변경 -->
-        <form action="#" method="post">
+        <form action="loginCtrl" method="post">
           <div class="login_input">
             <input type="text" name="user_id" placeholder="아이디 또는 이메일" required>
             <input type="password" name="user_pw" placeholder="비밀번호" class="password" required>
@@ -86,7 +86,7 @@
       </div>
       <div class="con02">
         <!-- 추후 로그아웃 ctrl로 링크 수정 -->
-        <form action="#" method="post">
+        <form action="LogoutCtrl" method="post">
           <div class="join_content">
             <div class="join_input">
               <input type="text" name="user_id" placeholder="아이디" required>

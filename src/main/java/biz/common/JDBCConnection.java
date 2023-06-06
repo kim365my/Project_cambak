@@ -13,11 +13,10 @@ public class JDBCConnection {
    // DB 접속 메서드
    public static Connection getConnection() throws ClassNotFoundException, SQLException {
       Class.forName("oracle.jdbc.driver.OracleDriver");
-      System.out.println("DB접속완료1");
       String url = "jdbc:oracle:thin:@localhost:1521:xe";
-      System.out.println("DB접속완료2");
       Connection conn = DriverManager.getConnection(url, "hr", "hr");
-      System.out.println("DB접속완료3");
+      
+      System.out.println("DB 접속완료");
       
       return conn;
    }

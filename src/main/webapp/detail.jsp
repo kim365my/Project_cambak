@@ -733,7 +733,7 @@
             </h3>
           </div>
           
-          <form action="#" method="post" >
+          <form action="AddReviewCtrl" method="post" >
             <div class="review_container">
               <!-- 후기 별점 -->
               <div class="review_star_score">

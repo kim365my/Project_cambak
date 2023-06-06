@@ -85,6 +85,7 @@ nav {
 /* 등록 form */
 #container {
     width: 1603px;
+    padding-bottom: 200px;
     position: relative;
 }
 .form_part {
@@ -140,7 +141,7 @@ nav {
     border-radius: 10px;
     margin-bottom: 28px;
 }
-.form_part iframe {
+.form_part .text_input + iframe {
     border-radius: 15px;
     margin-bottom: 42px;
 }

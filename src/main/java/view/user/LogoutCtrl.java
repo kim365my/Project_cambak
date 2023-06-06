@@ -16,22 +16,24 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/LogoutCtrl")
 public class LogoutCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		// 세션 해제
 		session.invalidate();
 		// 로그아웃 처리
 		PrintWriter out = response.getWriter();
 		out.println("alert('로그아웃 처리되었습니다.');");
-		out.close();
 		// 페이지 이동
-		response.sendRedirect("index.jsp");
+		out.println("location.href=document.referrer;");
+		// 자원반납
+		out.close();
 
 	}
 

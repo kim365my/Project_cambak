@@ -202,8 +202,29 @@ public class CampingcarDAO {
 		return campingcarList;
 	}
 	
-	
-	
+	/** 이미지 폴더 생성 시 다음 시퀀스 번호 조회하는 메소드 */
+	public int getNextNo() {
+		int no = 0;
+		try {
+			conn = JDBCConnection.getConnection();
+			String sql = "select CAMPINGCAR_NO_SEQ.nextval from dual";
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				// 실행
+				no = rs.getInt(1);
+			} else {
+				System.out.println("캠핑카 다음 시퀀스 조회 실패");
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return no;
+	}
 	
 	// 수정
 	/** 캠핑카 수정 메서드*/
