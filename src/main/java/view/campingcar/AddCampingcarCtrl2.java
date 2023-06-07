@@ -1,33 +1,42 @@
 package view.campingcar;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.Enumeration;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
-import org.apache.jasper.tagplugins.jstl.core.If;
-
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import javax.servlet.http.Part;
 
 import biz.campingcar.CampingcarDAO;
 import biz.campingcar.CampingcarVO;
+import biz.upload.UploadUtil;
 import biz.user.loginCK;
 
 /**
  * Servlet implementation class AddCampingcarCtrl
  */
 @WebServlet("/AddCampingcarCtrl")
-public class AddCampingcarCtrl extends HttpServlet {
+@MultipartConfig(
+    fileSizeThreshold = 1024*1024,
+    maxFileSize = 1024*1024*256, //256메가
+    maxRequestSize = 1024*1024*256*10 // 256메가 10개까지
+)
+
+public class AddCampingcarCtrl2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -64,49 +73,69 @@ public class AddCampingcarCtrl extends HttpServlet {
 			String no = Integer.toString(cdao.getNextNo());
 			
 			File file = new File(path + File.separator + no); // 번호에 따라 폴더 생성
-			if(file.mkdir()) path += File.separator + no; // 파일이 생성 된 것이 맞을 경우 url 수정
+			if(!file.exists()) file.mkdir(); // 파일 생성 코드  
+			path += File.separator + no; // 파일이 생성 된 것이 맞을 경우 url 수정
 			System.out.println("절대 경로 : " + path);
 			
-			
+		
 			try {
 				int size = 1024 * 1024 * 256; // 파일 사이즈 설정 : 256M				
-				MultipartRequest multi = new MultipartRequest(request, path, size, "UTF-8", new DefaultFileRenamePolicy());
-
+				// 파일 업로드 요청이 있는지 확인
+				UploadUtil uploadUtil = UploadUtil.create(request.getServletContext());
+				List<Part> parts = (List<Part>) request.getParts();
+				
 				// 파라미터 값 받기
-				String campingcar_name = multi.getParameter("campingcar_name");
-				String campingcar_infos = multi.getParameter("campingcar_infos");
-				String campingcar_tel = multi.getParameter("campingcar_tel");
-				String campingcar_address = multi.getParameter("campingcar_address");
-				String campingcar_website = multi.getParameter("campingcar_website");
-				String[] campingcar_option = multi.getParameterValues("campingcar_option");
+				String campingcar_name = request.getParameter("campingcar_name");
+				String campingcar_infos = request.getParameter("campingcar_infos");
+				String campingcar_tel = request.getParameter("campingcar_tel");
+				String campingcar_address = request.getParameter("campingcar_address");
+				String campingcar_website = request.getParameter("campingcar_website");
+				String[] campingcar_option = request.getParameterValues("campingcar_option");
 
-				int campingcar_rider = Integer.parseInt(multi.getParameter("campingcar_rider").replaceAll("명", ""));
-				int campingcar_sleeper = Integer.parseInt(multi.getParameter("campingcar_sleeper").replaceAll("명", ""));
+				int campingcar_rider = Integer.parseInt(request.getParameter("campingcar_rider").replaceAll("명", ""));
+				int campingcar_sleeper = Integer.parseInt(request.getParameter("campingcar_sleeper").replaceAll("명", ""));
 
-				String campingcar_release_time = multi.getParameter("campingcar_release_time");
-				String campingcar_return_time = multi.getParameter("campingcar_return_time");
-				String campingcar_license = multi.getParameter("campingcar_license");
+				String campingcar_release_time = request.getParameter("campingcar_release_time");
+				String campingcar_return_time = request.getParameter("campingcar_return_time");
+				String campingcar_license = request.getParameter("campingcar_license");
 
-				String wd_fare = multi.getParameter("campingcar_wd_fare");
+				String wd_fare = request.getParameter("campingcar_wd_fare");
 				int campingcar_wd_fare = (wd_fare == null || wd_fare.isEmpty()) ? 0 : Integer.parseInt(wd_fare);												
 
-				String ph_fare = multi.getParameter("campingcar_ph_fare");
+				String ph_fare = request.getParameter("campingcar_ph_fare");
 				int campingcar_ph_fare = (ph_fare == null || ph_fare.isEmpty()) ? 0 : Integer.parseInt(ph_fare);
-
-				// --------------------------------
-				// images/detail/넘버 폴더에 저장한 전체 파일 이름 가져오기
-				Enumeration<?> files = multi.getFileNames();
 				
-				String img = "";
-
-				while(files.hasMoreElements()) {					
-					// 개별 접근
-					String str = (String) files.nextElement();
-					// 중복처리, 이름이 중복되면 파일 이름을 변경해서 출력함 (다운로드 기능 만들것도 아니니까 변경된 이름만 저장)
-					img += multi.getFilesystemName(str) + ", ";
+				//파일명을 받는다 - 일반 원본파일명
+			    String img = request.getHeader("file-name");
+				String realFileNm = "";
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+		        String today = formatter.format(new java.util.Date());
+		        realFileNm = today + UUID.randomUUID().toString() + img.substring(img.lastIndexOf("."));
+				String rlFileNm = path + File.separator + no + realFileNm;
+				
+				
+				for (Part part : parts) {
+					if(!part.getName().equals("f")) {
+						part.
+					}
+					InputStream is = part.getInputStream(); // 전솔된 파일 데이터 읽기
+					OutputStream os = new FileOutputStream(rlFileNm);
+					System.out.println(rlFileNm);
+					int numRead;
+			        byte b[] = new byte[Integer.parseInt(request.getHeader("file-size"))];
+			        while ((numRead = is.read(b, 0, b.length)) != -1) {
+			            os.write(b, 0, numRead); // 파일 저장하기
+			        }
+			        if (is != null) {
+			            is.close();
+			        }
+			        os.flush();
+			        os.close();						
 				}
+				
+				
 				String[] campingcar_img = img.split(", "); // 배열 반환
-				String campingcar_detail = multi.getParameter("campingcar_detail"); // 파일 위치 전달
+				String campingcar_detail = request.getParameter("campingcar_detail"); // 파일 위치 전달
 
 				// --------------------------------
 				// no와 조회수와 생성일은 DB에서 초기값으로 넣음
