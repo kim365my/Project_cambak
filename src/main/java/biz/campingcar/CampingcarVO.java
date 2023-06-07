@@ -7,7 +7,7 @@ public class CampingcarVO {
    private String campingcar_tel;
    private String campingcar_address;
    private String campingcar_website;
-   private String campingcar_img;
+   private String[] campingcar_img;
    private String[] campingcar_option;
    private int campingcar_rider;
    private int campingcar_sleeper;
@@ -24,7 +24,7 @@ public class CampingcarVO {
    // 생성자
    public CampingcarVO() {}
    public CampingcarVO(int campingcar_no, String campingcar_name, String campingcar_infos, String campingcar_tel,
-		String campingcar_address, String campingcar_website, String campingcar_img, String[] campingcar_option,
+		String campingcar_address, String campingcar_website, String[] campingcar_img, String[] campingcar_option,
 		int campingcar_rider, int campingcar_sleeper, String campingcar_release_time, String campingcar_return_time,
 		String campingcar_license, int campingcar_wd_fare, int campingcar_ph_fare, String campingcar_detail,
 		String user_id, int campingcar_cnt, String campingcar_regdate) {
@@ -87,10 +87,10 @@ public class CampingcarVO {
    public void setCampingcar_website(String campingcar_website) {
       this.campingcar_website = campingcar_website;
    }
-   public String getCampingcar_img() {
+   public String[] getCampingcar_img() {
       return campingcar_img;
    }
-   public void setCampingcar_img(String campingcar_img) {
+   public void setCampingcar_img(String[] campingcar_img) {
       this.campingcar_img = campingcar_img;
    }
    public String[] getCampingcar_option() {

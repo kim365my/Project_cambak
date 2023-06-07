@@ -49,10 +49,6 @@
         <a href="LogoutCtrl"><i class="fa fa-unlock" aria-hidden="true"></i></a>
         <div class="gnb_info"><span> 로그아웃</span></div>
       </li>
-      <li>
-        <a href="LogoutCtrl"><i class="fa fa-unlock" aria-hidden="true"></i></a>
-        <div class="gnb_info"><span> 로그아웃</span></div>
-      </li>
     </ul>
   </nav>
 </div>

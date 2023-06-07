@@ -6,6 +6,7 @@ public class CampingcarViewVO {
 	private int review_score;
 	private int campingcar_cnt;
 	private String user_id;
+	private String campingcar_name;
 	// get, set
 	public int getCampingcar_no() {
 		return campingcar_no;
@@ -36,6 +37,12 @@ public class CampingcarViewVO {
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+	public String getCampingcar_name() {
+		return campingcar_name;
+	}
+	public void setCampingcar_name(String campingcar_name) {
+		this.campingcar_name = campingcar_name;
 	}
 	
 

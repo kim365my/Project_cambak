@@ -108,7 +108,7 @@
                         <p>사진</p>
                         <div class="filebox preview-image">
                             <label for="input-file" class="upload">업로드&nbsp;&nbsp;<i class="fa fa-arrow-up" aria-hidden="true"></i></label>
-                            <input type="file" id="input-file" multiple class="upload-hidden" />
+                            <input type="file" id="input-file" name="campingcar_detail"  multiple class="upload-hidden" />
                             <div id="thumb_img"></div>
                         </div>
 

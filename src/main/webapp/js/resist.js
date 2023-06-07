@@ -184,6 +184,7 @@ $("._count :button").on({
         e.preventDefault();
         var $count = $(this).parent("._count").find(".inp");
         var now = parseInt($count.val());
+		console.log(now);
         var min = 1;
         var max = 10;
         var num = now;
@@ -195,10 +196,14 @@ $("._count :button").on({
         if (type == "m") {
             if (now > min) {
                 num = now - 1 + "명";
+				console.log(num);
+				console.log(now);
             }
         } else {
             if (now < max) {
                 num = now + 1 + "명";
+				console.log(num);
+				console.log(now);
             }
         }
         if (num != now) {

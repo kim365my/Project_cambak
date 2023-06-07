@@ -97,15 +97,16 @@ public class AddCampingcarCtrl extends HttpServlet {
 				// images/detail/넘버 폴더에 저장한 전체 파일 이름 가져오기
 				Enumeration<?> files = multi.getFileNames();
 				
-				String campingcar_img = null;
+				String img = "";
 
 				while(files.hasMoreElements()) {					
 					// 개별 접근
 					String str = (String) files.nextElement();
 					// 중복처리, 이름이 중복되면 파일 이름을 변경해서 출력함 (다운로드 기능 만들것도 아니니까 변경된 이름만 저장)
-					campingcar_img += multi.getFilesystemName(str) + " ";
+					img += multi.getFilesystemName(str) + ", ";
 				}
-				String campingcar_detail = multi.getParameter("campingcar_detail");
+				String[] campingcar_img = img.split(", "); // 배열 반환
+				String campingcar_detail = multi.getParameter("campingcar_detail"); // 파일 위치 전달
 
 				// --------------------------------
 				// no와 조회수와 생성일은 DB에서 초기값으로 넣음
@@ -113,14 +114,18 @@ public class AddCampingcarCtrl extends HttpServlet {
 						campingcar_address, campingcar_website, campingcar_img, campingcar_option, campingcar_rider,
 						campingcar_sleeper, campingcar_release_time, campingcar_return_time, campingcar_license,
 						campingcar_wd_fare, campingcar_ph_fare, campingcar_detail, user_id, 00, null);
+				String op = "";
+				for(String option : campingcar_option) {
+					op += option + ", ";
+				}
 				// 자바빈에 들어가는 데이터
 				System.out.println("캠핑카 이름 : " + campingcar_name 
 						+ "\n 캠핑카 정보 : " + campingcar_infos 
 						+ "\n 캠핑카 전화번호 : " + campingcar_tel 
 						+ "\n 캠핑카 주소 : " + campingcar_address 
 						+ "\n 캠핑카 웹사이트 :  " + campingcar_website 
-						+ "\n 캠핑카 이미지 주소 : " + campingcar_img 
-						+ "\n캠핑카 옵션 : " + campingcar_option
+						+ "\n 캠핑카 이미지 주소 : " + img 
+						+ "\n캠핑카 옵션 : " + op
 						+ "\n 캠핑카 탑승인원 : " + campingcar_rider 
 						+ "\n 캠핑카 수면인원 : " + campingcar_sleeper 
 						+ "\n 캠핑카 대여일 대여시간 : " + campingcar_release_time 

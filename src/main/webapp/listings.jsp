@@ -6,9 +6,9 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	// 로그인처리
-	String user_id = (String)session.getAttribute("user_id");
-	if(user_id==null) {response.sendRedirect("./login.jsp");}
+   // 로그인처리
+   String user_id = (String)session.getAttribute("user_id");
+   if(user_id==null) {response.sendRedirect("./login.jsp");}
 %>
 
 <!DOCTYPE html>
@@ -20,17 +20,18 @@
     <meta name="author" content="JGM" />
     <meta name="description" content="중꺾마 캠박 클론" />
     <title>캠박</title>
-    <!-- 파비콘 -->
-    <link rel="shortcut icon" href="./images/favicon/fav32.png">
-    <link rel="apple-touch-icon=precomposed" href="./images/favicon/fav180.png">
-    <!-- 폰트어썸 -->
-    <!-- 버전 4.7 -->
-    <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- 버전 5.0 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-    <!-- metertial cdn -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <!-- 폰트어썸 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <!-- 폰트어썸 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <!-- 폰트어썸 4.7 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- 머티리얼 아이콘 -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"  rel="stylesheet">
+    <!-- 팝이콘 -->
+    <link rel="shortcut icon" href="./images/favicon/fav32.png" />
+    <link rel="apple-touch-icon=precomposed" href="./images/favicon/fav180.png" />
     <!-- 기본 코딩 JS 파일 -->
     <script src="./js/jquery-1.12.4.min.js"></script>
     <script src="./js/jquery-3.3.1.min.js"></script>
@@ -47,26 +48,28 @@
     <link rel="stylesheet" href="./css/chatbot.css">
 </head>
 <style>
-	dialog{
-	    width: 90%;
-	    height: 100%;
-	    border: 1px solid rgba(0, 0, 0, 0.1);
-	    border-radius: 20px;
-	    text-align: center;
-	}
-	dialog::backdrop{
-	    background-color: rgba(0, 0, 0, 0.8);
-	}
-	iframe {
-	    width: 100%;
-	    height: 100%;
-	    overflow: hidden;
-	}
-	.close {
-	    position: absolute;
-	    top: 20px;
-	    right: 23px;
-	}
+   dialog{
+       width: 80%;
+       height: 90%;
+       border: 1px solid rgba(0, 0, 0, 0.1);
+       border-radius: 20px;
+       text-align: center;
+       overflow-y: hidden; 
+       background: transparent;
+   }
+   dialog::backdrop{
+       background-color: rgba(0, 0, 0, 0.8);
+   }
+   iframe {
+       width: 100%;
+       height: 100%;
+       overflow: hidden;
+   }
+   .close {
+       position: absolute;
+       top: 20px;
+       right: 23px;
+   }
 </style>
 <body>
 <div id="wrap">
@@ -98,7 +101,7 @@
         %>
         <div class="slot">
           <!-- 썸네일 이미지 동적으로 들어가는 부분 -->
-          <p><i class="fas fa-map-marker-alt"></i></p>
+          <p><i class="fas fa-map-marker-alt"></i><%=bean.getCampingcar_name()%></p>
           <div class="slot_info">
             <span class="confirm">승인대기중</span>
             <div class="info_text">
@@ -112,7 +115,7 @@
               </dl>
               <dl>
                 <dt>만료일</dt>
-                <dd>${expiration }</dd>
+                <dd>등록일로부터 6개월</dd>
               </dl>
               <dl>
                 <dt>평점</dt>
@@ -154,7 +157,7 @@
       <!-- 수정하기 인클루드 -->
       <iframe src="" frameborder="0" id="if1"></iframe>
       <form method="dialog" class="close">
-        <button value="close">close</button>
+        <button value="close"><p class="update_close"><i class="fa fa-times" aria-hidden="true"></i></p></button>
       </form>
     </dialog>
     <!-- /수정하기 모달창 -->

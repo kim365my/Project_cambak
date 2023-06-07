@@ -23,6 +23,10 @@ public class CampingcarDAO {
 		if (vo.getCampingcar_option() != null) {			
 			for(String op : vo.getCampingcar_option()) option += op + ", ";
 		}
+		String img = "";
+		if (vo.getCampingcar_img() != null) {			
+			for(String ig : vo.getCampingcar_img()) img += ig + ", ";
+		}
 
 		
 		try {
@@ -36,7 +40,7 @@ public class CampingcarDAO {
 			stmt.setString(3, vo.getCampingcar_tel()); // 전화번호
 			stmt.setString(4, vo.getCampingcar_address()); // 주소
 			stmt.setString(5, vo.getCampingcar_website()); // 웹 사이트
-			stmt.setString(6, vo.getCampingcar_img()); // 이미지 이름
+			stmt.setString(6, img); // 이미지 이름
 			stmt.setString(7, option); // 옵션
 			stmt.setInt(8, vo.getCampingcar_rider()); // 탑승 가능 인원수
 			stmt.setInt(9, vo.getCampingcar_sleeper()); // 취침 가능인원수
@@ -85,7 +89,8 @@ public class CampingcarDAO {
 				vo.setCampingcar_tel(rs.getString(4)); // 전화번호
 				vo.setCampingcar_address(rs.getString(5)); // 주소
 				vo.setCampingcar_website(rs.getString(6)); // 웹 사이트
-				vo.setCampingcar_img(rs.getString(7)); // 이미지
+				String ig = rs.getString(7);
+				if(ig != null) vo.setCampingcar_img(ig.split(", ")); // 이미지
 				// 배열로 전환
 				String op = rs.getString(8);
 				if(op != null) vo.setCampingcar_option(op.split(", ")); // 옵션
@@ -133,7 +138,8 @@ public class CampingcarDAO {
 				vo.setCampingcar_tel(rs.getString(4)); // 전화번호
 				vo.setCampingcar_address(rs.getString(5)); // 주소
 				vo.setCampingcar_website(rs.getString(6)); // 웹 사이트
-				vo.setCampingcar_img(rs.getString(7)); // 이미지
+				String ig = rs.getString(7);
+				if(ig != null) vo.setCampingcar_img(ig.split(", ")); // 이미지
 				// 배열로 전환
 				String op = rs.getString(8);
 				if (op != null) vo.setCampingcar_option(op.split(", ")); // 옵션
@@ -185,6 +191,7 @@ public class CampingcarDAO {
 				vo.setReview_score(rs.getInt(3));
 				vo.setCampingcar_cnt(rs.getInt(4));
 				vo.setUser_id(rs.getString(5));
+				vo.setCampingcar_name(rs.getString(6));
 				
 				// 리스트에 주가하기
 				campingcarList.add(vo);
@@ -232,10 +239,14 @@ public class CampingcarDAO {
 	/** 캠핑카 수정 메서드*/
 	   public int updateCampingcar(CampingcarVO vo) {
 	      int cnt = 0;
-				String option = "";
-				if (vo.getCampingcar_option() != null) {			
-					for(String op : vo.getCampingcar_option()) option += op + ", ";
-				}
+			String option = "";
+			if (vo.getCampingcar_option() != null) {			
+				for(String op : vo.getCampingcar_option()) option += op + ", ";
+			}
+			String img = "";
+			if (vo.getCampingcar_img() != null) {			
+				for(String ig : vo.getCampingcar_img()) img += ig + ", ";
+			}
 	      try {
 	         // DB 연결
 	         conn = JDBCConnection.getConnection();
@@ -252,7 +263,7 @@ public class CampingcarDAO {
 	         stmt.setString(3, vo.getCampingcar_tel());
 	         stmt.setString(4, vo.getCampingcar_address());
 	         stmt.setString(5, vo.getCampingcar_website());
-	         stmt.setString(6, vo.getCampingcar_img());
+	         stmt.setString(6, img);
 	   
 	         stmt.setString(7, option);
 	         stmt.setInt(8, vo.getCampingcar_rider());

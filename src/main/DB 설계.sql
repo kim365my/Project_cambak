@@ -60,10 +60,11 @@ select
     a1.campingcar_regdate, -- 생성일
     Round(AVG(a2.review_score), 0)  as review_score, -- 평점
     a1.campingcar_cnt, -- 조회수
-    a1.user_id
+    a1.user_id,
+    a1.campingcar_name
 from cb_campingcar a1
-    inner join cb_review a2 on a1.campingcar_no = a2.campingcar_no
-group by a1.campingcar_no, a1.campingcar_regdate, a1.campingcar_cnt, a1.user_id
+    left join cb_review a2 on a1.campingcar_no = a2.campingcar_no
+group by a1.campingcar_no, a1.campingcar_regdate, a1.campingcar_cnt, a1.user_id, a1.campingcar_name
 ORDER by a1.campingcar_no DESC;
 
 -- 조회구문

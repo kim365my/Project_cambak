@@ -42,6 +42,11 @@ update_area.addEventListener("close", ()=>{
   console.log(update_area.returnValue);
 });
 
+// 닫기 함수
+function closeModal() {
+  update_area.close();
+  location.reload();
+} 
 
 $('.update_close').click(function(){
   $('.update_modal').hide();

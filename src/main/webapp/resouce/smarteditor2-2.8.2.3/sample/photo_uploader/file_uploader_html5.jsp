@@ -7,7 +7,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
  
 <%
-	System.out.println("접속");
 	//이미지이므로 신규 파일로 디렉토리 설정 및 업로드   
 	ServletContext context = getServletContext(); 
 	
@@ -73,7 +72,7 @@
         // 정보 출력
         sFileInfo += "&bNewLine=true";    
         sFileInfo += "&sFileName=" + filename;    
-        sFileInfo += "&sFileURL="+ "./" + url + "/" + realFileNm;
+        sFileInfo += "&sFileURL="+ "../../" + url + "/" + realFileNm;
         out.println(sFileInfo);
         System.out.println(sFileInfo);
     }

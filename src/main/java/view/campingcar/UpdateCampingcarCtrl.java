@@ -47,13 +47,13 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 			String campingcar_tel = request.getParameter("campingcar_tel");
 			String campingcar_address = request.getParameter("campingcar_address");
 			String campingcar_website = request.getParameter("campingcar_website");
-			String campingcar_img = request.getParameter("campingcar_img");
+			String[] campingcar_img = request.getParameterValues("campingcar_img");
 			String[] campingcar_option = request.getParameterValues("campingcar_option");
 			
-			String rider = request.getParameter("campingcar_rider");
+			String rider = request.getParameter("campingcar_rider").replaceAll("명", "");
 			int campingcar_rider = (rider == null) ? 0 :Integer.parseInt(rider);
 			
-			String sleeper = request.getParameter("campingcar_sleeper");
+			String sleeper = request.getParameter("campingcar_sleeper").replaceAll("명", "");
 			int campingcar_sleeper = (sleeper == null) ? 0 :Integer.parseInt(sleeper);
 			
 			String campingcar_release_time = request.getParameter("campingcar_release_time");
@@ -76,15 +76,19 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 			CampingcarDAO cdao = new CampingcarDAO();
 			int cnt = cdao.updateCampingcar(vo);
 			
+			out.println("<script>");
 			// 결과에 따라 값 출력
 			if(cnt != 0) {
 				// 성공했을 경우, 대시보드 페이지로 이동
-				response.sendRedirect("dashboard.jsp");
+				out.println("window.parent.alert('수정이 완료되었습니다.');");
+				out.println("window.parent.closeModal();");
 			} else {
 				// 실패했을 경우
-				response.sendRedirect("update.jsp");
+				out.println("alert('수정이 완료되었습니다.')");
+				out.println("location.herf=document.referrer;");
 				
 			}
+			out.println("</script>");
 		}
 		// 자원 반납
 		out.close();

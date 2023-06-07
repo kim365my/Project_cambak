@@ -4,35 +4,6 @@ $(".button").click(function () {
   $(this).toggleClass("btn");
 });
 
-// +,- 버튼 클릭시 증감표현
-$("._count :button").on({
-  click: function (e) {
-      e.preventDefault();
-      var $count = $(this).parent("._count").find(".inp");
-      var now = parseInt($count.val());
-      var min = 1;
-      var max = 10;
-      var num = now;
-      if ($(this).hasClass("minus")) {
-          var type = "m";
-      } else {
-          var type = "p";
-      }
-      if (type == "m") {
-          if (now > min) {
-              num = now - 1 + "명";
-          }
-      } else {
-          if (now < max) {
-              num = now + 1 + "명";
-          }
-      }
-      if (num != now) {
-          $count.val(num);
-      }
-  },
-});
-
 // 이미지 다중 미리보기 (썸네일)
 $(document).ready(function (e){
   $("#input-file").change(function(e){
