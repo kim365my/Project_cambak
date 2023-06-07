@@ -283,30 +283,40 @@ public class CampingcarDAO {
 	
 	// 삭제
 	/** 캠핑카 데이터 개별 삭제하는 메소드로, 캠핑카에 포함된 리뷰도 함께 삭제해야함 */
-	public int deleteCampingcar(int campingcar_no) {
-		int cnt = 0;
-		try {
-			// DB 연결
-			conn = JDBCConnection.getConnection();
-			String sql = "delete cb_campingcar where campingcar_no = ?";
-			stmt = conn.prepareStatement(sql);
-			// 맴핑
-			stmt.setInt(1, campingcar_no);
-			// 실행
-			cnt = stmt.executeUpdate();
-			// 오류처리
-			if (cnt == 0) System.out.println("캠핑카 삭제 로직에서 오류남");
-			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCConnection.close(stmt, conn);
-		}
-		return cnt;
-	}
-	
+    public int deleteCampingcar(int campingcar_no) {
+        int cnt = 0;
+        try {
+           // DB 연결
+           conn = JDBCConnection.getConnection();
+           // 리뷰 삭제 (리뷰먼저 삭제해야함)
+           String sql = "DELETE cb_review where campingcar_no = ?";
+           stmt = conn.prepareStatement(sql);
+           // 맴핑
+           stmt.setInt(1, campingcar_no);
+           // 실행
+           stmt.executeUpdate();
+           // 자원반납
+           stmt.close();
+           // 캠핑카 삭제
+           sql = "delete cb_campingcar where campingcar_no = ?";
+           stmt = conn.prepareStatement(sql);
+           // 매핑
+           stmt.setInt(1, campingcar_no);
+           // 실행
+           cnt = stmt.executeUpdate();
+           // 오류처리
+           if (cnt == 0) System.out.println("캠핑카 삭제 로직에서 오류남");
+           
+        } catch (ClassNotFoundException e) {
+           e.printStackTrace();
+        } catch (SQLException e) {
+           e.printStackTrace();
+        } finally {
+           JDBCConnection.close(stmt, conn);
+        }
+        return cnt;
+     }
+    
 	/** 아이디를 기준으로 캠핑카 전부 삭제 */
 	public int deleteCampingcar(String user_id) {
 		int cnt = 0;

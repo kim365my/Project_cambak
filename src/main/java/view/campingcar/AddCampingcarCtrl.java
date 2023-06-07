@@ -115,12 +115,22 @@ public class AddCampingcarCtrl extends HttpServlet {
 						campingcar_sleeper, campingcar_release_time, campingcar_return_time, campingcar_license,
 						campingcar_wd_fare, campingcar_ph_fare, campingcar_detail, user_id, 00, null);
 				// 자바빈에 들어가는 데이터
-				System.out.println(campingcar_name + " " + campingcar_infos + " " + campingcar_tel +
-						campingcar_address + " " + campingcar_website + " " + campingcar_img + " " + campingcar_option
-						+ " " + campingcar_rider +
-						campingcar_sleeper + " " + campingcar_release_time + " " + campingcar_return_time + " "
-						+ campingcar_license + " " +
-						campingcar_wd_fare + " " + campingcar_ph_fare + " " + campingcar_detail + " " + user_id);
+				System.out.println("캠핑카 이름 : " + campingcar_name 
+						+ "\n 캠핑카 정보 : " + campingcar_infos 
+						+ "\n 캠핑카 전화번호 : " + campingcar_tel 
+						+ "\n 캠핑카 주소 : " + campingcar_address 
+						+ "\n 캠핑카 웹사이트 :  " + campingcar_website 
+						+ "\n 캠핑카 이미지 주소 : " + campingcar_img 
+						+ "\n캠핑카 옵션 : " + campingcar_option
+						+ "\n 캠핑카 탑승인원 :  " + campingcar_rider 
+						+ "\n 캠핑카 수면인원 : " + campingcar_sleeper 
+						+ "\n 캠핑카 대여일 대여시간 : " + campingcar_release_time 
+						+ "\n 캠핑카 반납일 반납시간 : " + campingcar_return_time 
+						+ "\n 캠핑카 면허유무 : " + campingcar_license 
+						+ "\n 캠핑카 평일 대여금액 : " + campingcar_wd_fare 
+						+ "\n 캠핑카 주말 대여금액 : " + campingcar_ph_fare 
+						+ "\n 캠핑카 자세한 정보 : " + campingcar_detail 
+						+ "\n 캠핑카 등록 유저 아이디 : " + user_id);
 
 				// 비지니스 로직 실행, 캠핑카 데이터 생성
 //				int cnt = cdao.addCampingcar(vo);

@@ -1,5 +1,16 @@
+<%@page import="org.apache.taglibs.standard.lang.jstl.test.Bean1"%>
+<%@page import="biz.campingcar.CampingcarViewVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="biz.campingcar.CampingcarDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	// 로그인처리
+	String user_id = (String)session.getAttribute("user_id");
+	if(user_id==null) {response.sendRedirect("./login.jsp");}
+%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -31,50 +42,14 @@
     <!-- 페이지 CSS -->
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/listings.css">
     <link rel="stylesheet" href="./css/chatbot.css">
 </head>
 <body>
 <div id="wrap">
   <header>
-    <ul class="logo">
-      <li><a href="./index.jsp"><img src="./images/header/logo.png" alt="캠박로고"></a></li>
-      <li>캠핑카 둘러보기</li>
-      <li>파트너사 입점안내</li>
-    </ul>
-    <ul class="header_icon">
-      <li class="cart">
-        <div class="material-icons">shopping_basket</div>
-      </li>
-      <li class="bell">
-        <div class="material-icons">notification_important</div> 
-      </li>
-      <li class="mypage">
-        <div class="material-icons">person</div>
-      </li>
-      <div class="name">
-        <div>
-          <!-- 아아디값 불러와야함 -->
-          <span class="span">로그인</span>
-          <span class="material-symbols-outlined">expand_more</span>
-        </div>
-        <div class="header_gnb">
-          <ul>
-            <li><a href="./dashboard.jsp">대시보드</a></li>
-            <li>채팅</li>
-            <li>예약</li>
-            <li>찜목록</li>
-            <li class="list"></li>
-            <li><a href="./listings.jsp">등록슬롯</a></li>
-            <li>정산 및 출금</li>
-            <li class="list"></li>
-            <li>계정 상세정보</li>
-            <li>로그아웃</li>
-          </ul>
-        </div>
-      </div>
-      <p><a href="./resist.jsp">차량 및 장소 등록하기</a></p>
-    </ul>  
+      <jsp:include page="./module/header.jsp" />
   </header>
   <main role="main">
     <aside class="aside">
@@ -91,6 +66,13 @@
         <option value="캠핑카 회원권">캠핑카 회원권</option>
       </select>
       <button>Filter</button>
+<%
+	CampingcarDAO cdao = new CampingcarDAO();
+	ArrayList<CampingcarViewVO> campingcarList = cdao.getALLCampingcar(user_id);
+	
+	for(int i=0; i<campingcarList.size(); i++){
+		CampingcarViewVO bean = campingcarList.get(i);
+%>
       <div class="slot">
         <!-- 썸네일 이미지 동적으로 들어가는 부분 -->
         <p><i class="fas fa-map-marker-alt"></i></p>
@@ -103,34 +85,37 @@
             </dl>
             <dl>
               <dt>생성일</dt>
-              <dd>2023년 06월 01일</dd>
+              <dd><%=bean.getCampingcar_regdate() %></dd>
             </dl>
             <dl>
               <dt>만료일</dt>
-              <dd>-</dd>
+              <dd>${expiration }</dd>
             </dl>
             <dl>
               <dt>평점</dt>
-              <dd>-</dd>
+              <dd><%=bean.getReview_score() %></dd>
             </dl>
             <dl class="no_mb">
               <dt>오늘 조회수</dt>
-              <dd>0</dd>
-            </dl>          
+              <dd><%=bean.getCampingcar_cnt() %></dd>
+            </dl>
           </div>
         </div>
         <div class="info_icon">
           <ul>
-            <li class="update"><i class="fas fa-pen"></i></li>
+            <li class="update"><i class="fas fa-pen" ></i></li>
             <li><i class="fas fa-calendar-alt"></i></li>
             <li><i class="fas fa-calendar-check"></i></li>
-            <li><i class="fas fa-trash-alt"></i></li>
+            <li><a href="DeleteCampingcarCtrl?campingcar_no=<%=bean.getCampingcar_no() %>"><i class="fas fa-trash-alt"></i></a></li>
           </ul>
         </div>
       </div>
+<%
+	}
+%>
       <article class="resist_footer">
         <dl>
-          <dt>Copyright &copy; 2021 <a href="./index.jsp">캠박</a></dt>
+          <dt>Copyright &copy; 2021 <a href="index.jsp">캠박</a></dt>
           <dd>잊지 못할 캠핑의추억을 만들자, 캠박</dd>
         </dl>
       </article>

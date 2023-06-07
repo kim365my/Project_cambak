@@ -108,13 +108,14 @@
                         <p>사진</p>
                         <div class="filebox preview-image">
                             <label for="input-file" class="upload">업로드&nbsp;&nbsp;<i class="fa fa-arrow-up" aria-hidden="true"></i></label>
-                            <input type="file" id="input-file" class="upload-hidden" />
+                            <input type="file" id="input-file" multiple class="upload-hidden" />
+                            <div id="thumb_img"></div>
                         </div>
 
                         <!-- 썸네일 업로드 이미지 미리보기 모달창 -->
-                        <div class="modal">
+                        <!-- <div class="modal">
                             <div class="modal_content"></div>
-                        </div>
+                        </div> -->
 
                         <span class="upload_notice">최대 업로드 사이즈: 256MB. 파일을 첨부하세요</span> <br />
                         <span class="upload_notice"><strong>Note: </strong>First image select for listing will be featured image of this listing</span>

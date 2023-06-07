@@ -46,9 +46,12 @@
         <div class="gnb_info"><span>계정 정보</span></div>
       </li>
       <li>
-        <!-- 추후 href 로그아웃ctrl로 넘길 것 -->
-        <a href="#"><i class="fa fa-unlock" aria-hidden="true"></i></a>
-        <div class="gnb_info"><span>로그아웃</span></div>
+        <a href="LogoutCtrl"><i class="fa fa-unlock" aria-hidden="true"></i></a>
+        <div class="gnb_info"><span> 로그아웃</span></div>
+      </li>
+      <li>
+        <a href="LogoutCtrl"><i class="fa fa-unlock" aria-hidden="true"></i></a>
+        <div class="gnb_info"><span> 로그아웃</span></div>
       </li>
     </ul>
   </nav>

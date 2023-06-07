@@ -28,7 +28,7 @@ public class loginCtrl extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		// 파라미터 갑 받기
+		// 파라미터 값 받기
 		String user_id = request.getParameter("user_id");
 		String user_pw = request.getParameter("user_pw");
 		

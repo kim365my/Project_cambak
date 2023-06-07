@@ -32,7 +32,7 @@ public class GetDashBoardCampingcarListCtrl extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		// 파라미터 갑 받기
+		// 파라미터 값 받기
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");
 		
@@ -50,7 +50,7 @@ public class GetDashBoardCampingcarListCtrl extends HttpServlet {
 				// 바인딩
 				request.setAttribute("campingcarListDash", campingcarListDash);
 				// 포워드
-				RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
+				RequestDispatcher dis = request.getRequestDispatcher("listings.jsp");
 				dis.forward(request, response);
 			} else {
 				// 실패했을 경우

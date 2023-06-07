@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header logo -->
 <ul class="logo">
   <li><a href="./index.jsp"><img src="./images/header/logo.png" alt="캠박로고"></a></li>
@@ -9,6 +10,18 @@
 </ul>
 <!-- 추후 if문으로 로그인 됐을때 나올 아이콘들-->
 <ul class="header_icon">
+  <c:set var="user_id" value="${user_id }"/>
+  <c:if test="${empty user_id }">
+    <li>
+      <div><i class="material-icons">person</i></div>
+    </li>
+
+    <div class="name">
+      <div>
+        <span class="span">로그인</span>
+      </div>
+  </c:if>
+  <c:if test="${not empty user_id }">
   <li class="cart">
     <div class="material-icons">shopping_basket</div>
   </li>
@@ -18,11 +31,12 @@
   <li class="mypage">
     <div class="material-icons">person</div>
   </li>
-  <div class="name">
+  <div class="name gnb_toggle">
     <div>
-      <span class="span">로그인</span>
+      <span class="span">${user_id } 님 </span>
       <span class="material-symbols-outlined">expand_more</span>
     </div>
+  </c:if>
     <!-- 로그인 안됐을때 gnb 부분도 안보여야함 -->
     <div class="header_gnb">
       <ul>
@@ -31,12 +45,12 @@
         <li>예약</li>
         <li>찜목록</li>
         <li class="list"></li>
-        <li><a href="./listings.jsp">등록슬롯</a></li>
+        <li><a href="GetDashBoardCampingcarListCtrl">등록슬롯</a></li>
         <li>정산 및 출금</li>
         <li class="list"></li>
         <li>계정 상세정보</li>
         <!-- 추후 if문으로 로그인 안됐을때 -->
-        <li>로그아웃</li>
+        <li><a href="LogoutCtrl">로그아웃</a></li>
       </ul>
     </div>
   </div>
@@ -56,7 +70,6 @@
 
 <!-- 로그인 모달창 -->
 <div class="login_modal">
-  <!-- 추후 로그인 ctrl로 링크 수정 -->
   <div class="login_modal_content">
     <div class="title">
       <h1>로그인</h1>
@@ -85,8 +98,7 @@
         </form>
       </div>
       <div class="con02">
-        <!-- 추후 로그아웃 ctrl로 링크 수정 -->
-        <form action="LogoutCtrl" method="post">
+        <form action="joinCtrl" method="post">
           <div class="join_content">
             <div class="join_input">
               <input type="text" name="user_id" placeholder="아이디" required>

@@ -30,50 +30,14 @@
     <!-- <script src="./js/jquery-ui.min.js"></script> -->
     <!-- 페이지 CSS -->
     <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/font.css" />
     <link rel="stylesheet" href="./css/chatbot.css">
     <link rel="stylesheet" href="./css/dashboard.css" />
 </head>
 <body>
   <header>
-    <ul class="logo">
-      <li><a href="./index.jsp"><img src="./images/header/logo.png" alt="캠박로고"></a></li>
-      <li>캠핑카 둘러보기</li>
-      <li>파트너사 입점안내</li>
-    </ul>
-    <ul class="header_icon">
-      <li class="cart">
-        <div class="material-icons">shopping_basket</div>
-      </li>
-      <li class="bell">
-        <div class="material-icons">notification_important</div> 
-      </li>
-      <li class="mypage">
-        <div class="material-icons">person</div>
-      </li>
-      <div class="name">
-        <div>
-          <!-- 아아디값 불러와야함 -->
-          <span class="span">로그인</span>
-          <span class="material-symbols-outlined">expand_more</span>
-        </div>
-        <div class="header_gnb">
-          <ul>
-            <li><a href="./dashboard.jsp">대시보드</a></li>
-            <li>채팅</li>
-            <li>예약</li>
-            <li>찜목록</li>
-            <li class="list"></li>
-            <li><a href="./listings.jsp">등록슬롯</a></li>
-            <li>정산 및 출금</li>
-            <li class="list"></li>
-            <li>계정 상세정보</li>
-            <li>로그아웃</li>
-          </ul>
-        </div>
-      </div>
-      <p><a href="./resist.jsp">차량 및 장소 등록하기</a></p>
-    </ul>  
+    <jsp:include page="./module/header.jsp" />
   </header>
   <div id="wrap">
   <!-- 왼쪽 gnb -->
@@ -87,7 +51,7 @@
         <p>고객모드로 전환하기&nbsp;<i class="fa fa-arrow-right" aria-hidden="true"></i></p>
         <div class="boxes">
           <div class="resist_box">
-            <section><a href="./listings.jsp"><i class="fas fa-map-marker-alt"></i></a></section>
+            <section><a href="GetDashBoardCampingcarListCtrl"><i class="fas fa-map-marker-alt"></i></a></section>
             <p>등록슬롯&nbsp;&nbsp;<i class="fa fa-caret-right" aria-hidden="true"></i></p>
             <p>등록슬롯을 관리할 수 있습니다</p>
           </div>

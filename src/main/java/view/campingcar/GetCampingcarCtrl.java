@@ -31,7 +31,7 @@ public class GetCampingcarCtrl extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		// 파라미터 갑 받기
+		// 파라미터 값 받기
 		int campingcar_no = Integer.parseInt(request.getParameter("campingcar_no"));
 		
 		

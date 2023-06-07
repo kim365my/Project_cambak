@@ -78,11 +78,11 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 			
 			// 결과에 따라 값 출력
 			if(cnt != 0) {
-				// 성공했을 경우,  페이지 이동 일단 임의로 인덱스 페이지로
-				response.sendRedirect("index.jsp");
+				// 성공했을 경우, 대시보드 페이지로 이동
+				response.sendRedirect("dashboard.jsp");
 			} else {
 				// 실패했을 경우
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("update.jsp");
 				
 			}
 		}

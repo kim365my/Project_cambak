@@ -32,7 +32,7 @@ public class deleteUserCtrl extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
-		// 파라미터 갑 받기
+		// 파라미터 값 받기
 		String user_id = request.getParameter("user_id");
 		;
 
@@ -56,6 +56,8 @@ public class deleteUserCtrl extends HttpServlet {
 		if (cnt != 0) {
 			// 성공했을 경우
 			HttpSession session = request.getSession();
+			// 세션 해제
+			session.invalidate();
 			out.println("alert('회원탈퇴 처리되었습니다.');");
 			// 로그인 후 이동할 페이지 *일단 임의로 뒤로가게해서 새로고침
 			out.println("location.href=document.referrer;");

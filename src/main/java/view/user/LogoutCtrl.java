@@ -24,9 +24,14 @@ public class LogoutCtrl extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// 인코딩 설정
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
 		HttpSession session = request.getSession();
 		// 세션 해제
 		session.invalidate();
+		
 		// 로그아웃 처리
 		PrintWriter out = response.getWriter();
 		out.println("alert('로그아웃 처리되었습니다.');");

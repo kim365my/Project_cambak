@@ -31,17 +31,13 @@ public class DeleteCampingcarCtrl extends HttpServlet {
 		// 파라미터 값 받기
 		int campingcar_no = Integer.parseInt(request.getParameter("campingcar_no"));
 
-		// 리뷰 데이터 삭제
-		ReviewDAO rdao = new ReviewDAO();
-		rdao.deleteReview(campingcar_no);
-
 		// 캠핑카 데이터 삭제
 		CampingcarDAO cdao = new CampingcarDAO();
 		int cnt = cdao.deleteCampingcar(campingcar_no);
 
 		if (cnt != 0) {
 			// 성공했을 경우
-			response.sendRedirect("detail.jsp?no=" + campingcar_no);
+			response.sendRedirect("index.jsp");
 		} else {
 			// 실패했을 경우
 			response.sendRedirect("index.jsp");

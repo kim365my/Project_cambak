@@ -1,12 +1,12 @@
 /* header, footer, aside load */
 
 /* header */
-$('.header').load('./module/header.html', function(){
+$('.header').load('./module/header.jsp', function(){
   /* 아이디 / 화살표 호버 시 gnb 나타내기 */
-  $('.header_icon .name').mouseenter(function(){
+  $('.header_icon .gnb_toggle').mouseenter(function(){
     $('.header_gnb').stop().fadeIn('fast');
   });
-  $('.header_icon .name').mouseleave(function(){
+  $('.header_icon .gnb_toggle').mouseleave(function(){
     $('.header_gnb').stop().fadeOut('fast');
   });
 
@@ -20,7 +20,7 @@ $('.header').load('./module/header.html', function(){
 });
 
 /* 수정하기 모달 로드 */ 
-$('.update_modal').load('./module/update.html', function(){
+$('.update_modal').load('./module/update.jsp', function(){
   /* 수정하기 모달창 */
   $('.update').click(function(){
     $('.update_modal').stop().show();
@@ -32,9 +32,9 @@ $('.update_modal').load('./module/update.html', function(){
 });
 
 /* footer */
-$('.footer').load('./module/footer.html');
+$('.footer').load('./module/footer.jsp');
 
 /* aside */
-$('.aside').load('./module/aside.html');
+$('.aside').load('./module/aside.jsp');
 
 
