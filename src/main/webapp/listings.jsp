@@ -46,6 +46,28 @@
     <link rel="stylesheet" href="./css/listings.css">
     <link rel="stylesheet" href="./css/chatbot.css">
 </head>
+<style>
+	dialog{
+	    width: 90%;
+	    height: 100%;
+	    border: 1px solid rgba(0, 0, 0, 0.1);
+	    border-radius: 20px;
+	    text-align: center;
+	}
+	dialog::backdrop{
+	    background-color: rgba(0, 0, 0, 0.8);
+	}
+	iframe {
+	    width: 100%;
+	    height: 100%;
+	    overflow: hidden;
+	}
+	.close {
+	    position: absolute;
+	    top: 20px;
+	    right: 23px;
+	}
+</style>
 <body>
 <div id="wrap">
   <header>
@@ -66,53 +88,59 @@
         <option value="캠핑카 회원권">캠핑카 회원권</option>
       </select>
       <button>Filter</button>
-<%
-	CampingcarDAO cdao = new CampingcarDAO();
-	ArrayList<CampingcarViewVO> campingcarList = cdao.getALLCampingcar(user_id);
-	
-	for(int i=0; i<campingcarList.size(); i++){
-		CampingcarViewVO bean = campingcarList.get(i);
-%>
-      <div class="slot">
-        <!-- 썸네일 이미지 동적으로 들어가는 부분 -->
-        <p><i class="fas fa-map-marker-alt"></i></p>
-        <div class="slot_info">
-          <span class="confirm">승인대기중</span>
-          <div class="info_text">
-            <dl>
-              <dt>타입</dt>
-              <dd>캠핑카</dd>
-            </dl>
-            <dl>
-              <dt>생성일</dt>
-              <dd><%=bean.getCampingcar_regdate() %></dd>
-            </dl>
-            <dl>
-              <dt>만료일</dt>
-              <dd>${expiration }</dd>
-            </dl>
-            <dl>
-              <dt>평점</dt>
-              <dd><%=bean.getReview_score() %></dd>
-            </dl>
-            <dl class="no_mb">
-              <dt>오늘 조회수</dt>
-              <dd><%=bean.getCampingcar_cnt() %></dd>
-            </dl>
+      <div class="slot_flex">
+        <%
+          CampingcarDAO cdao = new CampingcarDAO();
+          ArrayList<CampingcarViewVO> campingcarList = cdao.getALLCampingcar(user_id);
+          
+          for(int i=0; i<campingcarList.size(); i++){
+            CampingcarViewVO bean = campingcarList.get(i);
+        %>
+        <div class="slot">
+          <!-- 썸네일 이미지 동적으로 들어가는 부분 -->
+          <p><i class="fas fa-map-marker-alt"></i></p>
+          <div class="slot_info">
+            <span class="confirm">승인대기중</span>
+            <div class="info_text">
+              <dl>
+                <dt>타입</dt>
+                <dd>캠핑카</dd>
+              </dl>
+              <dl>
+                <dt>생성일</dt>
+                <dd><%=bean.getCampingcar_regdate() %></dd>
+              </dl>
+              <dl>
+                <dt>만료일</dt>
+                <dd>${expiration }</dd>
+              </dl>
+              <dl>
+                <dt>평점</dt>
+                <dd><%=bean.getReview_score() %></dd>
+              </dl>
+              <dl class="no_mb">
+                <dt>오늘 조회수</dt>
+                <dd><%=bean.getCampingcar_cnt() %></dd>
+              </dl>
+            </div>
+          </div>
+          <div class="info_icon">
+            <ul>
+              <li>
+                <a href="GetCampingcarUPCtrl?campingcar_no=<%=bean.getCampingcar_no() %>" class="update">
+                  <i class="fas fa-pen" ></i>
+                </a>
+              </li>
+              <li><i class="fas fa-calendar-alt"></i></li>
+              <li><i class="fas fa-calendar-check"></i></li>
+              <li><a href="DeleteCampingcarCtrl?campingcar_no=<%=bean.getCampingcar_no() %>"><i class="fas fa-trash-alt"></i></a></li>
+            </ul>
           </div>
         </div>
-        <div class="info_icon">
-          <ul>
-            <li class="update"><i class="fas fa-pen" ></i></li>
-            <li><i class="fas fa-calendar-alt"></i></li>
-            <li><i class="fas fa-calendar-check"></i></li>
-            <li><a href="DeleteCampingcarCtrl?campingcar_no=<%=bean.getCampingcar_no() %>"><i class="fas fa-trash-alt"></i></a></li>
-          </ul>
-        </div>
+        <%
+          }
+        %>
       </div>
-<%
-	}
-%>
       <article class="resist_footer">
         <dl>
           <dt>Copyright &copy; 2021 <a href="index.jsp">캠박</a></dt>
@@ -122,10 +150,13 @@
     </section>
 
     <!-- 수정하기 모달창 -->
-    <div class="update_area">
-        <!-- 수정하기 인클루드 -->
-        <jsp:include page="./module/update.jsp" />
-    </div>
+    <dialog class="update_area">
+      <!-- 수정하기 인클루드 -->
+      <iframe src="" frameborder="0" id="if1"></iframe>
+      <form method="dialog" class="close">
+        <button value="close">close</button>
+      </form>
+    </dialog>
     <!-- /수정하기 모달창 -->
     
 

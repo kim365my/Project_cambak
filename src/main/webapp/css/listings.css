@@ -207,9 +207,15 @@ main {
   font-weight: 900;
   border-radius: 10px;
 }
+.slot_flex {
+  width: 100%;
+  /* 플렉스 */
+  display: flex;
+  flex-flow: row wrap;
+}
 .slot {
   width: 364px;
-  /* height: 370px; */
+  margin: 0 17px 20px 0;
   background-color: #ffffff;
   box-shadow: 5px 5px 10px #ddd;
   border-radius: 10px;

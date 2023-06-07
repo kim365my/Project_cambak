@@ -1,6 +1,19 @@
+<%@page import="biz.campingcar.CampingcarVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	// 인코딩 설정
+	request.setCharacterEncoding("UTF-8");
+	response.setContentType("text/html; charset=UTF-8");
+	
+	// 값 받아오기
+	CampingcarVO vo = (CampingcarVO) request.getAttribute("vo");
+
+%>
+<c:set var="i" value="<%= vo %>"></c:set>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -45,7 +58,7 @@
             </div>
             <div class="update_modal_content_thumb">
                 <!-- 등록페이지에서 업로드한 썸네일 이미지로 src수정해야 함 -->
-                <img src="https://via.placeholder.com/46x46" alt="썸네일이미지"><span>${campingcar_no }</span>
+                <img src="https://via.placeholder.com/46x46" alt="썸네일이미지"><span>${i.campingcar_name }</span>
             </div>
             <!-- 등록 form -->
             <div id="container">
@@ -54,27 +67,27 @@
                     <!-- 이미지 데이터로 넘길 때 enctype 추가해야 함 -->
                     <!-- action 주소값 수정 ctrl로 수정 -->
                     <form action="UpdateCampingcarCtrl" method="post" enctype="multipart/form-data" enctype="multipart/form-data" >
-                        <input type="hidden" value="${campingcar_no }" name="campingcar_no">
+                        <input type="hidden" value="${i.campingcar_no }" name="campingcar_no">
                         <h2>일반</h2>
                         <p>카테고리 구분</p>
                         <button type="button" class="checked_button">캠핑카</button>
                         <div>
                             <p>등록상품명</p>
                             <!-- value값에 기존 적었던 값 추가해야 함(db연동 후 추가해주세요) -->
-                            <input type="text" name="campingcar_name" autofocus required class="text_input" value="${campingcar_name }">
+                            <input type="text" name="campingcar_name" autofocus required class="text_input" value="${i.campingcar_name }">
                         </div>
                         <div>
                             <p>한줄소개</p>
-                            <input type="text" name="campingcar_infos" autofocus required class="text_input" value="${campingcar_infos }">
+                            <input type="text" name="campingcar_infos" autofocus required class="text_input" value="${i.campingcar_infos }">
                         </div>
                         <div>
                             <p>전화번호</p>
-                            <input type="tel" name="campingcar_tel" autofocus required class="text_input" value="${campingcar_tel }">
+                            <input type="tel" name="campingcar_tel" autofocus required class="text_input" value="${i.campingcar_tel }">
                         </div>
                         <div>
                             <p>업체 주소</p>
                             <p class="second_title">주소</p>
-                            <input type="tel" name="campingcar_address" autofocus required class="text_input" value="${campingcar_address }">
+                            <input type="tel" name="campingcar_address" autofocus required class="text_input" value="${i.campingcar_address }">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3158.7197128313333!2d127.05830572695311!3d37.65579310000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357cb941d9c739c5%3A0x8ecd52574c78556d!2z7J207KCg7JWE7Lm0642w66-47Lu07ZOo7YSw7ZWZ7JuQIOuFuOybkOy6oO2NvOyKpA!5e0!3m2!1sko!2skr!4v1685597135366!5m2!1sko!2skr"
                                 width="700"
@@ -97,7 +110,8 @@
                         <p>사진</p>
                         <div class="filebox preview-image">
                             <label for="input-file" class="upload">업로드&nbsp;&nbsp;<i class="fa fa-arrow-up" aria-hidden="true"></i></label>
-                            <input type="file" id="input-file" class="upload-hidden" />
+                            <input type="file" id="input-file" multiple class="upload-hidden" />
+                            <div id="thumb_img"></div>
                         </div>
         
                         <!-- 썸네일 업로드 이미지 미리보기 모달창 -->
@@ -306,9 +320,9 @@
                         </table>
                         <div>
                             <p>대여일 출고시간</p>
-                            <input type="text" name="campingcar_release_time" class="text_input" placeholder="예: 09:00" value="${campingcar_release_time }"/>
+                            <input type="text" name="campingcar_release_time" class="text_input" placeholder="예: 09:00" value="${i.campingcar_release_time }"/>
                             <p>반납일 반납시간</p>
-                            <input type="text" name="campingcar_return_time" class="text_input" placeholder="예: 16:00" value="${campingcar_return_time }"/>
+                            <input type="text" name="campingcar_return_time" class="text_input" placeholder="예: 16:00" value="${i.campingcar_return_time }"/>
                         </div>
                         <!-- 운전면허종류 선택영역 -->
                         <p>운전자 면허종류</p>
@@ -327,13 +341,14 @@
                             <p>주말 및 공휴일 요금&nbsp;(1박당)</p>
                         </div>
                         <div class="price">
-                            <input type="number" name="campingcar_wd_fare" class="text_input" value="${campingcar_wd_fare }" required>
-                            <input type="number" name="campingcar_ph_fare" class="text_input no_mr" value="${campingcar_ph_fare }">
+                            <input type="number" name="campingcar_wd_fare" class="text_input" value="${i.campingcar_wd_fare }" required>
+                            <input type="number" name="campingcar_ph_fare" class="text_input no_mr" value="${i.campingcar_ph_fare }">
                         </div>
                         <p>상세페이지</p>
                         <div class="detail_filebox detail_preview_images detail_img_upload">
                             <label for="detail_input_file" class="upload">업로드&nbsp;&nbsp;<i class="fa fa-arrow-up" aria-hidden="true"></i></label>
-                            <input type="file" id="detail_input_file" class="detail_upload_hidden" name="campingcar_detail"/>
+                            <input type="file" id="detail_input_file" class="detail_upload_hidden" multiple name="campingcar_detail"/>
+                            <div id="detail_img"></div>
                         </div>
                         </div>
                     <div class="update_btn_area">

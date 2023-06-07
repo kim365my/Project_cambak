@@ -107,17 +107,17 @@ html, body {
     color: white;
     display: block;
 }
-/* 사진 업로드 파트 */
+//* 사진 업로드 파트 */
 #input-file {
     visibility: hidden;
 }
 /* imaged preview */
-.filebox .upload-display {
+#thumb_img {
     /* 이미지가 표시될 지역 */
     margin-top: 10px;
     margin-bottom: 5px;
 }
-.filebox .upload-thumb-wrap {
+#thumb_img div {
     /* 추가될 이미지를 감싸는 요소 */
     display: inline-block;
     width: 100px;
@@ -127,12 +127,14 @@ html, body {
     border-radius: 5px;
     background-color: #fff;
     margin-bottom: 30px;
+    margin-right: 10px;
 }
-.filebox .upload-display img {
+#thumb_img div img {
     /* 추가될 이미지 */
+    margin-top: 20px;
     display: block;
-    max-width: 100%;
-    width: 100px;
+    width:70px;
+    height: 70px;
     height: auto;
     cursor: pointer;
 }
@@ -283,12 +285,12 @@ input::-webkit-inner-spin-button {
     visibility: hidden;
 }
 /* imaged preview */
-.detail_filebox .detail_upload_display {
+#detail_img {
     /* 이미지가 표시될 지역 */
     margin-top: 10px;
     margin-bottom: 5px;
 }
-.detail_filebox .detail_upload_thumb_wrap {
+#detail_img div {
     /* 추가될 이미지를 감싸는 요소 */
     display: inline-block;
     width: 100px;
@@ -298,43 +300,17 @@ input::-webkit-inner-spin-button {
     border-radius: 5px;
     background-color: #fff;
     margin-bottom: 30px;
+    margin-right: 10px;
 }
-.detail_filebox .detail_upload_display img {
+#detail_img img {
     /* 추가될 이미지 */
+    margin-top: 20px;
     display: block;
-    max-width: 100%;
-    width: 100px;
-    height: 100%;
+    width: 70px;
+    height: 70px;
     cursor: pointer;
 }
 
-/* 추가 구현 */
-/* 이미지 클릭시 모달창으로 확대 */
-.modal { /* 모달 배경 넣기 */
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    top: 0;
-    left: 0;
-    display: none;
-    z-index: 99999;
-}
-.modal_content {
-    position: relative; 
-    top:50%; 
-    left:50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    vertical-align: middle;
-    cursor:pointer;
-    margin: 0 auto;
-}
-.modal_content img {
-    width: 35%;
-    height: auto;
-    border-radius: 10px;
-}
 
 /* ================ 수정하기 모달창 ================= */
 .update_modal {
@@ -345,7 +321,7 @@ input::-webkit-inner-spin-button {
     top: 0;
     z-index: 99999999999;
     background: rgba(255,255,255,0.95);
-    display: none;
+    /* display: none; */
 }
 
 .update_modal_content {

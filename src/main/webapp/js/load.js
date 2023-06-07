@@ -19,16 +19,32 @@ $('.header').load('./module/header.jsp', function(){
   });
 });
 
-/* 수정하기 모달 로드 */ 
-$('.update_modal').load('./module/update.jsp', function(){
-  /* 수정하기 모달창 */
-  $('.update').click(function(){
-    $('.update_modal').stop().show();
-  });
+const update = document.querySelectorAll(".update");
+const update_area = document.querySelector(".update_area");
+const if1 = document.querySelector("#if1");
 
-  $('.update_close').click(function(){
-    $('.update_modal').hide();
+update.forEach(element => {
+  element.addEventListener("click", function(e) {
+    // 이벤트 중지
+    e.preventDefault();
+    // href 값 받아오기
+    let test = this.getAttribute("href");
+    // src로 넣기
+    if1.setAttribute("src", test);
+    // 수정하기 모달 로드
+    update_area.showModal();
   });
+});
+
+// 닫는 코드
+update_area.addEventListener("close", ()=>{
+  // 콘솔에 출력
+  console.log(update_area.returnValue);
+});
+
+
+$('.update_close').click(function(){
+  $('.update_modal').hide();
 });
 
 /* footer */

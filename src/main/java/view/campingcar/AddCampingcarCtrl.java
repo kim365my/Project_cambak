@@ -98,13 +98,12 @@ public class AddCampingcarCtrl extends HttpServlet {
 				Enumeration<?> files = multi.getFileNames();
 				
 				String campingcar_img = null;
-				int index = 1;
+
 				while(files.hasMoreElements()) {					
 					// 개별 접근
 					String str = (String) files.nextElement();
 					// 중복처리, 이름이 중복되면 파일 이름을 변경해서 출력함 (다운로드 기능 만들것도 아니니까 변경된 이름만 저장)
-					if(index == 0) campingcar_img = multi.getFilesystemName(str);
-					index++;
+					campingcar_img += multi.getFilesystemName(str) + " ";
 				}
 				String campingcar_detail = multi.getParameter("campingcar_detail");
 
@@ -122,7 +121,7 @@ public class AddCampingcarCtrl extends HttpServlet {
 						+ "\n 캠핑카 웹사이트 :  " + campingcar_website 
 						+ "\n 캠핑카 이미지 주소 : " + campingcar_img 
 						+ "\n캠핑카 옵션 : " + campingcar_option
-						+ "\n 캠핑카 탑승인원 :  " + campingcar_rider 
+						+ "\n 캠핑카 탑승인원 : " + campingcar_rider 
 						+ "\n 캠핑카 수면인원 : " + campingcar_sleeper 
 						+ "\n 캠핑카 대여일 대여시간 : " + campingcar_release_time 
 						+ "\n 캠핑카 반납일 반납시간 : " + campingcar_return_time 
