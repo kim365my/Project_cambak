@@ -1,5 +1,17 @@
+<%@page import="biz.campingcar.CampingcarVO"%>
+<%@page import="biz.review.ReviewVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	// 한글
+	request.setCharacterEncoding("utf-8");
+	response.setContentType("text/html; charset=utf-8");
+	
+	
+	ArrayList<ReviewVO> reviewList = (ArrayList)request.getAttribute("reviewList");
+   	CampingcarVO cvo = (CampingcarVO)request.getAttribute("vo");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -48,79 +60,74 @@
       <section class="detail w1140">
         <section class="bak_imgBox img_modal">
           <a href="#" class="detail_mainImg">
-            <img src="./images/detail/realtime01-detail/realtime01-detail01.jpg" alt="이미지">
+            	<img src="./images/main/realtime/<%=cvo.getCampingcar_img()[0] %>" alt="" />
           </a>
           <div class="detail_img img_modal">
-              <a href="#">
-                <img src="./images/detail/realtime01-detail/realtime01-detail02.jpg" alt="이미지">
-              </a>
-              <a href="#" class="no_mr no_mb">
-                <img src="./images/detail/realtime01-detail/realtime01-detail03.jpg" alt="이미지">
-              </a>
-          </div>
-          <div class="detail_img img_modal">
-              <a href="#">
-                <img src="./images/detail/realtime01-detail/realtime01-detail04.jpg" alt="이미지">
-              </a>
-              <a href="#" class="no_mr no_mbs">
-                <img src="./images/detail/realtime01-detail/realtime01-detail05.jpg" alt="이미지">
-              </a>
+          <%
+         	 for(int i = 1; i < cvo.getCampingcar_img().length; i++){
+         %>
+            <a href="#" class="detail_imgs">
+            	<img src="./images/detail/realtime01-detail/<%=cvo.getCampingcar_img()[i] %>" alt="" />
+            </a> 
+         <%
+         	 }
+          %>
           </div>
         </section>
         <section class="detail_info">
           <article class="info_left">
             <div class="camping_infos">
               <!-- 캠핑카 이름 -->
-              <h2>[위캠프] 2인승 로디 캠핑카</h2>
+              <h2>[위캠프] <%=cvo.getCampingcar_name() %></h2>
               <!-- 캠핑카 소개 -->
               <p>
-                로디 캠핑카는 기아 레이 차량을 기반으로 만들어진 2인캠퍼에게 최적화된 캠핑카입니다.
+                <%=cvo.getCampingcar_infos() %>
               </p>
               <!-- 동승,취침 인원 -->
               <ul>
                 <li>
                   <i class="fas fa-user-friends"></i>
-                  동승가능인원 : <span>2</span>명
+                  동승가능인원 : <span><%=cvo.getCampingcar_rider() %></span>명
                 </li>
                 <li>
                   <i class="fas fa-bed"></i>
-                  취침가능인원 : <span>2</span>명
+                  취침가능인원 : <span><%=cvo.getCampingcar_sleeper() %></span>명
                 </li>
               </ul>
               <!-- 출고 반납 시간 -->
               <ul>
                 <li>
                   <i class="far fa-clock"></i>
-                  대여일 출차시간 : <span>9:00</span>
+                  대여일 출차시간 : <span><%=cvo.getCampingcar_release_time() %></span>
                 </li>
                 <li>
                   <i class="far fa-clock"></i>
-                  반납일 반납시간 : <span>16:00</span>
+                  반납일 반납시간 : <span><%=cvo.getCampingcar_return_time() %></span>
                 </li>
               </ul>
               <!-- 가격 -->
               <ul>
                 <li>
                   <i class="fas fa-money-check"></i>
-                  평일가격 : <span>95,000</span>원&nbsp;/박
+                  평일가격 : <span><%=cvo.getCampingcar_wd_fare() %></span>원&nbsp;/박
                 </li>
                 <li>
                   <i class="fas fa-bed"></i>
-                  주말가격 : <span>140,000</span>원&nbsp;/박
+                  주말가격 : <span><%=cvo.getCampingcar_ph_fare() %></span>원&nbsp;/박
                 </li>
               </ul>
               <!-- 라이센스 -->
               <ul>
                 <li>
                   <i class="fas fa-address-card"></i>
-                  <span>2종 보통</span> 이상
+                  <span><%=cvo.getCampingcar_license() %></span> 이상
                 </li>
               </ul>
               <!-- 차고지 주소 -->
               <ul>
                 <li>
                   <i class="fas fa-map-marker-alt"></i>
-                  차고지 주소 : <span>대한민국 경기도 하남시 신장동 107-1</span>
+                  차고지 주소 : <span><%=cvo.getCampingcar_address() %></span>
                 </li>
               </ul>
             </div>
@@ -128,31 +135,15 @@
             <div class="mod_listing">
               <h4>보유시설</h4>
               <ul>
+              <%
+	              for(int j = 0; j<cvo.getCampingcar_option().length; j++){
+	          %>
                 <li>
-                  ·<span>TV</span>
-                </li>
-              <!-- </ul> --> 
-                <li>
-                  ·<span>루프박스</span>
-                </li>
-                <li>
-                  ·<span>무시동 히터</span>
-                </li>
-                <li>
-                  ·<span>방충망</span>
-                </li>
-                <li>
-                  ·<span>유아용 카시트</span>
-                </li>
-                <li>
-                  ·<span>유압식 테이블</span>
-                </li>
-                <li>
-                  ·<span>사이드어닝</span>
-                </li>
-                <li>
-                  ·<span>충전식 배터리</span>
-                </li>
+                  ·<span><%=cvo.getCampingcar_option()[j] %></span>
+                </li>	          
+	          <%
+	              }
+              %>              
               </ul>
             </div>
             <!-- 상세페이지 이미지 -->
@@ -208,45 +199,26 @@
                 </button>
               </div>
               <!-- 고객 후기 1-->
+              <%
+              	for(int k=0;k<reviewList.size();k++){
+              		ReviewVO rvo = reviewList.get(k);
+              %>
               <div class="customer_review">
                 <div class="customer_info">
                   <i class="material-icons">person</i>
                   <!-- 작성자 및 별점 -->
-                  <p>감자 박 <i class="fas fa-star"></i><span>5.00</span></p>
+                  <p><%=rvo.getUser_id() %> <i class="fas fa-star"></i><span><%=rvo.getReview_score() %>.00</span></p>
                 </div>
                 <div class="review_content">
                   <!-- 후기내용 -->
                   <p>
-                    차박용 차를 처음이용해 봤는데, 다행이 굉장히 추운날씨에도 불구하고 무시동히터의 위력이 대단했습니다.
-                    아침에 일어날때까지 굉장히 만족스러웠습니다! 차량 시설도 처음에 빌릴때는 필요할까? 싶었는데, 
-                    막상 캠핑장에 도착하니 왜 존재하는지 알게된게 한두개가 아니었습니다.
+                    <%=rvo.getReview_content() %>
                   </p>
                 </div>
               </div>
-              <!-- 고객 후기 2-->
-              <div class="customer_review">
-                <div class="customer_info">
-                  <i class="material-icons">person</i>
-                  <!-- 작성자 및 별점 -->
-                  <p>고구마 이 <i class="fas fa-star"></i><span>5.00</span></p>
-                </div>
-                <div class="review_content">
-                  <!-- 후기내용 -->
-                  <p>친구들이랑 처음 차박 갔는데 사장님이 친절하게 조작법이랑 추천 장소들 알려주셔서 재미있게 즐기고 왔습니다! ㅎㅎ</p>
-                </div>
-              </div>
-              <!-- 고객 후기 3-->
-              <div class="customer_review">
-                <div class="customer_info">
-                  <i class="material-icons">person</i>
-                  <!-- 작성자 및 별점 -->
-                  <p>카사바 킴 <i class="fas fa-star"></i><span>5.00</span></p>
-                </div>
-                <div class="review_content">
-                  <!-- 후기내용 -->
-                  <p>사장님 친철하시고 딜리버리 서비스 강추입니다.</p>
-                </div>
-              </div>
+              <%
+              	}
+              %>
               <!-- 리뷰에대한 판매자 댓글 x ?  -->
             </div>
           </article>
@@ -256,7 +228,7 @@
             </div>
             <div class="reserve_box">
               <!-- 가격 -->
-              <h3 class="price">95,000원</h3>
+              <h3 class="price"><%=cvo.getCampingcar_wd_fare() %>원</h3>
               <h4>예약하기</h4>
               <!-- 추가옵션 -->
               <select name="mod_option" style="font-size:1.6rem">

@@ -49,7 +49,7 @@ public class GetCampingcarCtrl extends HttpServlet {
 			request.setAttribute("reviewList", reviewList);
 			request.setAttribute("vo", vo);
 			// 포워드
-			RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("detail.jsp");
 			dis.forward(request, response);
 		} else {
 			// 실패한 경우

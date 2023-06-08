@@ -8,29 +8,36 @@
     margin-top: 80px;
 }
 /* 상단 이미지 */
-.detail_mainImg img{
+.bak_imgBox{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+    margin-bottom: 43px;
+}
+.detail_mainImg img {
+/*     background-image: url(./images/detail/realtime01-detail/realtime01-detail01.jpg); */
+/*     background-size: cover; */
     width: 564px;
     height: 480px;
     margin-right: 8px;
-    
 }
-.bak_imgBox{
+.detail_img {
+    width: 568px;
+    height: 490px;
     display: flex;
-    flex-flow: row;
-    margin-bottom: 43px;
+    flex-flow: column wrap;
+    /* 넘어간 이미지 hidden */
+    overflow: hidden;
 }
 
-.detail_img a{
-    display: inline-block;
-    margin-right: 8px;
-    margin-bottom: 10px;
-}
-.detail_img img{
+.detail_imgs img {
     width: 280px;
     height: 235px;
+    margin-right: 8px;
+    margin-bottom: 10px;
+    background-size: cover;
 }
-
-
 
 
 

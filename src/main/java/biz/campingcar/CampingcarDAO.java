@@ -126,7 +126,7 @@ public class CampingcarDAO {
 		ArrayList<CampingcarVO> campingcarList = new ArrayList<CampingcarVO>();
 		try {
 			conn = JDBCConnection.getConnection();
-			String sql = "select * from cb_campingcar";
+			String sql = "select * from cb_campingcar order by campingcar_cnt desc";
 			stmt = conn.prepareStatement(sql);
 			// 실행
 			rs = stmt.executeQuery();
@@ -140,7 +140,6 @@ public class CampingcarDAO {
 				vo.setCampingcar_website(rs.getString(6)); // 웹 사이트
 				String ig = rs.getString(7);
 				if(ig != null) vo.setCampingcar_img(ig.split(", ")); // 이미지
-				// 배열로 전환
 				String op = rs.getString(8);
 				if (op != null) vo.setCampingcar_option(op.split(", ")); // 옵션
 				

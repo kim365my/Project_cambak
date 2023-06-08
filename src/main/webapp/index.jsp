@@ -1,5 +1,18 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="biz.campingcar.CampingcarDAO"%>
+<%@page import="biz.campingcar.CampingcarVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	// 한글
+	request.setCharacterEncoding("utf-8");
+	response.setContentType("text/html; charset=utf-8");
+	
+	// 비지니스 로직 실행
+	CampingcarDAO cdao = new CampingcarDAO();
+	ArrayList<CampingcarVO> campingcarList = cdao.getALLCampingcar();
+	System.out.println(campingcarList);
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -202,188 +215,44 @@
         <h2 class="h2">캠박 실시간 인기캠핑카</h2>
         <!-- 렌트카1 -->
         <div class="realtime">
+		<%
+			for(int i = 0; i < 6; i++){
+				CampingcarVO cvo = campingcarList.get(i);
+		%>
           <div class="rent_car">
-            <a href="./detail.jsp">
-              <div class="car_img">
+            <a href="GetCampingcarCtrl?campingcar_no=<%=cvo.getCampingcar_no()%>">
+              <div class="car_img" style="background-image: url('./images/main/realtime/<%=cvo.getCampingcar_img()[0]%>');">
               <!-- 상세보기 링크 -->
                 <p>즉시예약가능</p>
                 <span class="material-symbols-outlined">favorite</span>
               </div>
+            
+            <div class="car_info">
+              <div class="car_name">
+                <h3><i class="rz--verified fas fa-check-circle"></i>[위캠프] <%=cvo.getCampingcar_name() %></h3>
+                <h4><%=cvo.getCampingcar_infos()%></h4>
+              </div>
+              <ul class="car_option">
+                <li>
+                  <i class="fas fa-map-marker-alt"></i>차고지: <%=cvo.getCampingcar_address() %>
+                </li>
+                <li>
+                  <i class="fas fa-address-card"></i><%=cvo.getCampingcar_license() %>
+                </li>
+                <li class="no_mr">
+                  <i class="fas fa-user-friends"></i>동승 <%=cvo.getCampingcar_rider() %>명
+                </li>
+                <li>
+                  <i class="fas fa-bed"></i>취침 <%=cvo.getCampingcar_sleeper() %>명
+                </li>
+              </ul>
+              <p>
+                <i class="far fa-calendar-check"></i>잊지못할 밤, <%=cvo.getCampingcar_ph_fare() %>원 부터
+              </p>
+            </div>
             </a>
-            <div class="car_info">
-              <div class="car_name">
-                <h3><i class="rz--verified fas fa-check-circle"></i>[위캠프] 2인승 로디 캠핑카</h3>
-                <h4>2인 캠퍼에게 최적화된 레이 캠핑카</h4>
-              </div>
-              <ul class="car_option">
-                <li>
-                  <i class="fas fa-map-marker-alt"></i>차고지: 대한민국 경기도 하남시
-                </li>
-                <li>
-                  <i class="fas fa-address-card"></i>2종 보통
-                </li>
-                <li class="no_mr">
-                  <i class="fas fa-user-friends"></i>동승 2명
-                </li>
-                <li>
-                  <i class="fas fa-bed"></i>취침 2명
-                </li>
-              </ul>
-              <p>
-                <i class="far fa-calendar-check"></i>잊지못할 밤, 95,000원 부터
-              </p>
-            </div>
           </div>
-          <!-- 렌트카2 -->
-          <div class="rent_car">
-            <div class="car_img">
-              <p>즉시예약가능</p>
-              <span class="material-symbols-outlined">favorite</span>
-            </div>
-            <div class="car_info">
-              <div class="car_name">
-                <h3><i class="rz--verified fas fa-check-circle"></i>[미니칸 김포본점] 레이캠핑카 2인승 3호차</h3>
-                <h4>작지만 강한 감성 차박 캠핑카</h4>
-              </div>
-              <ul class="car_option">
-                <li>
-                  <i class="fas fa-map-marker-alt"></i>차고지: 대한민국 경기도 김포시
-                </li>
-                <li>
-                  <i class="fas fa-address-card"></i>2종 보통
-                </li>
-                <li class="no_mr">
-                  <i class="fas fa-user-friends"></i>동승 2명
-                </li>
-                <li>
-                  <i class="fas fa-bed"></i>취침 2명
-                </li>
-              </ul>
-              <p>
-                <i class="far fa-calendar-check"></i>잊지못할 밤, 150,000원 부터
-              </p>
-            </div>
-          </div>
-          <!-- 렌트카3 -->
-          <div class="rent_car no_pr">
-            <div class="car_img">
-              <p>즉시예약가능</p>
-              <span class="material-symbols-outlined">favorite</span>
-            </div>
-            <div class="car_info">
-              <div class="car_name">
-                <h3><i class="rz--verified fas fa-check-circle"></i>[블랙바이슨 캠핑카] 바이슨 오라이온</h3>
-                <h4>유럽감성의 최고급 럭셔리 캠핑카</h4>
-              </div>
-              <ul class="car_option">
-                <li>
-                  <i class="fas fa-map-marker-alt"></i>차고지: 대한민국 경상북도 경주시
-                </li>
-                <li>
-                  <i class="fas fa-address-card"></i>1종 보통
-                </li>
-                <li class="no_mr">
-                  <i class="fas fa-user-friends"></i>동승 1명
-                </li>
-                <li class="no_mr">
-                  <i class="fas fa-bed"></i>취침 5명
-                </li>
-              </ul>
-              <p>
-                <i class="far fa-calendar-check"></i>잊지못할 밤, 480,000원 부터
-              </p>
-            </div>
-          </div>
-          <!-- 렌트카4 -->
-          <div class="rent_car no_pb">
-            <div class="car_img">
-              <p>즉시예약가능</p>
-              <span class="material-symbols-outlined">favorite</span>
-            </div>
-            <div class="car_info">
-              <div class="car_name">
-                <h3><i class="rz--verified fas fa-check-circle"></i>[세이브카] 쏠라티 호텔급 모터홈 캠핑카</h3>
-                <h4>호캉스 캠핑으로 만들어주는 쏠라티와 떠나보세요!</h4>
-              </div>
-              <ul class="car_option">
-                <li>
-                  <i class="fas fa-map-marker-alt"></i>차고지: 대한민국 서울특별시
-                </li>
-                <li>
-                  <i class="fas fa-address-card"></i>1종 보통
-                </li>
-                <li class="no_mr">
-                  <i class="fas fa-user-friends"></i>동승 4명
-                </li>
-                <li class="no_mr">
-                  <i class="fas fa-bed"></i>취침 4명
-                </li>
-              </ul>
-              <p>
-                <i class="far fa-calendar-check"></i>잊지못할 밤, 380,000원 부터
-              </p>
-            </div>
-          </div>
-          <!-- 렌트카5 -->
-          <div class="rent_car no_pb">
-            <div class="car_img">
-              <p>즉시예약가능</p>
-              <span class="material-symbols-outlined">favorite</span>
-            </div>
-            <div class="car_info">
-              <div class="car_name">
-                <h3><i class="rz--verified fas fa-check-circle"></i>[캠핑카랑] 스타렉스 캠핑카</h3>
-                <h4>저렴하고 쾌적하게 떠나보세요!</h4>
-              </div>
-              <ul class="car_option">
-                <li>
-                  <i class="fas fa-map-marker-alt"></i>차고지: 대한민국 광주광역시
-                </li>
-                <li>
-                  <i class="fas fa-address-card"></i>2종 보통
-                </li>
-                <li class="no_mr">
-                  <i class="fas fa-user-friends"></i>동승 5명
-                </li>
-                <li class="no_mr">
-                  <i class="fas fa-bed"></i>취침 5명
-                </li>
-              </ul>
-              <p>
-                <i class="far fa-calendar-check"></i>잊지못할 밤, 200,000원 부터
-              </p>
-            </div>
-          </div>
-          <!-- 렌트카6 -->
-          <div class="rent_car no_pr no_pb">
-            <div class="car_img">
-              <p>즉시예약가능</p>
-              <span class="material-symbols-outlined">favorite</span>
-            </div>
-            <div class="car_info">
-              <div class="car_name">
-                <h3><i class="rz--verified fas fa-check-circle"></i>[캠핑에 반하다 부산] 코치맨 오라이온 24tb</h3>
-                <h4>부산 캠핑카 렌트, 6인승의 모터홈</h4>
-              </div>
-              <ul class="car_option">
-                <li>
-                  <i class="fas fa-map-marker-alt"></i>차고지: 대한민국 부산광역시
-                </li>
-                <li>
-                  <i class="fas fa-address-card"></i>2종 보통
-                </li>
-                <li class="no_mr">
-                  <i class="fas fa-user-friends"></i>동승 1명
-                </li>
-                <li class="no_mr">
-                  <i class="fas fa-bed"></i>취침 5명
-                </li>
-              </ul>
-              <p>
-                <i class="far fa-calendar-check"></i>잊지못할 밤, 450,000원 부터
-              </p>
-            </div>
-          </div>
+		<%}%>
           <div class="more">
             더 많은 차량 보러가기<i class="fas fa-arrow-right rz-ml-1"></i>
           </div>
