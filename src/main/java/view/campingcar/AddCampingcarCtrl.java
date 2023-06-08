@@ -1,15 +1,9 @@
 package view.campingcar;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -23,7 +17,6 @@ import javax.servlet.http.Part;
 
 import biz.campingcar.CampingcarDAO;
 import biz.campingcar.CampingcarVO;
-import biz.upload.UploadUtil;
 import biz.user.loginCK;
 
 /**
@@ -36,7 +29,7 @@ import biz.user.loginCK;
     maxRequestSize = 1024*1024*256*10 // 256메가 10개까지
 )
 
-public class AddCampingcarCtrl2 extends HttpServlet {
+public class AddCampingcarCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -62,9 +55,10 @@ public class AddCampingcarCtrl2 extends HttpServlet {
 		boolean bool = loginCK.moveLoginPage(session, out, user_id);
 
 		if (!bool) {
+			// 로그인 처리 되었을 경우
 			
+			// 실제 경로 값 받아오기
 			ServletContext context = getServletContext(); 
-			
 			String url = "images/detail"; // 파일을 저장할 URL 지정
 			String path = context.getRealPath(url); // 실제로 서버에 저장되는 경로 구하기
 			
@@ -76,14 +70,8 @@ public class AddCampingcarCtrl2 extends HttpServlet {
 			if(!file.exists()) file.mkdir(); // 파일 생성 코드  
 			path += File.separator + no; // 파일이 생성 된 것이 맞을 경우 url 수정
 			System.out.println("절대 경로 : " + path);
-			
 		
 			try {
-				int size = 1024 * 1024 * 256; // 파일 사이즈 설정 : 256M				
-				// 파일 업로드 요청이 있는지 확인
-				UploadUtil uploadUtil = UploadUtil.create(request.getServletContext());
-				List<Part> parts = (List<Part>) request.getParts();
-				
 				// 파라미터 값 받기
 				String campingcar_name = request.getParameter("campingcar_name");
 				String campingcar_infos = request.getParameter("campingcar_infos");
@@ -105,36 +93,24 @@ public class AddCampingcarCtrl2 extends HttpServlet {
 				String ph_fare = request.getParameter("campingcar_ph_fare");
 				int campingcar_ph_fare = (ph_fare == null || ph_fare.isEmpty()) ? 0 : Integer.parseInt(ph_fare);
 				
-				//파일명을 받는다 - 일반 원본파일명
-			    String img = request.getHeader("file-name");
-				String realFileNm = "";
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-		        String today = formatter.format(new java.util.Date());
-		        realFileNm = today + UUID.randomUUID().toString() + img.substring(img.lastIndexOf("."));
-				String rlFileNm = path + File.separator + no + realFileNm;
-				
-				
+
+
+				// Part 객체로 파일 이름 받아서 처리하기 
+				String img = "";
+				List<Part> parts = (List<Part>) request.getParts();
 				for (Part part : parts) {
-					if(!part.getName().equals("f")) {
-						part.
+					String name = getImgFilename(part);
+					if(name != null && name != "") {
+						part.write(path + File.separator  + name); // null 처리 필요
+						img += name + ", "; // 반환
 					}
-					InputStream is = part.getInputStream(); // 전솔된 파일 데이터 읽기
-					OutputStream os = new FileOutputStream(rlFileNm);
-					System.out.println(rlFileNm);
-					int numRead;
-			        byte b[] = new byte[Integer.parseInt(request.getHeader("file-size"))];
-			        while ((numRead = is.read(b, 0, b.length)) != -1) {
-			            os.write(b, 0, numRead); // 파일 저장하기
-			        }
-			        if (is != null) {
-			            is.close();
-			        }
-			        os.flush();
-			        os.close();						
+				}
+				if(!img.isEmpty()) {					
+					img = img.substring(0, img.length() - 2); // 마지막 ", " 지우기
 				}
 				
 				
-				String[] campingcar_img = img.split(", "); // 배열 반환
+				String[] campingcar_img = img.split(", "); // 이미지 이름 받아서 저장하기
 				String campingcar_detail = request.getParameter("campingcar_detail"); // 파일 위치 전달
 
 				// --------------------------------
@@ -144,17 +120,21 @@ public class AddCampingcarCtrl2 extends HttpServlet {
 						campingcar_sleeper, campingcar_release_time, campingcar_return_time, campingcar_license,
 						campingcar_wd_fare, campingcar_ph_fare, campingcar_detail, user_id, 00, null);
 				String op = "";
-				for(String option : campingcar_option) {
-					op += option + ", ";
+				if (campingcar_option != null) {
+					for(String option : campingcar_option) {
+						op += option + ", ";
+					}
+					op = op.substring(0, op.length() - 2);
 				}
 				// 자바빈에 들어가는 데이터
-				System.out.println("캠핑카 이름 : " + campingcar_name 
+				System.out.println(
+						" 캠핑카 이름 : " + campingcar_name 
 						+ "\n 캠핑카 정보 : " + campingcar_infos 
 						+ "\n 캠핑카 전화번호 : " + campingcar_tel 
 						+ "\n 캠핑카 주소 : " + campingcar_address 
 						+ "\n 캠핑카 웹사이트 :  " + campingcar_website 
 						+ "\n 캠핑카 이미지 주소 : " + img 
-						+ "\n캠핑카 옵션 : " + op
+						+ "\n 캠핑카 옵션 : " + op
 						+ "\n 캠핑카 탑승인원 : " + campingcar_rider 
 						+ "\n 캠핑카 수면인원 : " + campingcar_sleeper 
 						+ "\n 캠핑카 대여일 대여시간 : " + campingcar_release_time 
@@ -166,16 +146,16 @@ public class AddCampingcarCtrl2 extends HttpServlet {
 						+ "\n 캠핑카 등록 유저 아이디 : " + user_id);
 
 				// 비지니스 로직 실행, 캠핑카 데이터 생성
-//				int cnt = cdao.addCampingcar(vo);
+				int cnt = cdao.addCampingcar(vo);
 
 				// 결과에 따라 값 출력
-//				if (cnt != 0) {
-//					// 성공했을 경우, 페이지 이동 일단 임의로 인덱스 페이지로
-//					response.sendRedirect("resist_final.jsp");
-//				} else {
-//					// 실패했을 경우
-//					response.sendRedirect("resist.jsp");
-//				}
+				if (cnt != 0) {
+					// 성공했을 경우, 페이지 이동 일단 임의로 인덱스 페이지로
+					response.sendRedirect("resist_final.jsp");
+				} else {
+					// 실패했을 경우
+					response.sendRedirect("resist.jsp");
+				}
 			} catch (Exception e) {
 				// 오류 발생시 처리
 				e.printStackTrace();
@@ -186,5 +166,23 @@ public class AddCampingcarCtrl2 extends HttpServlet {
 		out.close();
 
 	}
+    private String getImgFilename(Part part) {
+    	// 변수 선언
+        String contentDisp = part.getHeader("content-disposition");
+        String temp = "";
+        for(String tem : contentDisp.split("form-data;")) {
+        	if (tem.trim().startsWith("name=\"campingcar_img\";")) temp += tem;
+        }
+        
+        String[] tamva = temp.split(";");
+        for (int i = 0; i < tamva.length; i++) {
+            String temp2 = tamva[i];
+            if (temp2.trim().startsWith("filename")) {
+            	return temp2.substring(temp2.indexOf("=") + 2, temp2.length() - 1);
+            }
+        }
+
+        return null;
+    }
 
 }

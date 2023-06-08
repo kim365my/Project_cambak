@@ -34,9 +34,11 @@ public class LogoutCtrl extends HttpServlet {
 		
 		// 로그아웃 처리
 		PrintWriter out = response.getWriter();
+		out.println("<script>");
 		out.println("alert('로그아웃 처리되었습니다.');");
 		// 페이지 이동
 		out.println("location.href=document.referrer;");
+		out.println("</script>");
 		// 자원반납
 		out.close();
 

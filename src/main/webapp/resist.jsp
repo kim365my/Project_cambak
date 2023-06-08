@@ -108,7 +108,7 @@
                         <p>사진</p>
                         <div class="filebox preview-image">
                             <label for="input-file" class="upload">업로드&nbsp;&nbsp;<i class="fa fa-arrow-up" aria-hidden="true"></i></label>
-                            <input type="file" id="input-file" name="campingcar_detail"  multiple class="upload-hidden" />
+                            <input type="file" id="input-file" name="campingcar_img"  multiple class="upload-hidden" />
                             <div id="thumb_img"></div>
                         </div>
 
@@ -369,6 +369,14 @@
 <script src="./js/common.js"></script>
 			
 <script type="text/javascript">
+const formData = document.querySelector("form");
+formData.addEventListener("submit", (e) => {
+    e.preventDefault();
+    var sHTML = oEditors.getById["ir1"].getIR();
+    alert(sHTML);
+    submitContents(formData);
+});
+
 var oEditors = [];
 
 // 추가 글꼴 목록
@@ -395,8 +403,7 @@ nhn.husky.EZCreator.createInIFrame({
 	fCreator: "createSEditor2"
 });
 
-function pasteHTML() {
-	var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
+function pasteHTML(sHTML) {
 	oEditors.getById["ir1"].exec("PASTE_HTML", [sHTML]);
 }
 
@@ -411,7 +418,7 @@ function submitContents(elClickedObj) {
 	// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("ir1").value를 이용해서 처리하면 됩니다.
 	
 	try {
-		elClickedObj.form.submit();
+		elClickedObj.submit();
 	} catch(e) {}
 }
 
