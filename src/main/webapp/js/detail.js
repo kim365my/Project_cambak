@@ -23,6 +23,17 @@ $(".review_cancel").click(function(){
 })
 
 
+// 리뷰 수정 및 취소
+$(".review_update").click(function(){
+    $("#modalUP").show();
+})
+$(".review_cancelUP").click(function(){
+    $("#modalUP").hide();
+    $("input[name='score']").prop('checked', false);
+    $("textarea").val("");
+})
+
+
 
 
 

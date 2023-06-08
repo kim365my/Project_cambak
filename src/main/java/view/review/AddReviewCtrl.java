@@ -47,16 +47,17 @@ public class AddReviewCtrl extends HttpServlet {
     	  // 로직 실행
     	  ReviewDAO rdao = new ReviewDAO();
     	  int cnt = rdao.addReview(vo);
-    	  if(cnt != 0) {
-    		  out.println("<script>alert('성공');"
-    				  + "location.href='index.jsp;'"
-    				  + "</script>");
-	    	  }
-	      }
-		out.close();
-      
+			 if(cnt != 0) {
+				 // 성공했을 경우 이동
+				 out.println("alert('리뷰 등록 성공');"
+					  + "location.href=document.referrer;");
+			 } else {
+				 out.println("alert('리뷰 등록 실패');"
+						 + "location.href=document.referrer;");
+				 
+			 }
+		}
+		 out.close();
 
    }
-
-
 }

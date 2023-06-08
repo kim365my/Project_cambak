@@ -57,9 +57,7 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 			String campingcar_tel = request.getParameter("campingcar_tel");
 			String campingcar_address = request.getParameter("campingcar_address");
 			String campingcar_website = request.getParameter("campingcar_website");
-			String[] campingcar_img = request.getParameterValues("campingcar_img");
 			String[] campingcar_option = request.getParameterValues("campingcar_option");
-			
 			String rider = request.getParameter("campingcar_rider").replaceAll("명", "");
 			int campingcar_rider = (rider == null) ? 0 :Integer.parseInt(rider);
 			
@@ -69,10 +67,8 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 			String campingcar_release_time = request.getParameter("campingcar_release_time");
 			String campingcar_return_time = request.getParameter("campingcar_return_time");
 			String campingcar_license = request.getParameter("campingcar_license");
-			
 			String wd_fare = request.getParameter("campingcar_wd_fare");
 			int campingcar_wd_fare = (wd_fare == null) ? 0 :Integer.parseInt(wd_fare); // 이것만 not null이므로 null 체크 필요
-			
 			String ph_fare = request.getParameter("campingcar_ph_fare");
 			int campingcar_ph_fare = (ph_fare == null) ? 0 :Integer.parseInt(ph_fare);
 			
@@ -103,7 +99,8 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 			if(!img.isEmpty()) {					
 				img = img.substring(0, img.length() - 2); // 마지막 ", " 지우기
 			}
-				
+			String[] campingcar_img = img.split(", ");
+			
 			// no와 조회수와 생성일은 DB에서 초기값으로 넣음
 			CampingcarVO vo = new CampingcarVO(campingcar_no, campingcar_name, campingcar_infos, campingcar_tel, campingcar_address, campingcar_website, campingcar_img, campingcar_option, campingcar_rider, campingcar_sleeper, campingcar_release_time, campingcar_return_time, campingcar_license, campingcar_wd_fare, campingcar_ph_fare, campingcar_detail, user_id, 0, null);
 			

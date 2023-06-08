@@ -187,114 +187,114 @@
                             </div>
                             <div class="check">
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="싱크대" />
                                     <span></span>
                                     싱크대
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="암막커튼" />
                                     <span></span>
                                     암막커튼
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="에어컨" />
                                     <span></span>
                                     에어컨
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="오수탱크" />
                                     <span></span>
                                     오수탱크
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="온수기"/>
                                     <span></span>
                                     온수기
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="외부샤워기"/>
                                     <span></span>
                                     외부샤워기
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="유아용 카시트"/>
                                     <span></span>
                                     유아용 카시트
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="유압식테이블"/>
                                     <span></span>
                                     유압식테이블
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="인덕션"/>
                                     <span></span>
                                     인덕션
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="전기레인지"/>
                                     <span></span>
                                     전기레인지
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="전기콘셉트"/>
                                     <span></span>
                                     전기콘셉트
                                 </label>
                             </div>
                             <div class="check">
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="충전식배터리"/>
                                     <span></span>
                                     충전식배터리
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="화장실"/>
                                     <span></span>
                                     화장실
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="후방 카메라"/>
                                     <span></span>
                                     후방 카메라
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="테이블"/>
                                     <span></span>
                                     테이블
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="팝업루프"/>
                                     <span></span>
                                     팝업루프
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="평탄화 키트"/>
                                     <span></span>
                                     평탄화 키트
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="샤워실"/>
                                     <span></span>
                                     샤워실
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="수면용품"/>
                                     <span></span>
                                     수면용품
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="스카이창"/>
                                     <span></span>
                                     스카이창
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" />
+                                    <input type="checkbox" name="campingcar_option" value="침대"/>
                                     <span></span>
                                     침대
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="campingcar_option" /><span></span>
+                                    <input type="checkbox" name="campingcar_option" value="사이드어닝"/><span></span>
                                     사이드어닝
                                 </label>
                             </div>

@@ -289,7 +289,29 @@ public class CampingcarDAO {
 	        }
 	        return cnt;
 	   }
-	
+	// 조회수 업데이트 구문
+	public int updateCntCampingcar(int campingcar_no) {
+		 int cnt = 0;
+		 try {
+			conn = JDBCConnection.getConnection();
+			String sql = "update cb_campingcar set campingcar_cnt = 1 + nvl(campingcar_cnt, 0) where campingcar_no = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, sql);
+			stmt.setInt(1, campingcar_no);
+			
+			// 실행
+			cnt = stmt.executeUpdate();
+			if(cnt == 0) System.out.println("캠핑카 조회수 업데이트에서 오류남");
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 
+		 
+		 return cnt;
+	}
 	
 	// 삭제
 	/** 캠핑카 데이터 개별 삭제하는 메소드로, 캠핑카에 포함된 리뷰도 함께 삭제해야함 */

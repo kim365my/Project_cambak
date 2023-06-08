@@ -238,7 +238,15 @@
                 <div class="customer_info">
                   <i class="material-icons">person</i>
                   <!-- 작성자 및 별점 -->
-                  <p><%=rvo.getUser_id() %> <i class="fas fa-star"></i><span><%=rvo.getReview_score() %></span></p>
+                  <p><%= rvo.getUser_id() %>  &nbsp;&nbsp;<i class="fas fa-star"></i><span><%= rvo.getReview_score() %></span></p>
+                  <!-- 리뷰 수정 -->
+                  <button class="review_update">
+                    <i class="fas fa-pen"></i>
+                  </button>
+                  <!-- 리뷰 삭제 -->
+                  <a href="DeleteReviewCtrl?idck=<%= rvo.getUser_id() %>&review_no=<%= rvo.getReview_no()%>" class="review_delete">  
+                    <i class="fas fa-trash"></i>
+                  </a>
                 </div>
                 <div class="review_content">
                   <!-- 후기내용 -->
@@ -260,13 +268,6 @@
             <div class="reserve_box">
               <!-- 가격 -->
               <h3 class="price"><%=cvo.getCampingcar_wd_fare() %>원</h3>
-              <h4>예약하기</h4>
-              <!-- 추가옵션 -->
-              <select name="mod_option" style="font-size:1.6rem">
-                <option value="불멍세트"><p>1) 불멍세트 대여 <span>20,000원</span></p></option>
-                <option value="캠핑세트">2) 간편 캠핑세트 대여 <span>30,000원</span></option>
-                <option value="키친캠핑세트">3) 키친 캠핑세트 대여<span>50,000원</span></option>
-              </select>
 
               <!-- 예약 달력 -->
               <div class = "calendar_container"> 
@@ -372,10 +373,6 @@
               <a href="#">
                 <p class="chatting">채팅하기</p>
               </a>
-            </div>
-            <div class="company_tel">
-              <!-- 업체 연락처 -->
-              <h5>대표번호 : 05078716421</h5>
             </div>
           </article>
         </section>
@@ -763,6 +760,60 @@
               <p><input type="submit" value="후기 등록하기" class="review_reist"></p>
             </div>
           </form>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- 후기 수정 모달창 -->
+    <aside class="aside_review">
+      <div id="modalUP">
+        <div class="modal-content">
+          <div class="review_header">
+            <h4>후기 수정하기</h4>
+            <h3>
+              <!-- 취소 버튼 -->
+              <button class="review_cancelUP"><i class="fas fa-times"></i></button>
+            </h3>
+          </div>
+          <%
+          for(int k = 0; k < reviewList.size(); k++){
+            ReviewVO rvo = reviewList.get(k);
+          %>
+          <form action="UpdateReviewCtrl" method="post" >
+            <div class="review_container">
+              <!-- 후기 별점 -->
+              <div class="review_star_score">
+                <h5>평점을 매겨주세요</h5>
+                <div class="star-rating">
+                  <%
+                  int score = rvo.getReview_score();
+                  
+                  %>
+                  <input type="radio" id="5-stars_up" name="review_score" value="5"  <%= (score == 5)? "checked" : "" %> />
+                  <label for="5-stars_up" class="star"><i class="fas fa-star"></i></label>
+                  <input type="radio" id="4-stars_up" name="review_score" value="4" <%= (score == 4)? "checked" : "" %> />
+                  <label for="4-stars_up" class="star"><i class="fas fa-star"></i></label>
+                  <input type="radio" id="3-stars_up" name="review_score" value="3" <%= (score == 3)? "checked" : "" %> />
+                  <label for="3-stars_up" class="star"><i class="fas fa-star"></i></label>
+                  <input type="radio" id="2-stars_up" name="review_score" value="2"  <%= (score == 2)? "checked" : "" %> />
+                  <label for="2-stars_up" class="star"><i class="fas fa-star"></i></label>
+                  <input type="radio" id="1-star_up" name="review_score" value="1" <%= (score == 1)? "checked" : "" %> />
+                  <label for="1-star_up" class="star"><i class="fas fa-star"></i></label>
+                </div>
+              </div>
+              <!-- 후기 작성란 -->
+              <div class="review_content">
+                <h5>후기를 남겨주세요</h5>
+                <textarea name="review_content" cols="100" rows="10" ><%=rvo.getReview_content() %></textarea>
+              </div>
+              <input type="hidden" name="idck" value="<%= rvo.getUser_id() %>">
+              <input type="hidden" name="review_no" value="<%= rvo.getReview_no()%>">
+              <p><input type="submit" value="후기 등록하기" class="review_reist"></p>
+            </div>
+          </form>
+          <%
+            }
+          %>
         </div>
       </div>
     </aside>

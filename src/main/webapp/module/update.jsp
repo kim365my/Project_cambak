@@ -131,176 +131,184 @@
            
                            <p class="basic_option">기본 보유시설</p>
                            <div class="check_flx">
+                             <%
+                             String op = "";
+                      		  for(int i = 0; i < vo.getCampingcar_option().length; i++) {
+                      		   	op += vo.getCampingcar_option()[i] + ", ";
+                      		  }
+                      		  %>
                                <div class="check">
                                    <label>
-                                       <input type="checkbox" name="campingcar_option" value="TV" />
+                                       <input type="checkbox" name="campingcar_option" value="TV" <%= (op.contains("TV"))? "checked" : "" %>>
                                        <span></span>
                                        TV
                                    </label>
                                    <label>
-                                       <input type="checkbox" name="campingcar_option" value="가스레인지" />
+                                       <input type="checkbox" name="campingcar_option" value="가스레인지"<%= (op.contains("가스레인지"))? "checked" : "" %>>
                                        <span></span>
                                        가스레인지
                                    </label>
                                    <label>
-                                       <input type="checkbox" name="campingcar_option" value="냉장고" />
+                                       <input type="checkbox" name="campingcar_option" value="냉장고" <%= (op.contains("냉장고"))? "checked" : "" %>>
                                        <span></span>
                                        냉장고
                                    </label>
                                    <label>
-                                       <input type="checkbox" name="campingcar_option" value="루프박스" />
+                                       <input type="checkbox" name="campingcar_option" value="루프박스" <%= (op.contains("루프박스"))? "checked" : "" %>>
                                        <span></span>
                                        루프박스
                                    </label>
                                    <label>
-                                       <input type="checkbox" name="campingcar_option" value="무시동 히터" />
+                                       <input type="checkbox" name="campingcar_option" value="무시동 히터" <%= (op.contains("무시동 히터"))? "checked" : "" %>>
                                        <span></span>
                                        무시동 히터
                                    </label>
                                    <label>
-                                       <input type="checkbox" name="campingcar_option" value="물탱크" />
+                                       <input type="checkbox" name="campingcar_option" value="물탱크" <%= (op.contains("물탱크"))? "checked" : "" %>>
                                        <span></span>
                                        물탱크
                                    </label>
                                    <label>
-                                       <input type="checkbox" name="campingcar_option" value="바닥난방" />
+                                       <input type="checkbox" name="campingcar_option" value="바닥난방" <%= (op.contains("바닥난방"))? "checked" : "" %>>
                                        <span></span>
                                        바닥난방
                                    </label>
                                    <label>
-                                       <input type="checkbox" name="campingcar_option" value="방충망" />
+                                       <input type="checkbox" name="campingcar_option" value="방충망" <%= (op.contains("방충망"))? "checked" : "" %>>
                                        <span></span>
                                        방충망
                                    </label>
                                    <label>
-                                       <input type="checkbox" name="campingcar_option" value="배기시설" />
+                                       <input type="checkbox" name="campingcar_option" value="배기시설" <%= (op.contains("배기시설"))? "checked" : "" %>>
                                        <span></span>
                                        배기시설
                                    </label>
                                    <label>
-                                       <input type="checkbox" name="campingcar_option" value="블랙박스" />
+                                       <input type="checkbox" name="campingcar_option" value="블랙박스" <%= (op.contains("블랙박스"))? "checked" : "" %>>
                                        <span></span>
                                        블랙박스
                                    </label>
                                    <label>
-                                       <input type="checkbox" name="campingcar_option" value="블루투스 스피커" />
+                                       <input type="checkbox" name="campingcar_option" value="블루투스 스피커" <%= (op.contains("블루투스 스피커"))? "checked" : "" %>>
                                        <span></span>
                                        블루투스 스피커
                                    </label>
                                </div>
-                               <div class="check">
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       싱크대
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       암막커튼
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       에어컨
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       오수탱크
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       온수기
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       외부샤워기
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       유아용 카시트
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       유압식테이블
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       인덕션
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       전기레인지
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       전기콘셉트
-                                   </label>
+	                            <div class="check">
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="싱크대" <%= (op.contains("싱크대"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    싱크대
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="암막커튼" <%= (op.contains("암막커튼"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    암막커튼
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="에어컨" <%= (op.contains("에어컨"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    에어컨
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="오수탱크" <%= (op.contains("오수탱크"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    오수탱크
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="온수기" <%= (op.contains("온수기"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    온수기
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="외부샤워기" <%= (op.contains("외부샤워기"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    외부샤워기
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="유아용 카시트" <%= (op.contains("유아용 카시트"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    유아용 카시트
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="유압식테이블" <%= (op.contains("유압식테이블"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    유압식테이블
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="인덕션" <%= (op.contains("인덕션"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    인덕션
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="전기레인지" <%= (op.contains("전기레인지"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    전기레인지
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="전기콘셉트" <%= (op.contains("전기콘셉트"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    전기콘셉트
+	                                </label>
+	                            </div>
+	                            <div class="check">
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="충전식배터리" <%= (op.contains("충전식배터리"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    충전식배터리
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="화장실" <%= (op.contains("화장실"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    화장실
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="후방 카메라" <%= (op.contains("후방 카메라"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    후방 카메라
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="테이블" <%= (op.contains("테이블"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    테이블
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="팝업루프" <%= (op.contains("팝업루프"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    팝업루프
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="평탄화 키트" <%= (op.contains("평탄화 키트"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    평탄화 키트
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="샤워실" <%= (op.contains("샤워실"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    샤워실
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="수면용품" <%= (op.contains("수면용품"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    수면용품
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="스카이창" <%= (op.contains("스카이창"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    스카이창
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="침대" <%= (op.contains("침대"))? "checked" : "" %>>
+	                                    <span></span>
+	                                    침대
+	                                </label>
+	                                <label>
+	                                    <input type="checkbox" name="campingcar_option" value="사이드어닝"<%= (op.contains("사이드어닝"))? "checked" : "" %>><span></span>
+	                                    사이드어닝
+	                                </label>
+           
                                </div>
-                               <div class="check">
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       충전식배터리
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       화장실
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       후방 카메라
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       테이블
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       팝업루프
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       평탄화 키트
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       샤워실
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       수면용품
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       스카이창
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" />
-                                       <span></span>
-                                       침대
-                                   </label>
-                                   <label>
-                                       <input type="checkbox" name="campingcar_option" /><span></span>
-                                       사이드어닝
-                                   </label>
-                               </div>
+
                            </div>
                            <!-- 인원 선택 영역 -->
                            <table class="rider">
@@ -332,14 +340,17 @@
                                <input type="text" name="campingcar_return_time" class="text_input" placeholder="예: 16:00" value="${i.campingcar_return_time }"/>
                            </div>
                            <!-- 운전면허종류 선택영역 -->
+                           <%
+                           String li = vo.getCampingcar_license();
+                           %>
                            <p>운전자 면허종류</p>
                            <div class="select_box">
                                <select name="campingcar_license" style="font-family: 'Noto Sans KR'" required>
                                    <option value="">선택</option>
-                                   <option value="1종 대형">1종 대형</option>
-                                   <option value="1종 보통">1종 보통</option>
-                                   <option value="2종 보통">2종 보통</option>
-                                   <option value="소형 견인차">소형 견인차</option>
+                                   <option value="1종 대형" <%= (li.equals("1종 대형"))? "selected" : "" %>>1종 대형</option>
+                                   <option value="1종 보통" <%= (li.equals("1종 보통"))? "selected" : "" %>>1종 보통</option>
+                                   <option value="2종 보통" <%= (li.equals("2종 대형"))? "selected" : "" %>>2종 보통</option>
+                                   <option value="소형 견인차" <%= (li.equals("소형 견인차"))? "selected" : "" %>>소형 견인차</option>
                                </select>
                            </div>
                            <h2>요금</h2>

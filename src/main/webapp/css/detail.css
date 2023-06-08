@@ -160,17 +160,6 @@
 }
 
 /* 후기 */
-.customer_info{
-    font-size: 1.6rem;
-    display: flex;
-}
-.review_stats {
-    font-size: 1.6rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-}
 .review_stats p {
     font-size: 2rem;
     font-weight: bold;
@@ -178,10 +167,19 @@
 .review_stats .fa-star {
     color: #3974d8;
 }
+.review_stats {
+    font-size: 1.6rem;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
 
 .review_reist {
     padding: 12px 20px;
-    line-height: 13px; 
+    font-size: 1.4rem;
+    font-weight: bold;
     text-align: center;  
     background-color: #3974d8;
     border-radius: 10px;
@@ -189,6 +187,11 @@
 }
 
 /* 고객후기 */
+.customer_info{
+    font-size: 1.6rem;
+    display: flex;
+    /* justify-content: left; */
+}
 .customer_review{
     line-height: 1.5rem;
     margin-bottom: 40px;
@@ -200,20 +203,23 @@
 .customer_info p {
     font-size: 1.6rem;
     font-weight: bold;
+    margin-right: 8px;
 }
 .customer_info .fa-star {
     color: #3974d8;
+}
+.customer_info a {
+    margin-left: 8px;
 }
 
 
 
 /* 오른쪽 예약 */
-
 .info_right{
     width: 350px;
     height: 1000px;
     position: sticky !important;
-    top: -100px;
+    top: 80px;
 }
 .reserve_notice {
     padding: 20px 16px;
@@ -233,12 +239,10 @@
     margin-bottom: 20px;
 }
 .reserve_box h3 {
+    padding: 0 8px;
     font-size: 28px;
     font-weight: bold;
-    margin-bottom: 28px;
-}
-.reserve_box h4{
-    font-size: 20px;
+    margin-bottom: 12px;
 }
 .reserve_box select {
     width: 100%;
@@ -547,7 +551,7 @@ position: absolute;
 
 /* 모달창 css */
 /* 리뷰 */
-#modal{
+#modal, #modalUP{
     width: 100%;
     height: 100%;
     position: fixed;

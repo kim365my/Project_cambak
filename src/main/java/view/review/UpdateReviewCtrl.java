@@ -56,13 +56,15 @@ public class UpdateReviewCtrl extends HttpServlet {
 			 if(cnt != 0) {
 				 // 성공했을 경우 이동
 				 out.println("alert('리뷰 업데이트 성공');"
-					  + "location.href='index.jsp;'");
+					  + "location.href=document.referrer;");
 			 } else {
+				 out.println("alert('리뷰 업데이트 실패');"
+						 + "location.href=document.referrer;");
 				 
 			 }
 	      } else {
 	   		  out.println("alert('리뷰 작성한 아이디와 동일하지 않음');"
-					  + "location.href='index.jsp;'");
+					  + "location.href='index.jsp';");
 	      }
 			
 		}
