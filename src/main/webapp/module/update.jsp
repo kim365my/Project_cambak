@@ -6,10 +6,13 @@
    // 인코딩 설정
    request.setCharacterEncoding("UTF-8");
    response.setContentType("text/html; charset=UTF-8");
+
+   String context = request.getContextPath();
    
    // 값 받아오기
    CampingcarVO vo = (CampingcarVO) request.getAttribute("vo");
-
+   String img = vo.getCampingcar_img()[0];
+   int no = vo.getCampingcar_no();
 %>
 <c:set var="i" value="<%= vo %>"></c:set>
 
@@ -58,7 +61,7 @@
             </div>
             <div class="update_modal_content_thumb">
                 <!-- 등록페이지에서 업로드한 썸네일 이미지로 src수정해야 함 -->
-                <img src="https://via.placeholder.com/46x46" alt="썸네일이미지"><p>${i.campingcar_name }</p>
+                <img src="<%= context %>/images/detail/<%=no %>/<%=img %>" alt="썸네일이미지"><p>${i.campingcar_name }</p>
             </div>
             <!-- 등록 form -->
             <div id="container">

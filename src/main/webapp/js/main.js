@@ -198,6 +198,11 @@ class Calendar {
 const cal = new Calendar();
 cal.handleEvents();
 
+/* 찜 하트 클릭시 꽉찬 하트로 변경 */
+$('.car_img i, .map_contents i').click(function(){
+    $(this).toggleClass('fullHeart');
+});
+
 
 /* 스와이퍼 js */
 // 스와이퍼 생성 | .swiper-container = 구조 Swiper 클래스

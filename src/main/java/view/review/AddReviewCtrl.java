@@ -46,6 +46,7 @@ public class AddReviewCtrl extends HttpServlet {
     	  ReviewVO vo = new ReviewVO(0, review_score, review_content, user_id, campingcar_no);
     	  // 로직 실행
     	  ReviewDAO rdao = new ReviewDAO();
+    	  out.println("<script>");
     	  int cnt = rdao.addReview(vo);
 			 if(cnt != 0) {
 				 // 성공했을 경우 이동
@@ -56,6 +57,7 @@ public class AddReviewCtrl extends HttpServlet {
 						 + "location.href=document.referrer;");
 				 
 			 }
+			 out.println("</script>");
 		}
 		 out.close();
 

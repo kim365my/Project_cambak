@@ -4,8 +4,8 @@
 }
 .other_check {
     position: fixed;
-    left: 800px;
-    margin: 350px auto;
+	top: 40%;
+	left: 40%;
     text-align: center;
 }
 .other_check h3 {

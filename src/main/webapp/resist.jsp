@@ -2,8 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-
-
+    // 로그인처리
+    String user_id = (String)session.getAttribute("user_id");
+    if(user_id==null) {response.sendRedirect("./index.jsp");}
 %>
 
 <!DOCTYPE html>
@@ -63,8 +64,10 @@
         <!-- 오른쪽 gnb -->
         <div class="right">
             <section class="header">
-                <article><img src="./images/resist/container_car.png" alt="자동차아이콘" /></article>
-                <h1>새로운 캠핑카 등록</h1>
+                <div class="header_icon">
+                    <article><img src="./images/resist/container_car.png" alt="자동차아이콘" /></article>
+                    <h1>새로운 캠핑카 등록</h1>
+                </div>
                 <p><a href="./index.jsp">Exit</a></p>
             </section>
             <!-- 등록 form -->

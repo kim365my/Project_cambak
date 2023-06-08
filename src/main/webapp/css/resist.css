@@ -19,16 +19,14 @@ body {
 /* 왼쪽 gnb */
 aside {
     position: relative;
-    width: 300px;
     height: 100%;
 }
 nav {
     position: fixed;
-    width: 300px;
+	width: 15%;
     height: 100%;
 }
 .gnb {
-    width: 300px;
     background-color: #f5f5f5;
     height: 100%;
 }
@@ -51,14 +49,14 @@ nav {
 /* 오른쪽 gnb */
 .right {
     position: relative;
-    width: 1603px;
+	width: 85%;
 }
 .header {
     position: fixed;
     right: 0;
     top: 0;
     background: white;
-    width: 1603px;
+    width: 85%;
     height: 70px;
     padding: 20px;
     border-bottom: 1px solid #dddddd;
@@ -66,16 +64,21 @@ nav {
     flex-flow: row nowrap;
     justify-content: space-between;
     z-index: 99;
+    
+}
+.header_icon{
+	display: flex;
 }
 .header article img {
     width: 33px;
     height: 33px;
+    margin-right: 40px;
 }
 .header h1 {
     font-size: 20px;
     font-weight: 600;
     padding-top: 5px;
-    margin-left: -1300px;
+	
 }
 .header p {
     color: #3974d9;
@@ -84,13 +87,17 @@ nav {
 }
 /* 등록 form */
 #container {
-    width: 1603px;
+    width: 85%;
     padding-bottom: 200px;
     position: relative;
 }
 .form_part {
     width: 700px;
     margin-top: 100px;
+    position: absolute;
+    left: 40%;
+    top: 15%;
+    
 }
 .form_part h2 {
     font-size: 24px;
@@ -383,7 +390,7 @@ input::-webkit-inner-spin-button {
     justify-content: space-between;
 }
 .footer {
-    width: 1603px;
+  	width: 85%;
     height: 85px;
     position: fixed;
     right: 0;

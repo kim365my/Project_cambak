@@ -59,154 +59,157 @@
     </header>
     <main role="main">
       <div class="main_img">
-        <h1>
-          <p>잠시, <br></p>
-          <div class="cover">
-            <span>캠박</span>
-            <span>차박</span>
-            <span>캠핑</span>
-          </div>
-          <span class="fix_text">가자</span>
-        </h1>
-        <div class="rent_date">
-          <p>캠핑카, 간편하게 예약 후 바로 떠나세요!</p>
-          <ul class="rent_table">
-            <li>대여기간을 선택하세요</li>
-            <!-- 캘린더 -->
-            <div class = "calendar_container">
-              <div class="calendar_title">
-                <button class = "left_button"><i class="fas fa-chevron-circle-left"></i></button>
-                <p class = "calendar_month_title">2월</p>
-                <button class = "right_button"><i class="fas fa-chevron-circle-right"></i></button>
-              </div>    
-              <table class = "calendar">
-                <tbody>
-                  <tr class = "week">
-                      <td class = "day">일</td>
-                      <td class = "day">월</td>
-                      <td class = "day">화</td>
-                      <td class = "day">수</td>
-                      <td class = "day">목</td>
-                      <td class = "day">금</td>
-                      <td class = "day">토</td>
-                  </tr>
-                  <tr>    <!-- 달력 첫 번째 줄-->
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                  </tr>
-                  <tr>    <!-- 달력 두 번째 줄-->
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                  </tr>
-                  <tr>    <!-- 달력 세 번째 줄-->
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                  </tr>
-                  <tr>    <!-- 달력 네 번째 줄-->
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                  </tr>
-                  <tr>    <!-- 달력 다섯 번째 줄-->
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                  </tr>
-                  <tr>    <!-- 달력 여섯 번째 줄-->
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                      <td class = "calendar_days" roll = "button"> </td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="area_footer">
-                <button>선택완료</button>
-              </div> 
+        <div class="main_text">
+          <h1>
+            <p>잠시, <br></p>
+            <div class="cover">
+              <span>캠박</span>
+              <span>차박</span>
+              <span>캠핑</span>
             </div>
-          </ul>
-          <ul class="rent_table">
-            <li>대여를 원하는 지역을 선택하세요</li>
-            <!-- 지역 선택 체크박스 -->
-            <div class="check">
-              <div class="check_area">
-                <h3>지역선택</h3>
-                <p>복수선택 가능</p>
-                <label>
-                    <input type="checkbox" name="area" value="강원" />
-                    <span></span>
-                    강원
-                </label>
-                <label>
-                    <input type="checkbox" name="area" value="경기/인천" />
-                    <span></span>
-                    경기/인천
-                </label>
-                <label>
-                    <input type="checkbox" name="area" value="광주/전라" />
-                    <span></span>
-                    광주/전라
-                </label>
-                <label>
-                    <input type="checkbox" name="area" value="대구/울산/경북" />
-                    <span></span>
-                    대구/울산/경북
-                </label>
-                <label>
-                    <input type="checkbox" name="area" value="대전/충청" />
-                    <span></span>
-                    대전/충청
-                </label>
-                <label>
-                    <input type="checkbox" name="area" value="부산/경남" />
-                    <span></span>
-                    부산/경남
-                </label>
-                <label>
-                    <input type="checkbox" name="area" value="서울" />
-                    <span></span>
-                    서울
-                </label>
-                <label>
-                    <input type="checkbox" name="area" value="제주" />
-                    <span></span>
-                    제주
-                  </label>
-                </div>
+            <span class="fix_text">가자</span>
+          </h1>
+          <div class="rent_date">
+            <p>캠핑카, 간편하게 예약 후 바로 떠나세요!</p>
+            <ul class="rent_table">
+              <li>대여기간을 선택하세요</li>
+              <!-- 캘린더 -->
+              <div class = "calendar_container">
+                <div class="calendar_title">
+                  <button class = "left_button"><i class="fas fa-chevron-circle-left"></i></button>
+                  <p class = "calendar_month_title">2월</p>
+                  <button class = "right_button"><i class="fas fa-chevron-circle-right"></i></button>
+                </div>    
+                <table class = "calendar">
+                  <tbody>
+                    <tr class = "week">
+                        <td class = "day">일</td>
+                        <td class = "day">월</td>
+                        <td class = "day">화</td>
+                        <td class = "day">수</td>
+                        <td class = "day">목</td>
+                        <td class = "day">금</td>
+                        <td class = "day">토</td>
+                    </tr>
+                    <tr>    <!-- 달력 첫 번째 줄-->
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                    </tr>
+                    <tr>    <!-- 달력 두 번째 줄-->
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                    </tr>
+                    <tr>    <!-- 달력 세 번째 줄-->
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                    </tr>
+                    <tr>    <!-- 달력 네 번째 줄-->
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                    </tr>
+                    <tr>    <!-- 달력 다섯 번째 줄-->
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                    </tr>
+                    <tr>    <!-- 달력 여섯 번째 줄-->
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                        <td class = "calendar_days" roll = "button"> </td>
+                    </tr>
+                  </tbody>
+                </table>
                 <div class="area_footer">
                   <button>선택완료</button>
-                </div>
-            </div>
-            <li>
-              <button class="date_search"><i class="fas fa-search"></i></button>
-            </li>
-          </ul> 
+                </div> 
+              </div>
+            </ul>
+            <ul class="rent_table">
+              <li>대여를 원하는 지역을 선택하세요</li>
+              <!-- 지역 선택 체크박스 -->
+              <div class="check">
+                <div class="check_area scrollBar">
+                  <h3>지역선택</h3>
+                  <p>복수선택 가능</p>
+                  <label>
+                      <input type="checkbox" name="area" value="강원" />
+                      <span></span>
+                      강원
+                  </label>
+                  <label>
+                      <input type="checkbox" name="area" value="경기/인천" />
+                      <span></span>
+                      경기/인천
+                  </label>
+                  <label>
+                      <input type="checkbox" name="area" value="광주/전라" />
+                      <span></span>
+                      광주/전라
+                  </label>
+                  <label>
+                      <input type="checkbox" name="area" value="대구/울산/경북" />
+                      <span></span>
+                      대구/울산/경북
+                  </label>
+                  <label>
+                      <input type="checkbox" name="area" value="대전/충청" />
+                      <span></span>
+                      대전/충청
+                  </label>
+                  <label>
+                      <input type="checkbox" name="area" value="부산/경남" />
+                      <span></span>
+                      부산/경남
+                  </label>
+                  <label>
+                      <input type="checkbox" name="area" value="서울" />
+                      <span></span>
+                      서울
+                  </label>
+                  <label>
+                      <input type="checkbox" name="area" value="제주" />
+                      <span></span>
+                      제주
+                    </label>
+                  </div>
+                  <div class="area_footer">
+                    <button>선택완료</button>
+                  </div>
+                  
+              </div>
+              <li>
+                <button class="date_search"><i class="fas fa-search"></i></button>
+              </li>
+            </ul> 
+          </div>
         </div>
       </div>
       <!-- 실시간 인기 캠핑카 -->
@@ -215,11 +218,11 @@
         <h2 class="h2">캠박 실시간 인기캠핑카</h2>
         <!-- 렌트카1 -->
         <div class="realtime">
-		<%
-			for(int i = 0; i < 6; i++){
-				CampingcarVO cvo = campingcarList.get(i);
-		%>
-          <div class="rent_car">
+          <%
+          for(int i = 0; i < 6; i++){
+            CampingcarVO cvo = campingcarList.get(i);
+        %>
+          <div class="rent_car">  
           	<span class="material-symbols-outlined favorite">favorite</span>
             <a href="GetCampingcarCtrl?campingcar_no=<%=cvo.getCampingcar_no()%>">
               <div class="car_img" style="background-image: url('<%=context %>/images/detail/<%= cvo.getCampingcar_no() %>/<%=cvo.getCampingcar_img()[0]%>');">
@@ -227,7 +230,6 @@
                 <p>즉시예약가능</p>
                 
               </div>
-            
             <div class="car_info">
               <div class="car_name">
                 <h3><i class="rz--verified fas fa-check-circle"></i>[위캠프] <%=cvo.getCampingcar_name() %></h3>
@@ -298,7 +300,7 @@
           <!-- 지도1 -->
           <div class="map_contents">
             <div class="map_img1">
-              <span class="material-symbols-outlined">favorite</span>
+              <i class="fas fa-heart icon-outline"></i>
             </div>
             <div class="map_name">
               <h3>옥계해변</h3>
@@ -317,7 +319,7 @@
           <!-- 지도2 -->
           <div class="map_contents">
             <div class="map_img2">
-              <span class="material-symbols-outlined">favorite</span>
+              <i class="fas fa-heart icon-outline"></i>
             </div>
             <div class="map_name">
               <h3>소래습지생태공원</h3>
@@ -339,7 +341,7 @@
           <!-- 지도3 -->
           <div class="map_contents">
             <div class="map_img3">
-              <span class="material-symbols-outlined">favorite</span>
+              <i class="fas fa-heart icon-outline"></i>
             </div>
             <div class="map_name">
               <h3>나아해변</h3>
@@ -361,7 +363,7 @@
           <!-- 지도4 -->
           <div class="map_contents">
             <div class="map_img4">
-              <span class="material-symbols-outlined">favorite</span>
+              <i class="fas fa-heart icon-outline"></i>
             </div>
             <div class="map_name">
               <h3>몽산포오션캠핑장</h3>
@@ -383,7 +385,7 @@
           <!-- 지도5 -->
           <div class="map_contents">
             <div class="map_img5">
-              <span class="material-symbols-outlined">favorite</span>
+              <i class="fas fa-heart icon-outline"></i>
             </div>
             <div class="map_name">
               <h3>석갱이 오토캠핑장</h3>
@@ -405,7 +407,7 @@
           <!-- 지도6 -->
           <div class="map_contents">
             <div class="map_img6">
-              <span class="material-symbols-outlined">favorite</span>
+              <i class="fas fa-heart icon-outline"></i>
             </div>
             <div class="map_name">
               <h3>진위천유원진 캠핑장</h3>
@@ -431,23 +433,33 @@
       </section>
       <!-- 배너 -->
       <div id="banner">
+      <div class="banner_text">
+	        <h2>차박어디서하지?</h2>
+	        <h3>
+	        		전국 차박장소들을 한 눈에!<br>
+					지금 바로 다운로드 받아보세요.
+	        </h3>
+	        <div class="text_img"><img alt="배너사진" src="./images/main/banner/banner_text.png" width="540px"></div>
+	        <p>더 많은 장소를 보고싶다면?</p>
+	        <button>캠박 앱 다운받기<i class="fas fa-arrow-down rz-ml-1"></i></button>
+        </div>
         <div class="swiper-container">
-          <div class="swiper-wrapper">
+          <div class="swiper-wrapper"> 
             <!-- 배너 슬라이드1 -->
             <div class="swiper-slide">
-              <img src="./images/main/banner/banner01.png" alt="배너1">
+              <img src="./images/main/banner/banner_img1.png" alt="배너1">
             </div> 
             <!-- 배너 슬라이드2 -->
             <div class="swiper-slide">
-              <img src="./images/main/banner/banner02.png" alt="배너2">
+              <img src="./images/main/banner/banner_img2.png" alt="배너2">
             </div>
             <!-- 배너 슬라이드3 -->
             <div class="swiper-slide">
-              <img src="./images/main/banner/banner03.png" alt="배너3">
+              <img src="./images/main/banner/banner_img3.png" alt="배너3">
             </div>
             <!-- 배너 슬라이드4 -->
             <div class="swiper-slide">
-              <img src="./images/main/banner/banner04.png" alt="배너4">
+              <img src="./images/main/banner/banner_img4.png" alt="배너4">
             </div>
           </div>
           <!-- 스와이퍼 좌우 화살표 -->
@@ -475,11 +487,13 @@
       </ul>
     </main>
     <footer class="footer">
+      <!-- footer include -->
       <jsp:include page="./module/footer.jsp" />
     </footer>
 
     <!-- 챗봇 -->
     <aside class="chatbot" id="chatbotFloatIcon">
+      <!-- chatbot include -->
       <jsp:include page="./module/chatbot.jsp" />
     </aside>
   </div>

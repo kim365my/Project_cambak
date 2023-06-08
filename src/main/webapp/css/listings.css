@@ -181,7 +181,8 @@ main {
   margin-top: 60px;
 }
 .resist {
-  padding: 48px 380px 17px;
+  margin-left: 100px;
+  margin-top: 126px;
   background-color: #f7f7f7;
 }
 .resist h1 {

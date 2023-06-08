@@ -65,9 +65,11 @@
         </aside>
         <!-- 오른쪽 gnb -->
         <div class="right w1620">
-            <section class="header w1620">
+            <section class="header">
+            <div class="header_icon">
                 <article><img src="./images/resist/container_car.png" alt="자동차아이콘" /></article>
                 <h1>새로운 캠핑카 등록</h1>
+            </div>
                 <p><a href="./index.jsp">Exit</a></p>
             </section>
         </div>
@@ -76,7 +78,7 @@
             <h3>등록이 완료되었습니다!</h3>
             <p>등록하신 내용을 캠박 팀에서 검토하여, 이상이 없을 시 1영업일 이내로 게시가 완료됩니다</p>
           </section>
-          <footer class="footer w1620">
+          <footer class="footer">
             <div class="pogress_container">
                 <div class="progress_bar" id="myBar"></div>
                 <div class="progresss_bar" id="myBar"></div>
