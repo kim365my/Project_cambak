@@ -42,8 +42,9 @@ public class AddReviewCtrl extends HttpServlet {
     	  int review_score = Integer.parseInt(request.getParameter("review_score"));
     	  String review_content = request.getParameter("review_content");
     	  int campingcar_no = Integer.parseInt(request.getParameter("campingcar_no"));
-    	  ReviewVO vo = new ReviewVO(review_score, review_score, review_content, user_id, campingcar_no);
-    	  
+    	  // DAO
+    	  ReviewVO vo = new ReviewVO(0, review_score, review_content, user_id, campingcar_no);
+    	  // 로직 실행
     	  ReviewDAO rdao = new ReviewDAO();
     	  int cnt = rdao.addReview(vo);
     	  if(cnt != 0) {

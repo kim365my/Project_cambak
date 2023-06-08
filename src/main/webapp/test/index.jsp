@@ -45,7 +45,7 @@
 		<section id="login">
 			<div class="pavel-body">
 				<h2>로그인 페이지</h2>
-				<form action="loginCtrl" method="post">
+				<form action="LoginCtrl" method="post">
 					아이디 : <input type="text" name="user_id" id="user_id"> <br><br>
 					비밀번호 : <input type="password" name="user_pw" id="user_pw"> <br>
 					<br>
@@ -55,7 +55,7 @@
 		</section>
 		<section>
 			<h2>회원가입 페이지</h2>
-			<form action="joinCtrl" method="post">
+			<form action="JoinCtrl" method="post">
 	            <table class="table table-bordered">
 	               <tr>
 	                  <th>아이디</th>
@@ -99,7 +99,7 @@
 		
 		<section>
 			<h2>회원 데이터 수정 페이지</h2>
-			<form action="updateUserCtrl" method="post">
+			<form action="UpdateUserCtrl" method="post">
 	            <table class="table table-bordered">
 	               <tr>
 	                  <th>아이디</th>
@@ -136,7 +136,7 @@
 		</section>
 		
 		<section>
-			<h2><a href="getAllUserList">회원가입정보 불러오기</a></h2>
+			<h2><a href="GetAllUserList">회원가입정보 불러오기</a></h2>
 			<%
 			ArrayList<UserVO> userList = (ArrayList<UserVO>) request.getAttribute("userList");
 			%>
@@ -160,7 +160,7 @@
 								<td>${list.user_pw }</td>
 								<td>${list.user_tel }</td>
 								<td>${list.user_email }</td>
-								<td><a href="deleteUserCtrl?user_id=${list.user_id }">회원탈퇴</a></td>
+								<td><a href="DeleteUserCtrl?user_id=${list.user_id }">회원탈퇴</a></td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>

@@ -22,10 +22,12 @@ public class CampingcarDAO {
 		String option = "";
 		if (vo.getCampingcar_option() != null) {			
 			for(String op : vo.getCampingcar_option()) option += op + ", ";
+			option = option.substring(0, option.length() - 2); // 마지막 ", " 지우기
 		}
 		String img = "";
 		if (vo.getCampingcar_img() != null) {			
 			for(String ig : vo.getCampingcar_img()) img += ig + ", ";
+			img = img.substring(0, img.length() - 2); // 마지막 ", " 지우기
 		}
 
 		
@@ -213,7 +215,7 @@ public class CampingcarDAO {
 		int no = 0;
 		try {
 			conn = JDBCConnection.getConnection();
-			String sql = "select max(campingcar_no) from cb_campingcar";
+			String sql = "select nvl(max(CAMPINGCAR_NO), 100) + 1 from cb_campingcar";
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
@@ -222,13 +224,10 @@ public class CampingcarDAO {
 			} else {
 				System.out.println("캠핑카 다음 시퀀스 조회 실패");
 			}
-
 			
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return no;
@@ -237,57 +236,58 @@ public class CampingcarDAO {
 	// 수정
 	/** 캠핑카 수정 메서드*/
 	   public int updateCampingcar(CampingcarVO vo) {
-	      int cnt = 0;
+			int cnt = 0;
 			String option = "";
 			if (vo.getCampingcar_option() != null) {			
 				for(String op : vo.getCampingcar_option()) option += op + ", ";
+				option = option.substring(0, option.length() - 2); // 마지막 ", " 지우기
 			}
 			String img = "";
 			if (vo.getCampingcar_img() != null) {			
 				for(String ig : vo.getCampingcar_img()) img += ig + ", ";
+				img = img.substring(0, img.length() - 2); // 마지막 ", " 지우기
 			}
-	      try {
-	         // DB 연결
-	         conn = JDBCConnection.getConnection();
-	         String sql = "update cb_campingcar "
-	         		+ "set campingcar_name=?, campingcar_infos=?, campingcar_tel=?, "
-	               + "campingcar_address=?, campingcar_website=?, campingcar_img=?, campingcar_option=?, "
-	               + "campingcar_rider=?, campingcar_sleeper=?, campingcar_release_time=?, campingcar_return_time=?, "
-	               + "campingcar_license=?, campingcar_wd_fare=?, campingcar_ph_fare=?, campingcar_detail=?"
-	               + "where campingcar_no = ?";
-	         stmt = conn.prepareStatement(sql);
-	         // 매핑
-	         stmt.setString(1, vo.getCampingcar_name());
-	         stmt.setString(2, vo.getCampingcar_infos());
-	         stmt.setString(3, vo.getCampingcar_tel());
-	         stmt.setString(4, vo.getCampingcar_address());
-	         stmt.setString(5, vo.getCampingcar_website());
-	         stmt.setString(6, img);
-	   
-	         stmt.setString(7, option);
-	         stmt.setInt(8, vo.getCampingcar_rider());
-	         stmt.setInt(9, vo.getCampingcar_sleeper());
-	         stmt.setString(10, vo.getCampingcar_release_time());
-	         stmt.setString(11, vo.getCampingcar_return_time());
-	         stmt.setString(12, vo.getCampingcar_license());
-	         stmt.setInt(13, vo.getCampingcar_wd_fare());
-	         stmt.setInt(14, vo.getCampingcar_ph_fare());
-	         stmt.setString(15, vo.getCampingcar_detail());
-	         stmt.setInt(16, vo.getCampingcar_no());
+	        try {
+	           // DB 연결
+	           conn = JDBCConnection.getConnection();
+	           String sql = "update cb_campingcar "
+	            	 + "set campingcar_name=?, campingcar_infos=?, campingcar_tel=?, "
+	                 + "campingcar_address=?, campingcar_website=?, campingcar_img=?, campingcar_option=?, "
+	                 + "campingcar_rider=?, campingcar_sleeper=?, campingcar_release_time=?, campingcar_return_time=?, "
+	                 + "campingcar_license=?, campingcar_wd_fare=?, campingcar_ph_fare=?, campingcar_detail=?"
+	                 + "where campingcar_no = ?";
+	           stmt = conn.prepareStatement(sql);
+	           // 매핑
+	           stmt.setString(1, vo.getCampingcar_name());
+	           stmt.setString(2, vo.getCampingcar_infos());
+	           stmt.setString(3, vo.getCampingcar_tel());
+	           stmt.setString(4, vo.getCampingcar_address());
+	           stmt.setString(5, vo.getCampingcar_website());
+	           stmt.setString(6, img);
+	           stmt.setString(7, option);
+	           stmt.setInt(8, vo.getCampingcar_rider());
+	           stmt.setInt(9, vo.getCampingcar_sleeper());
+	           stmt.setString(10, vo.getCampingcar_release_time());
+	           stmt.setString(11, vo.getCampingcar_return_time());
+	           stmt.setString(12, vo.getCampingcar_license());
+	           stmt.setInt(13, vo.getCampingcar_wd_fare());
+	           stmt.setInt(14, vo.getCampingcar_ph_fare());
+	           stmt.setString(15, vo.getCampingcar_detail());
+	           stmt.setInt(16, vo.getCampingcar_no());
 	         
-	         // 실행
-	         cnt = stmt.executeUpdate();
-	         // 오류처리
-	         if (cnt == 0) System.out.println("캠핑카 업데이트 로직에서 오류남");
+	           // 실행
+	           cnt = stmt.executeUpdate();
+	           // 오류처리
+	           if (cnt == 0) System.out.println("캠핑카 업데이트 로직에서 오류남");
 	         
-	      } catch (ClassNotFoundException e) {
-	         e.printStackTrace();
-	      } catch (SQLException e) {
-	         e.printStackTrace();
-	      } finally {
-	         JDBCConnection.close(stmt, conn);
-	      }
-	      return cnt;
+	        } catch (ClassNotFoundException e) {
+	           e.printStackTrace();
+	        } catch (SQLException e) {
+	           e.printStackTrace();
+	        } finally {
+	           JDBCConnection.close(stmt, conn);
+	        }
+	        return cnt;
 	   }
 	
 	

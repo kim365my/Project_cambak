@@ -8,9 +8,11 @@
 	request.setCharacterEncoding("utf-8");
 	response.setContentType("text/html; charset=utf-8");
 	
+	String context = request.getContextPath();
 	
-	ArrayList<ReviewVO> reviewList = (ArrayList)request.getAttribute("reviewList");
-   	CampingcarVO cvo = (CampingcarVO)request.getAttribute("vo");
+	ArrayList<ReviewVO> reviewList = (ArrayList) request.getAttribute("reviewList");
+   	CampingcarVO cvo = (CampingcarVO) request.getAttribute("vo");
+   	
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -59,20 +61,27 @@
   <main role="main">
       <section class="detail w1140">
         <section class="bak_imgBox img_modal">
+        <%
+        	if(cvo.getCampingcar_img() != null) {
+        		%>
           <a href="#" class="detail_mainImg">
-            	<img src="./images/main/realtime/<%=cvo.getCampingcar_img()[0] %>" alt="" />
+            <img src="<%=context %>/images/detail/<%= cvo.getCampingcar_no() %>/<%=cvo.getCampingcar_img()[0] %>" alt="" />
           </a>
           <div class="detail_img img_modal">
           <%
          	 for(int i = 1; i < cvo.getCampingcar_img().length; i++){
          %>
             <a href="#" class="detail_imgs">
-            	<img src="./images/detail/realtime01-detail/<%=cvo.getCampingcar_img()[i] %>" alt="" />
+            	<img src="<%=context %>/images/detail/<%= cvo.getCampingcar_no() %>/<%= cvo.getCampingcar_img()[i] %>" alt="" />
             </a> 
          <%
          	 }
           %>
           </div>
+        		<%
+        	}
+        %>
+
         </section>
         <section class="detail_info">
           <article class="info_left">
@@ -136,14 +145,17 @@
               <h4>보유시설</h4>
               <ul>
               <%
-	              for(int j = 0; j<cvo.getCampingcar_option().length; j++){
-	          %>
-                <li>
-                  ·<span><%=cvo.getCampingcar_option()[j] %></span>
-                </li>	          
+              if(cvo.getCampingcar_option() != null) {
+	              for(int j = 0; j < cvo.getCampingcar_option().length; j++){
+		          %>
+	                <li>
+	                  ·<span><%=cvo.getCampingcar_option()[j] %></span>
+	                </li>	          
 	          <%
 	              }
+              }
               %>              
+            	  
               </ul>
             </div>
             <!-- 상세페이지 이미지 -->
@@ -190,9 +202,28 @@
               <h4>후기</h4>
               <div class="review_stats">
                 <p>
-                  후기 n개&nbsp;&nbsp;
+                  후기 <%= reviewList.size() %>개&nbsp;&nbsp;
+                  
+                  <%
+                  	if(reviewList.size() != 0 && reviewList != null ) {
+                  		%>
+                  		
                   <i class="fas fa-star"></i>
-                  <span>5.00</span>
+                  <%
+                  double result = 0;
+                  for(int k = 0; k < reviewList.size(); k++){
+                		ReviewVO rvo = reviewList.get(k);
+                		result += rvo.getReview_score();
+                  }
+                  result = result / reviewList.size();
+                  
+                  %>
+                  <span><%= String.format("%.2f", result) %></span>
+                  		
+                  		<%
+                  	}
+                  
+                  %>
                 </p>
                 <button class="review_reist">
                   후기 등록하기
@@ -200,14 +231,14 @@
               </div>
               <!-- 고객 후기 1-->
               <%
-              	for(int k=0;k<reviewList.size();k++){
+              	for(int k = 0; k < reviewList.size(); k++){
               		ReviewVO rvo = reviewList.get(k);
               %>
               <div class="customer_review">
                 <div class="customer_info">
                   <i class="material-icons">person</i>
                   <!-- 작성자 및 별점 -->
-                  <p><%=rvo.getUser_id() %> <i class="fas fa-star"></i><span><%=rvo.getReview_score() %>.00</span></p>
+                  <p><%=rvo.getUser_id() %> <i class="fas fa-star"></i><span><%=rvo.getReview_score() %></span></p>
                 </div>
                 <div class="review_content">
                   <!-- 후기내용 -->
@@ -711,15 +742,15 @@
               <div class="review_star_score">
                 <h5>평점을 매겨주세요</h5>
                 <div class="star-rating">
-                  <input type="radio" id="5-stars" name="score" value="5" />
+                  <input type="radio" id="5-stars" name="review_score" value="5" />
                   <label for="5-stars" class="star"><i class="fas fa-star"></i></label>
-                  <input type="radio" id="4-stars" name="score" value="4" />
+                  <input type="radio" id="4-stars" name="review_score" value="4" />
                   <label for="4-stars" class="star"><i class="fas fa-star"></i></label>
-                  <input type="radio" id="3-stars" name="score" value="3" />
+                  <input type="radio" id="3-stars" name="review_score" value="3" />
                   <label for="3-stars" class="star"><i class="fas fa-star"></i></label>
-                  <input type="radio" id="2-stars" name="score" value="2" />
+                  <input type="radio" id="2-stars" name="review_score" value="2" />
                   <label for="2-stars" class="star"><i class="fas fa-star"></i></label>
-                  <input type="radio" id="1-star" name="score" value="1" />
+                  <input type="radio" id="1-star" name="review_score" value="1" />
                   <label for="1-star" class="star"><i class="fas fa-star"></i></label>
                 </div>
               </div>
@@ -728,9 +759,10 @@
                 <h5>후기를 남겨주세요</h5>
                 <textarea name="review_content" cols="100" rows="10" ></textarea>
               </div>
+              <input type="hidden" name="campingcar_no" value="<%= cvo.getCampingcar_no() %>">
               <p><input type="submit" value="후기 등록하기" class="review_reist"></p>
-                </div>
-              </form>
+            </div>
+          </form>
         </div>
       </div>
     </aside>

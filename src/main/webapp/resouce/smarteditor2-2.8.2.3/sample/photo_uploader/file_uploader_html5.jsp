@@ -35,7 +35,9 @@
     for (int i = 0; i < allow_file.length; i++) {
         if (filename_ext.equals(allow_file[i])) cnt++;
     }
- 
+    
+    String contextPath = request.getContextPath();
+    
     //이미지가 아님
     if (cnt == 0) {
         out.println("NOTALLOW_" + filename);
@@ -62,11 +64,11 @@
         os.flush();
         os.close();
         ///////////////// 서버에 파일쓰기 /////////////////
- 
+        
         // 정보 출력
         sFileInfo += "&bNewLine=true";    
         sFileInfo += "&sFileName=" + filename;    
-        sFileInfo += "&sFileURL="+ "../../" + url + "/" + realFileNm;
+        sFileInfo += "&sFileURL="+ contextPath + File.separator + url + File.separator + realFileNm;
         out.println(sFileInfo);
         System.out.println(sFileInfo);
     }

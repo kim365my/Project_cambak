@@ -8,10 +8,10 @@
 	request.setCharacterEncoding("utf-8");
 	response.setContentType("text/html; charset=utf-8");
 	
+	String context = request.getContextPath();
 	// 비지니스 로직 실행
 	CampingcarDAO cdao = new CampingcarDAO();
 	ArrayList<CampingcarVO> campingcarList = cdao.getALLCampingcar();
-	System.out.println(campingcarList);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -220,11 +220,12 @@
 				CampingcarVO cvo = campingcarList.get(i);
 		%>
           <div class="rent_car">
+          	<span class="material-symbols-outlined favorite">favorite</span>
             <a href="GetCampingcarCtrl?campingcar_no=<%=cvo.getCampingcar_no()%>">
-              <div class="car_img" style="background-image: url('./images/main/realtime/<%=cvo.getCampingcar_img()[0]%>');">
+              <div class="car_img" style="background-image: url('<%=context %>/images/detail/<%= cvo.getCampingcar_no() %>/<%=cvo.getCampingcar_img()[0]%>');">
               <!-- 상세보기 링크 -->
                 <p>즉시예약가능</p>
-                <span class="material-symbols-outlined">favorite</span>
+                
               </div>
             
             <div class="car_info">

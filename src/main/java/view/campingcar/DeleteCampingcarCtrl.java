@@ -1,6 +1,8 @@
 package view.campingcar;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,14 +36,21 @@ public class DeleteCampingcarCtrl extends HttpServlet {
 		// 캠핑카 데이터 삭제
 		CampingcarDAO cdao = new CampingcarDAO();
 		int cnt = cdao.deleteCampingcar(campingcar_no);
-
-		if (cnt != 0) {
-			// 성공했을 경우
-			response.sendRedirect("index.jsp");
+		
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+        if(cnt != 0) {
+			out.println("alert('캠핑카 삭제 처리되었습니다.');");
+			// 로그인 후 이동할 페이지 *일단 임의로 뒤로가게해서 새로고침
+			out.println("location.href=document.referrer;");
 		} else {
 			// 실패했을 경우
-			response.sendRedirect("index.jsp");
+			out.println("alert('오류가 발생했습니다');");
+			// 로그인 후 이동할 페이지 *일단 임의로 뒤로가게해서 새로고침
+			out.println("history.back();");	
 		}
+        out.println("</script>");
+        out.close();
 	}
 
 }

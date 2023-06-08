@@ -39,7 +39,7 @@ public class DeleteReviewCtrl extends HttpServlet {
         PrintWriter out = response.getWriter();
         // 로그인이 안되어 있으면 login.jsp로 이동
         // 로그인이 되어있어도, 회원정보가 일치해야 삭제 가능하도록 변경
-        out.println("<script>");
+        
 	    boolean bool = loginCK.moveLoginPage(session, out, user_id);
 		
 	    if(!bool && user_id.equals(idck)) {
@@ -50,6 +50,7 @@ public class DeleteReviewCtrl extends HttpServlet {
 	         ReviewDAO rdao = new ReviewDAO();
 	         int cnt = rdao.deleteReview(review_no);
 	         
+	         out.println("<script>");
 	         if(cnt != 0) {
 	 			out.println("alert('리뷰 삭제 처리되었습니다.');");
 	 			// 로그인 후 이동할 페이지 *일단 임의로 뒤로가게해서 새로고침
@@ -60,8 +61,8 @@ public class DeleteReviewCtrl extends HttpServlet {
 	 			// 로그인 후 이동할 페이지 *일단 임의로 뒤로가게해서 새로고침
 	 			out.println("history.back();");	
 	 		}
+	         out.println("</script>");
       }
-      out.println("</script>");
       out.close();
       
    }

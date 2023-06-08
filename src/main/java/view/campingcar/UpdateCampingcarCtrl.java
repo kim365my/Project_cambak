@@ -1,14 +1,19 @@
 package view.campingcar;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import biz.campingcar.CampingcarDAO;
 import biz.campingcar.CampingcarVO;
@@ -18,6 +23,11 @@ import biz.user.loginCK;
  * Servlet implementation class UpdateCampingcarCtrl
  */
 @WebServlet("/UpdateCampingcarCtrl")
+@MultipartConfig(
+    fileSizeThreshold = 1024*1024,
+    maxFileSize = 1024*1024*256, //256메가
+    maxRequestSize = 1024*1024*256*10 // 256메가 10개까지
+)
 public class UpdateCampingcarCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -67,7 +77,32 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 			int campingcar_ph_fare = (ph_fare == null) ? 0 :Integer.parseInt(ph_fare);
 			
 			String campingcar_detail = request.getParameter("campingcar_detail");
-		
+
+			// 실제 경로 값 받아오기
+			ServletContext context = getServletContext(); 
+			String url = "images/detail/" + campingcar_no; // 파일을 저장할 URL 지정
+			String path = context.getRealPath(url); // 실제로 서버에 저장되는 경로 구하기
+					
+			File file = new File(path); // 번호에 따라 폴더 생성
+			if(!file.exists()) file.mkdir(); // 파일 생성 코드  
+			
+			// 사진에 변동이 있을 경우 데이터를 수정
+			
+			System.out.println("절대 경로 : " + path);
+			
+			// Part 객체로 파일 이름 받아서 처리하기 
+			String img = "";
+			List<Part> parts = (List<Part>) request.getParts();
+			for (Part part : parts) {
+				String name = getImgFilename(part);
+				if(name != null && name != "") {
+					part.write(path + File.separator  + name); // null 처리 필요
+					img += name + ", "; // 반환
+				}
+			}
+			if(!img.isEmpty()) {					
+				img = img.substring(0, img.length() - 2); // 마지막 ", " 지우기
+			}
 				
 			// no와 조회수와 생성일은 DB에서 초기값으로 넣음
 			CampingcarVO vo = new CampingcarVO(campingcar_no, campingcar_name, campingcar_infos, campingcar_tel, campingcar_address, campingcar_website, campingcar_img, campingcar_option, campingcar_rider, campingcar_sleeper, campingcar_release_time, campingcar_return_time, campingcar_license, campingcar_wd_fare, campingcar_ph_fare, campingcar_detail, user_id, 0, null);
@@ -84,7 +119,7 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 				out.println("window.parent.closeModal();");
 			} else {
 				// 실패했을 경우
-				out.println("alert('수정이 완료되었습니다.')");
+				out.println("alert('에러 발생.')");
 				out.println("location.herf=document.referrer;");
 				
 			}
@@ -93,5 +128,24 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 		// 자원 반납
 		out.close();
 	}
+	
+    private String getImgFilename(Part part) {
+    	// 변수 선언
+        String contentDisp = part.getHeader("content-disposition");
+        String temp = "";
+        for(String tem : contentDisp.split("form-data;")) {
+        	if (tem.trim().startsWith("name=\"campingcar_img\";")) temp += tem;
+        }
+        
+        String[] tamva = temp.split(";");
+        for (int i = 0; i < tamva.length; i++) {
+            String temp2 = tamva[i];
+            if (temp2.trim().startsWith("filename")) {
+            	return temp2.substring(temp2.indexOf("=") + 2, temp2.length() - 1);
+            }
+        }
+
+        return null;
+    }
 
 }

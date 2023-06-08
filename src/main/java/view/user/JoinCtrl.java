@@ -13,10 +13,10 @@ import biz.user.UserDAO;
 import biz.user.UserVO;
 
 /**
- * Servlet implementation class joinCtrl
+ * Servlet implementation class JoinCtrl
  */
-@WebServlet("/joinCtrl")
-public class joinCtrl extends HttpServlet {
+@WebServlet("/JoinCtrl")
+public class JoinCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,19 +30,18 @@ public class joinCtrl extends HttpServlet {
 		
 	      // 폼데이터
 	      String user_id = request.getParameter("user_id");
-	      String pw = request.getParameter("user_pw");
-	      String pw2 = request.getParameter("pw2");
-	      String email = request.getParameter("user_email");
-	      String tel = request.getParameter("user_tel");
+	      String user_pw = request.getParameter("user_pw");
+	      String user_pw2 = request.getParameter("user_pw2");
+	      String user_email = request.getParameter("user_email");
+	      String user_tel = request.getParameter("user_tel");
 	      
 	      
 	      // 비밀번호가 동일한 지 확인 결과 출력
 	      PrintWriter out = response.getWriter();
 	      out.println("<script>");
-	      if(pw.equals(pw2)) {
-	    	  // 비밀번호가 동일한 경우 회원가입처리
-	    	  // 자바빈에 데이터 저장
-	    	  UserVO bean = new UserVO(user_id, pw, email, tel);
+	      if(user_pw.equals(user_pw2)) { // 비밀번호가 동일한 경우 회원가입처리
+	    	 // 자바빈에 데이터 저장
+	    	 UserVO bean = new UserVO(user_id, user_pw, user_email, user_tel);
 	         UserDAO udao = new UserDAO();
 	         udao.addUser(bean);
 	         out.println("alert('회원가입 처리되었습니다.');");

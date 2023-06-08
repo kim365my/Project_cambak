@@ -15,10 +15,10 @@ import biz.user.UserVO;
 import biz.user.loginCK;
 
 /**
- * Servlet implementation class updateUserCtrl
+ * Servlet implementation class UpdateUserCtrl
  */
-@WebServlet("/updateUserCtrl")
-public class updateUserCtrl extends HttpServlet {
+@WebServlet("/UpdateUserCtrl")
+public class UpdateUserCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

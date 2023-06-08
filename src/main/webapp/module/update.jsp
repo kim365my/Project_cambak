@@ -66,7 +66,7 @@
                     <!-- 현재 DB연결 안돼 있어서 method가 get인 상태 추후 post로 수정  -->
                     <!-- 이미지 데이터로 넘길 때 enctype 추가해야 함 -->
                     <!-- action 주소값 수정 ctrl로 수정 -->
-                    <form action="UpdateCampingcarCtrl" method="post" >
+                    <form action="UpdateCampingcarCtrl" method="post" enctype="multipart/form-data">
                       <div class="form_wrap">
                            <input type="hidden" value="${i.campingcar_no }" name="campingcar_no">
                            <h2>일반</h2>
@@ -112,7 +112,13 @@
                            <div class="filebox preview-image">
                                <label for="input-file" class="upload">업로드&nbsp;&nbsp;<i class="fa fa-arrow-up" aria-hidden="true"></i></label>
                                <input type="file" id="input-file" multiple class="upload-hidden" />
-                               <div id="thumb_img"></div>
+                               <ul id="thumb_img">
+                              		<c:if test="./images/detail/113/${not empty i.campingcar_img }">                              		
+		                               <c:forEach var="j" items="${i.campingcar_img }">                               
+			                               	<li><img src="${j }"></li>
+		                               </c:forEach>
+                              		</c:if>
+                               </ul>
                            </div>
            
                            <!-- 썸네일 업로드 이미지 미리보기 모달창 -->

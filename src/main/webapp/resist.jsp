@@ -1,5 +1,11 @@
+<%@page import="biz.user.loginCK"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+
+
+%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -66,7 +72,7 @@
                 <div class="form_part w700">
                     <!-- 현재 DB연결 안돼 있어서 method가 get인 상태 추후 post로 수정  -->
                     <!-- 이미지 데이터로 넘길 때 enctype 추가해야 함 -->
-                    <form action="AddCampingcarCtrl" method="post" enctype="multipart/form-data" onsubmit="confirm('등록하시겠습니까?');">
+                    <form action="AddCampingcarCtrl" method="post" enctype="multipart/form-data" onsubmit="return confirm('제출하시겠습니까?')">
                         <h2>일반</h2>
                         <p>카테고리 구분</p>
                         <button type="button" class="button">캠핑카</button>
@@ -372,8 +378,6 @@
 const formData = document.querySelector("form");
 formData.addEventListener("submit", (e) => {
     e.preventDefault();
-    var sHTML = oEditors.getById["ir1"].getIR();
-    alert(sHTML);
     submitContents(formData);
 });
 

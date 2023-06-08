@@ -28,7 +28,6 @@ import biz.user.loginCK;
     maxFileSize = 1024*1024*256, //256메가
     maxRequestSize = 1024*1024*256*10 // 256메가 10개까지
 )
-
 public class AddCampingcarCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,8 +36,7 @@ public class AddCampingcarCtrl extends HttpServlet {
 		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 인코딩 설정
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");

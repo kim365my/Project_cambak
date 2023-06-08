@@ -207,6 +207,7 @@ main {
     cursor: pointer;
 }
 .rent_car {
+    position: relative;
     padding-bottom: 24px;
     cursor: pointer;
 }
@@ -232,11 +233,14 @@ main {
     color: #ffffff;
     font-weight: 700;
 }
-.car_img span {
+.favorite {
+    position: absolute;
+    right: 25px;
+    top: 12px;
     font-size: 2.1rem;
     color: #ffffff;
 }
-.car_img span:hover {
+.favorite:hover {
     color: #3974d9;
 }
 .car_info {

@@ -8,7 +8,7 @@
 <%
    // 로그인처리
    String user_id = (String)session.getAttribute("user_id");
-   if(user_id==null) {response.sendRedirect("./login.jsp");}
+   if(user_id==null) {response.sendRedirect("./index.jsp");}
 %>
 
 <!DOCTYPE html>
@@ -49,7 +49,8 @@
 </head>
 <style>
    dialog{
-       width: 80%;
+       width: 100%;
+       max-width: 1020px;
        height: 90%;
        border: 1px solid rgba(0, 0, 0, 0.1);
        border-radius: 20px;
@@ -101,7 +102,10 @@
         %>
         <div class="slot">
           <!-- 썸네일 이미지 동적으로 들어가는 부분 -->
-          <p><i class="fas fa-map-marker-alt"></i><%=bean.getCampingcar_name()%></p>
+          <div class="slot_title">
+            <p><i class="fas fa-map-marker-alt"></i></p>
+            <h2><a href="GetCampingcarCtrl?campingcar_no=<%=bean.getCampingcar_no()%>"><%=bean.getCampingcar_name()%></a></h2>
+          </div>
           <div class="slot_info">
             <span class="confirm">승인대기중</span>
             <div class="info_text">
