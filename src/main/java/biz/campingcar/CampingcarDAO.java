@@ -34,7 +34,7 @@ public class CampingcarDAO {
 		try {
 			// DB 연결
 			conn = JDBCConnection.getConnection();
-			String sql = "insert into cb_campingcar values(CAMPINGCAR_NO_SEQ.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?,sysdate)";
+			String sql = "insert into cb_campingcar values(CAMPINGCAR_NO_SEQ.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?,sysdate, ?)";
 			stmt = conn.prepareStatement(sql);
 			// 맴핑
 			stmt.setString(1, vo.getCampingcar_name()); // 이름
@@ -54,6 +54,7 @@ public class CampingcarDAO {
 			stmt.setString(15, vo.getCampingcar_detail()); // 상세페이지
 			stmt.setString(16, vo.getUser_id()); // 유저 아이디
 			stmt.setInt(17, 0); // 조회수
+			stmt.setString(18, vo.getCampingcar_imgFolder()); // 이미지 폴더
 			
 			// 실행
 			cnt = stmt.executeUpdate();
@@ -108,6 +109,7 @@ public class CampingcarDAO {
 				vo.setUser_id(rs.getString(17)); // 유저 아이디
 				vo.setCampingcar_cnt(rs.getInt(18)); // 조회수
 				vo.setCampingcar_regdate(rs.getString(19)); // 생성일
+				vo.setCampingcar_imgFolder(rs.getString(20)); // 이미지 폴더
 			} else {
 				System.out.println(campingcar_no + "번의 캠핑카 데이터를 불러오는 과정에서 오류발생");
 			}
@@ -156,6 +158,7 @@ public class CampingcarDAO {
 				vo.setUser_id(rs.getString(17)); // 유저 아이디
 				vo.setCampingcar_cnt(rs.getInt(18)); // 조회수
 				vo.setCampingcar_regdate(rs.getString(19)); // 생성일
+				vo.setCampingcar_imgFolder(rs.getString(20)); // 이미지 폴더
 				// 리스트에 주가하기
 				campingcarList.add(vo);
 			}
@@ -193,6 +196,10 @@ public class CampingcarDAO {
 				vo.setCampingcar_cnt(rs.getInt(4));
 				vo.setUser_id(rs.getString(5));
 				vo.setCampingcar_name(rs.getString(6));
+				String ig = rs.getString(7);
+				if(ig != null) vo.setCampingcar_img(ig.split(", ")); // 이미지
+
+				vo.setCampingcar_imgFolder(rs.getString(8));
 				
 				// 리스트에 주가하기
 				campingcarList.add(vo);
@@ -231,6 +238,30 @@ public class CampingcarDAO {
 			e.printStackTrace();
 		}
 		return no;
+	}
+	/** 이미지 폴더 주소 받아오기 */
+	public String getCampingcar_imgFolder(int campingcar_no) {
+		String folder = null;
+		try {
+			conn = JDBCConnection.getConnection();
+			String sql = "select campingcar_imgFolder from cb_campingcar where campingcar_no = ?";
+			stmt = conn.prepareStatement(sql);
+			// 맴핑
+			stmt.setInt(1, campingcar_no);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				// 실행
+				folder = rs.getString(1);
+			} else {
+				System.out.println("캠핑카 다음 시퀀스 조회 실패");
+			}
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return folder;
 	}
 	
 	// 수정

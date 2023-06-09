@@ -20,6 +20,7 @@ public class CampingcarVO {
    private String user_id;
    private int campingcar_cnt;
    private String campingcar_regdate;
+   private String campingcar_imgFolder;
 
    // 생성자
    public CampingcarVO() {}
@@ -27,7 +28,7 @@ public class CampingcarVO {
 		String campingcar_address, String campingcar_website, String[] campingcar_img, String[] campingcar_option,
 		int campingcar_rider, int campingcar_sleeper, String campingcar_release_time, String campingcar_return_time,
 		String campingcar_license, int campingcar_wd_fare, int campingcar_ph_fare, String campingcar_detail,
-		String user_id, int campingcar_cnt, String campingcar_regdate) {
+		String user_id, int campingcar_cnt, String campingcar_regdate, String campingcar_imgFolder) {
 	this.campingcar_no = campingcar_no;
 	this.campingcar_name = campingcar_name;
 	this.campingcar_infos = campingcar_infos;
@@ -47,6 +48,7 @@ public class CampingcarVO {
 	this.user_id = user_id;
 	this.campingcar_cnt = campingcar_cnt;
 	this.campingcar_regdate = campingcar_regdate;
+	this.campingcar_imgFolder = campingcar_imgFolder;
 }
 
 
@@ -165,5 +167,11 @@ public class CampingcarVO {
    public void setCampingcar_regdate(String campingcar_regdate) {
       this.campingcar_regdate = campingcar_regdate;
    }
+	public String getCampingcar_imgFolder() {
+		return campingcar_imgFolder;
+	}
+	public void setCampingcar_imgFolder(String campingcar_imgFolder) {
+		this.campingcar_imgFolder = campingcar_imgFolder;
+	}
    
 }

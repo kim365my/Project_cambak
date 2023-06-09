@@ -5,35 +5,6 @@ $(".button").click(function () {
     $(this).toggleClass("btn");
 });
 
-//preview image
-//(https://webdir.tistory.com/435)
-// var imgTarget = $(".preview-image .upload-hidden");
-
-// imgTarget.on("change", function () {
-//     var parent = $(this).parent();
-//     parent.children(".upload-display").remove();
-
-//     if (window.FileReader) {
-//         //image 파일만
-//         if (!$(this)[0].files[0].type.match(/image\//)) return;
-
-//         var reader = new FileReader();
-//         reader.onload = function (e) {
-//             var src = e.target.result;
-//             parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="' + src + '" class="upload-thumb" onclick="modal_img()"></div></div>');
-//         };
-//         reader.readAsDataURL($(this)[0].files[0]);
-//     } else {
-//         $(this)[0].select();
-//         $(this)[0].blur();
-//         var imgSrc = document.selection.createRange().text;
-//         parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb" onclick="modal_img()"></div></div>');
-
-//         var img = $(this).siblings(".upload-display").find("img");
-//         img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\"" + imgSrc + '")';
-//     }
-// });
-
 // 이미지 다중 미리보기 (썸네일)
 $(document).ready(function (e){
     $("#input-file").change(function(e){
@@ -215,10 +186,9 @@ $("._count :button").on({
 
 // 스크롤시 진행바 나타나기
 $(window).scroll(function() {
-    
-    $('#progressBar').css('width', (($(this).scrollTop()/($('#wrapper').outerHeight()-$(window).outerHeight()))*100) + '%');
-    
-  });
+    $('#progressBar').css('width', (((($(window).scrollTop()/($('#wrapper').outerHeight()-$(window).outerHeight())*100)*(-1))/2)-18.5) + '%');
+  
+});
 
 
 // 스크롤시 aside에 체크표시 나타나기

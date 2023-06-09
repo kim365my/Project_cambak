@@ -1,8 +1,10 @@
 package view.campingcar;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,8 +35,31 @@ public class DeleteCampingcarCtrl extends HttpServlet {
 		// 파라미터 값 받기
 		int campingcar_no = Integer.parseInt(request.getParameter("campingcar_no"));
 
-		// 캠핑카 데이터 삭제
+		
 		CampingcarDAO cdao = new CampingcarDAO();
+		
+		// 캠핑카 이미지 데이터 삭제
+		ServletContext context = getServletContext(); 
+		String path = context.getRealPath("images/detail"); // 실제로 서버에 저장되는 경로 구하기
+		String folder = cdao.getCampingcar_imgFolder(campingcar_no);
+		path += File.separator + folder;
+		File file = new File(path);
+		if(file.exists()) { 
+			// 파일이 존재 시 삭제 코드 실행
+			if(file.isDirectory()) { // 폴더가 파일인지 확인
+				File[] data = file.listFiles();
+				for(File delete : data) {
+					if (delete.delete()) {
+						System.out.println("파일 삭제 성공");
+					} else {
+						System.out.println("파일 삭제 실패");
+					}
+				}
+				if (file.delete()) System.out.println("이미지 파일 폴더 삭제 성공"); // 최종적으로 모든 파일이 삭제 되었을 경우 폴더 삭제
+			} 
+		}
+		
+		// 캠핑카 데이터 삭제
 		int cnt = cdao.deleteCampingcar(campingcar_no);
 		
 		PrintWriter out = response.getWriter();

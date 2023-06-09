@@ -3,7 +3,9 @@ package view.campingcar;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -57,16 +59,16 @@ public class AddCampingcarCtrl extends HttpServlet {
 			
 			// 실제 경로 값 받아오기
 			ServletContext context = getServletContext(); 
-			String url = "images/detail"; // 파일을 저장할 URL 지정
-			String path = context.getRealPath(url); // 실제로 서버에 저장되는 경로 구하기
+			String path = context.getRealPath("images/detail"); // 실제로 서버에 저장되는 경로 구하기
+
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+	        String today = formatter.format(new java.util.Date());
+			String folderName = today + UUID.randomUUID().toString();
+			path += File.separator + folderName;
 			
-			// 폴더 생성하기
-			CampingcarDAO cdao = new CampingcarDAO();
-			String no = Integer.toString(cdao.getNextNo());
+			File file = new File(path); // 번호에 따라 폴더 생성
+			if(!file.exists()) file.mkdir(); // 파일 생성 코드 
 			
-			File file = new File(path + File.separator + no); // 번호에 따라 폴더 생성
-			if(!file.exists()) file.mkdir(); // 파일 생성 코드  
-			path += File.separator + no; // 파일이 생성 된 것이 맞을 경우 url 수정
 			System.out.println("절대 경로 : " + path);
 		
 			try {
@@ -90,7 +92,7 @@ public class AddCampingcarCtrl extends HttpServlet {
 
 				String ph_fare = request.getParameter("campingcar_ph_fare");
 				int campingcar_ph_fare = (ph_fare == null || ph_fare.isEmpty()) ? 0 : Integer.parseInt(ph_fare);
-				
+				String campingcar_imgFolder = folderName;
 
 
 				// Part 객체로 파일 이름 받아서 처리하기 
@@ -116,7 +118,7 @@ public class AddCampingcarCtrl extends HttpServlet {
 				CampingcarVO vo = new CampingcarVO(0, campingcar_name, campingcar_infos, campingcar_tel,
 						campingcar_address, campingcar_website, campingcar_img, campingcar_option, campingcar_rider,
 						campingcar_sleeper, campingcar_release_time, campingcar_return_time, campingcar_license,
-						campingcar_wd_fare, campingcar_ph_fare, campingcar_detail, user_id, 00, null);
+						campingcar_wd_fare, campingcar_ph_fare, campingcar_detail, user_id, 00, null, campingcar_imgFolder);
 				String op = "";
 				if (campingcar_option != null) {
 					for(String option : campingcar_option) {
@@ -141,9 +143,11 @@ public class AddCampingcarCtrl extends HttpServlet {
 						+ "\n 캠핑카 평일 대여금액 : " + campingcar_wd_fare 
 						+ "\n 캠핑카 주말 대여금액 : " + campingcar_ph_fare 
 						+ "\n 캠핑카 자세한 정보 : " + campingcar_detail 
-						+ "\n 캠핑카 등록 유저 아이디 : " + user_id);
+						+ "\n 캠핑카 등록 유저 아이디 : " + user_id
+						+ "\n 캠핑카 이미지 폴더 : " + campingcar_imgFolder);
 
 				// 비지니스 로직 실행, 캠핑카 데이터 생성
+				CampingcarDAO cdao = new CampingcarDAO();
 				int cnt = cdao.addCampingcar(vo);
 
 				// 결과에 따라 값 출력

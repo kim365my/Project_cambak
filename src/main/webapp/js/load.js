@@ -11,7 +11,7 @@ $('.header').load('./module/header.jsp', function(){
   });
 
   /* 로그인/회원가입 모달창 */
-  $('.span').click(function(){
+  $('#login').click(function(){
     $('.login_modal').stop().show();
   });
   $('.close').click(function(){

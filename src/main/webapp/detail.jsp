@@ -1,3 +1,4 @@
+<%@page import="biz.review.ReviewDAO"%>
 <%@page import="biz.campingcar.CampingcarVO"%>
 <%@page import="biz.review.ReviewVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -12,7 +13,9 @@
 	
 	ArrayList<ReviewVO> reviewList = (ArrayList) request.getAttribute("reviewList");
    	CampingcarVO cvo = (CampingcarVO) request.getAttribute("vo");
-   	
+	
+   	// 로그인 확인
+   	String user_id = (String) session.getAttribute("user_id");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -50,6 +53,31 @@
     <link rel="stylesheet" href="./css/detail_calendar.css">
     <link rel="stylesheet" href="./css/chatbot.css">
 </head>
+<style>
+  dialog{
+      width: 100%;
+      max-width: 1020px;
+      height: 90%;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      text-align: center;
+      overflow-y: hidden; 
+      background: transparent;
+  }
+  dialog::backdrop{
+      background-color: rgba(0, 0, 0, 0.8);
+  }
+  iframe {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+  }
+  .close {
+      position: absolute;
+      top: 20px;
+      right: 23px;
+  }
+</style>
 <body>
   <header class="header">
   	<!-- header include -->
@@ -65,14 +93,14 @@
         	if(cvo.getCampingcar_img() != null) {
         		%>
           <a href="#" class="detail_mainImg">
-            <img src="<%=context %>/images/detail/<%= cvo.getCampingcar_no() %>/<%=cvo.getCampingcar_img()[0] %>" alt="" />
+            <img class="dImg" src="<%=context %>/images/detail/<%= cvo.getCampingcar_imgFolder() %>/<%=cvo.getCampingcar_img()[0] %>" alt="" />
           </a>
           <div class="detail_img img_modal">
           <%
          	 for(int i = 1; i < cvo.getCampingcar_img().length; i++){
          %>
             <a href="#" class="detail_imgs">
-            	<img src="<%=context %>/images/detail/<%= cvo.getCampingcar_no() %>/<%= cvo.getCampingcar_img()[i] %>" alt="" />
+            	<img class="dImg" src="<%=context %>/images/detail/<%= cvo.getCampingcar_imgFolder() %>/<%= cvo.getCampingcar_img()[i] %>" alt="" />
             </a> 
          <%
          	 }
@@ -160,7 +188,19 @@
             </div>
             <!-- 상세페이지 이미지 -->
             <div class="campingcar_img">
-              <img src="./images/detail/realtime01-detail/realtim01-detail12.png" alt="상세페이지">
+            <%
+            if(cvo.getCampingcar_detail() != null) {
+            	%>
+            	<p>
+            		<%= cvo.getCampingcar_detail() %>
+            	</p>
+            	<%
+            } else {
+            	%>            	
+	              <img src="./images/detail/realtime01-detail/realtim01-detail12.png" alt="상세페이지">
+            	<%
+            }
+            %>
             </div>
             <!-- 차고지 주소 -->
             <div class="campingcar_address">
@@ -225,9 +265,13 @@
                   
                   %>
                 </p>
-                <button class="review_reist">
-                  후기 등록하기
-                </button>
+                <%
+                if(user_id != null) {
+                	%>
+	                <button class="review_reist">후기 등록하기</button>
+                	<%
+                }
+                %>
               </div>
               <!-- 고객 후기 1-->
               <%
@@ -239,20 +283,24 @@
                   <i class="material-icons">person</i>
                   <!-- 작성자 및 별점 -->
                   <p><%= rvo.getUser_id() %>  &nbsp;&nbsp;<i class="fas fa-star"></i><span><%= rvo.getReview_score() %></span></p>
-                  <!-- 리뷰 수정 -->
-                  <button class="review_update">
-                    <i class="fas fa-pen"></i>
-                  </button>
-                  <!-- 리뷰 삭제 -->
-                  <a href="DeleteReviewCtrl?idck=<%= rvo.getUser_id() %>&review_no=<%= rvo.getReview_no()%>" class="review_delete">  
-                    <i class="fas fa-trash"></i>
-                  </a>
+                  <%
+                  if (rvo.getUser_id().equals(user_id)) {
+                	  %>
+	                  <!-- 리뷰 수정 -->
+	                  <a href="./module/detailUpdateReview.jsp?review_no=<%= rvo.getReview_no() %>" class="review_update">
+	                    <i class="fas fa-pen"></i>
+	                  </a>
+	                  <!-- 리뷰 삭제 -->
+	                  <a href="DeleteReviewCtrl?idck=<%= rvo.getUser_id() %>&review_no=<%= rvo.getReview_no()%>" class="review_delete">  
+	                    <i class="fas fa-trash"></i>
+	                  </a>
+                	  <%
+                  }
+                  %>
                 </div>
                 <div class="review_content">
                   <!-- 후기내용 -->
-                  <p>
-                    <%=rvo.getReview_content() %>
-                  </p>
+                  <p><%=rvo.getReview_content() %></p>
                 </div>
               </div>
               <%
@@ -767,54 +815,8 @@
     <!-- 후기 수정 모달창 -->
     <aside class="aside_review">
       <div id="modalUP">
-        <div class="modal-content">
-          <div class="review_header">
-            <h4>후기 수정하기</h4>
-            <h3>
-              <!-- 취소 버튼 -->
-              <button class="review_cancelUP"><i class="fas fa-times"></i></button>
-            </h3>
-          </div>
-          <%
-          for(int k = 0; k < reviewList.size(); k++){
-            ReviewVO rvo = reviewList.get(k);
-          %>
-          <form action="UpdateReviewCtrl" method="post" >
-            <div class="review_container">
-              <!-- 후기 별점 -->
-              <div class="review_star_score">
-                <h5>평점을 매겨주세요</h5>
-                <div class="star-rating">
-                  <%
-                  int score = rvo.getReview_score();
-                  
-                  %>
-                  <input type="radio" id="5-stars_up" name="review_score" value="5"  <%= (score == 5)? "checked" : "" %> />
-                  <label for="5-stars_up" class="star"><i class="fas fa-star"></i></label>
-                  <input type="radio" id="4-stars_up" name="review_score" value="4" <%= (score == 4)? "checked" : "" %> />
-                  <label for="4-stars_up" class="star"><i class="fas fa-star"></i></label>
-                  <input type="radio" id="3-stars_up" name="review_score" value="3" <%= (score == 3)? "checked" : "" %> />
-                  <label for="3-stars_up" class="star"><i class="fas fa-star"></i></label>
-                  <input type="radio" id="2-stars_up" name="review_score" value="2"  <%= (score == 2)? "checked" : "" %> />
-                  <label for="2-stars_up" class="star"><i class="fas fa-star"></i></label>
-                  <input type="radio" id="1-star_up" name="review_score" value="1" <%= (score == 1)? "checked" : "" %> />
-                  <label for="1-star_up" class="star"><i class="fas fa-star"></i></label>
-                </div>
-              </div>
-              <!-- 후기 작성란 -->
-              <div class="review_content">
-                <h5>후기를 남겨주세요</h5>
-                <textarea name="review_content" cols="100" rows="10" ><%=rvo.getReview_content() %></textarea>
-              </div>
-              <input type="hidden" name="idck" value="<%= rvo.getUser_id() %>">
-              <input type="hidden" name="review_no" value="<%= rvo.getReview_no()%>">
-              <p><input type="submit" value="후기 등록하기" class="review_reist"></p>
-            </div>
-          </form>
-          <%
-            }
-          %>
-        </div>
+
+        <iframe src="" frameborder="0"></iframe>
       </div>
     </aside>
 

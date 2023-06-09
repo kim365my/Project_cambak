@@ -103,7 +103,19 @@
         <div class="slot">
           <!-- 썸네일 이미지 동적으로 들어가는 부분 -->
           <div class="slot_title">
-            <p><i class="fas fa-map-marker-alt"></i></p>
+            <p>
+	          	<%
+	          		if(bean.getCampingcar_img() != null) {
+	          			%>	          			
+			            	<i class="fas fa-map-marker-alt"></i>
+	          			<%
+	          		} else {
+	          			%>
+	          				<img alt="" src="<%= bean.getCampingcar_img()[0] %>">
+	          			<%
+	          		}
+	          	%>
+            </p>
             <h2><a href="GetCampingcarCtrl?campingcar_no=<%=bean.getCampingcar_no()%>"><%=bean.getCampingcar_name()%></a></h2>
           </div>
           <div class="slot_info">

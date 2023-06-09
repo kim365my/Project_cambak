@@ -98,7 +98,6 @@
 /* 보유시설 */
 .mod_listing ul {
     display: flex;
-    justify-content: space-between;
     flex-flow: row wrap;
     margin-bottom: 62px;
 }
@@ -114,6 +113,9 @@
 }
 
 /* 상세페이지 이미지 */
+.campingcar_img{
+    margin-bottom: 50px;
+}
 .campingcar_img img {
     width: 760px;
 }
@@ -173,7 +175,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 120px;
 }
 
 .review_reist {
@@ -317,7 +319,7 @@
     margin-bottom: 40px;
 }
 .promote_item {
-    height: 480px;
+    height: 450px;
     margin-right: 24px;
     position: relative;
 }
@@ -565,14 +567,16 @@ position: absolute;
 
 }
 .modal-content {
-    width: 50%;
+    width: 80%;
+    max-width: 600px;
     margin: 0 auto;
     border: 1px solid #ccc;
     background: white;
     border-radius: 10px;
-    position: relative;
+    position: fixed;
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .modal-content h4 {
     text-align: center;
@@ -588,7 +592,7 @@ position: absolute;
     border-bottom: 1px solid #ccc
     
 }
-.review_header i {
+.review_cancelUP {
     display: inline-block;
     width: 33px;
     height: 33px;
@@ -602,7 +606,10 @@ position: absolute;
     font-size: 1.6rem;
     line-height: 33px;
 }
-
+.review_up_data{
+    height: 480px;
+    padding: 20px;
+}
 .modal-content .review_container {
     padding: 24px;
 }
@@ -766,7 +773,7 @@ position: absolute;
 }
 
 /* 버튼 효과 */
-button,a{
+button, a{
     cursor: pointer;
 }
 

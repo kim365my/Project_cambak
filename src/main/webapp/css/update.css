@@ -93,7 +93,7 @@ html, body {
     border-radius: 10px;
     margin-bottom: 28px;
 }
-.form_part iframe {
+.form_part .text_input + iframe {
     border-radius: 15px;
     margin-bottom: 42px;
 }

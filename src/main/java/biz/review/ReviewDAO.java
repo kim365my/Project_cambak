@@ -41,9 +41,7 @@ public class ReviewDAO {
 	}
 	
 	// 읽기
-	/** 캠핑카 번호에 따라 리뷰 데이터를 전부 가져오는 메소드
-	 * 개별적으로 가져올 필요는 없으니까 하나만
-	 *  */
+	/** 캠핑카 번호에 따라 리뷰 데이터를 전부 가져오는 메소드 */
 	public ArrayList<ReviewVO> getAllReview(int campingcar_no){
 		ArrayList<ReviewVO> reviewList = new ArrayList<ReviewVO>();
 		try {
@@ -74,6 +72,32 @@ public class ReviewDAO {
 		}
 		
 		return reviewList;
+	}
+	/** 캠핑카 번호에 따라 리뷰 데이터를 가져오는 메소드 */
+	public ReviewVO getReview(int review_no) {
+		ReviewVO vo = new ReviewVO();
+		try {
+			conn = JDBCConnection.getConnection();
+			String sql = "select * from cb_review where review_no = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, review_no);
+			// 실행
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				vo.setReview_no(rs.getInt(1));
+				vo.setReview_score(rs.getInt(2));
+				vo.setReview_content(rs.getString(3));
+				vo.setUser_id(rs.getString(4));
+				vo.setCampingcar_no(rs.getInt(5));
+			} else {
+				System.out.println("리뷰 데이터 가져오는 과정에서 오류 발생");
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return vo;
 	}
 	
 	// 수정

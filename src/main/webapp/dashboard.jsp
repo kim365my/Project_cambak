@@ -50,11 +50,15 @@
         <h3>대시보드</h3>
         <p>고객모드로 전환하기&nbsp;<i class="fa fa-arrow-right" aria-hidden="true"></i></p>
         <div class="boxes">
-          <div class="resist_box">
-            <section><a href="GetDashBoardCampingcarListCtrl"><i class="fas fa-map-marker-alt"></i></a></section>
-            <p>등록슬롯&nbsp;&nbsp;<i class="fa fa-caret-right" aria-hidden="true"></i></p>
-            <p>등록슬롯을 관리할 수 있습니다</p>
-          </div>
+          <a href="GetDashBoardCampingcarListCtrl">
+            <div class="resist_box">
+              <section>
+                <i class="fas fa-map-marker-alt"></i>
+              </section>
+              <p>등록슬롯&nbsp;&nbsp;<i class="fa fa-caret-right" aria-hidden="true"></i></p>
+              <p>등록슬롯을 관리할 수 있습니다</p>
+            </div>
+          </a>
           <div class="reserve_box">
             <section><i class="fa fa-plus-circle" aria-hidden="true"></i></section>
             <p>예약&nbsp;&nbsp;<i class="fa fa-caret-right" aria-hidden="true"></i></p>

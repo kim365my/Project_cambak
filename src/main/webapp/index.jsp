@@ -222,12 +222,22 @@
           for(int i = 0; i < 6; i++){
             CampingcarVO cvo = campingcarList.get(i);
         %>
-          <div class="rent_car">  
-          	<span class="material-symbols-outlined favorite">favorite</span>
-            <a href="GetCampingcarCtrl?campingcar_no=<%=cvo.getCampingcar_no()%>">
-              <div class="car_img" style="background-image: url('<%=context %>/images/detail/<%= cvo.getCampingcar_no() %>/<%=cvo.getCampingcar_img()[0]%>');">
-              <!-- 상세보기 링크 -->
-                <p>즉시예약가능</p>
+        <div class="rent_car">  
+          <span class="material-symbols-outlined favorite">favorite</span>
+         <a href="GetCampingcarCtrl?campingcar_no=<%=cvo.getCampingcar_no()%>">
+            <%
+               if(cvo.getCampingcar_img() != null) {
+                  %>                     
+                 <div class="car_img" style="background-image: url('<%=context %>/images/detail/<%= cvo.getCampingcar_imgFolder() %>/<%=cvo.getCampingcar_img()[0]%>');">
+                  <%
+               } else {
+                  %>                     
+                <div class="car_img" style="background-image: url('<%=context %>/images/detail/null_img.png');">
+                  <%
+               }
+            %>
+           <!-- 상세보기 링크 -->
+             <p>즉시예약가능</p>
                 
               </div>
             <div class="car_info">

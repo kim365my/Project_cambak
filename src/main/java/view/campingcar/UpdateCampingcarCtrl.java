@@ -74,16 +74,7 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 			
 			String campingcar_detail = request.getParameter("campingcar_detail");
 
-			// 실제 경로 값 받아오기
-			ServletContext context = getServletContext(); 
-			String url = "images/detail/" + campingcar_no; // 파일을 저장할 URL 지정
-			String path = context.getRealPath(url); // 실제로 서버에 저장되는 경로 구하기
-					
-			File file = new File(path); // 번호에 따라 폴더 생성
-			if(!file.exists()) file.mkdir(); // 파일 생성 코드  
-			
-			// 사진에 변동이 있을 경우 데이터를 수정
-			
+			String path = request.getParameter("campingcar_imgFolder");	
 			System.out.println("절대 경로 : " + path);
 			
 			// Part 객체로 파일 이름 받아서 처리하기 
@@ -102,8 +93,8 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 			String[] campingcar_img = img.split(", ");
 			
 			// no와 조회수와 생성일은 DB에서 초기값으로 넣음
-			CampingcarVO vo = new CampingcarVO(campingcar_no, campingcar_name, campingcar_infos, campingcar_tel, campingcar_address, campingcar_website, campingcar_img, campingcar_option, campingcar_rider, campingcar_sleeper, campingcar_release_time, campingcar_return_time, campingcar_license, campingcar_wd_fare, campingcar_ph_fare, campingcar_detail, user_id, 0, null);
-			
+			CampingcarVO vo = new CampingcarVO(campingcar_no, campingcar_name, campingcar_infos, campingcar_tel, campingcar_address, campingcar_website, campingcar_img, campingcar_option, campingcar_rider, campingcar_sleeper, campingcar_release_time, campingcar_return_time, campingcar_license, campingcar_wd_fare, campingcar_ph_fare, campingcar_detail, user_id, 0, null, null);
+
 			// 비지니스 로직 실행
 			CampingcarDAO cdao = new CampingcarDAO();
 			int cnt = cdao.updateCampingcar(vo);

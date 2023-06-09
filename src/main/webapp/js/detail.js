@@ -24,14 +24,18 @@ $(".review_cancel").click(function(){
 
 
 // 리뷰 수정 및 취소
-$(".review_update").click(function(){
+$(".review_update").click(function(e){
+    e.preventDefault();
+    var link = e.currentTarget.href;
+    $("#modalUP iframe").attr("src", link);
     $("#modalUP").show();
 })
-$(".review_cancelUP").click(function(){
+function review_cancelUP(){
+    $("#modalUP iframe").attr("src", "");
     $("#modalUP").hide();
     $("input[name='score']").prop('checked', false);
     $("textarea").val("");
-})
+}
 
 
 
@@ -88,45 +92,49 @@ $(".review_cancelUP").click(function(){
 
 
 // 이미지 슬라이드 카운트 형식
-var cnt = 1;  // 이미지 파일 순서 기준값
+var cnt = 0;  // 이미지 파일 순서 기준값
 var currentImageIndex = 0;
-// 슬라이드 이미지
+// 슬라이드 이미지 (실제로 표시되는 이미지)
 var slideImage = $("#slide_image");
 // 버튼
 var prevButton = $("#prev_button");
 var nextButton = $("#next_button");
+// 이미지 주소
+var image_link = $(".dImg").get();
 // 이미지 카운트
 var imageCounter = $("#image_counter");
 
 prevButton.on("click", function() {
-cnt--;
-  if (cnt < 1) { // 첫 번째 이미지일 때 이전 버튼 클릭 시 마지막 이미지로 변경
-    cnt = 11;
-}
-var image = "./images/detail/realtime01-detail/realtime01-detail" + pad(cnt) + ".jpg";
-slideImage.fadeTo(100, 0, function() {
-    slideImage.attr("src", image);
-    slideImage.fadeTo(100, 1);
-    updateImageCounter();
-});
+    cnt--;
+    if (cnt < 0) { // 첫 번째 이미지일 때 이전 버튼 클릭 시 마지막 이미지로 변경
+        cnt = image_link.length - 1;
+    }
+    moveImg(cnt);
 });
 
 nextButton.on("click", function() {
-cnt++;
-  if (cnt > 11) { // 마지막 이미지일 때 다음 버튼 클릭 시 첫 번째 이미지로 변경
-    cnt = 1;
-}
-var image = "./images/detail/realtime01-detail/realtime01-detail" + pad(cnt) + ".jpg";
-slideImage.fadeTo(100, 0, function() {
-    slideImage.attr("src", image);
-    slideImage.fadeTo(100, 1);
-    updateImageCounter();
-});
+    cnt++;
+    if (cnt >= image_link.length) { // 마지막 이미지일 때 다음 버튼 클릭 시 첫 번째 이미지로 변경
+        cnt = 0;
+    }
+    moveImg(cnt);
 });
 
+/** 이미지 이동시키는 함수 */
+function moveImg(cnt) {
+    var image = $(".dImg").eq(cnt).attr("src");
+    slideImage.fadeTo(100, 0, function() {
+        slideImage.attr("src", image);
+        slideImage.fadeTo(100, 1);
+        updateImageCounter();
+    });
+}
+
+/** 이미지 아래에 현재 위치 표시 */
 function updateImageCounter() {
-var counterText = cnt + " / 11";
-imageCounter.text(counterText);
+    var showCnt = cnt + 1;
+    var counterText = showCnt + " / " + image_link.length;
+    imageCounter.text(counterText);
 }
 
 
@@ -137,9 +145,10 @@ function pad(num) {
 }
 
 $(".img_slide_cancel").click(function() {
-    // 취소 버튼 클릭시 슬라이드 값 초기화
-    slideImage.attr("src", "./images/detail/realtime01-detail/realtime01-detail01.jpg");
-    cnt = 1;
+    // 취소 버튼 클릭시 슬라이드 값 초기
+    var image = $(".dImg").eq(0).attr("src");
+    slideImage.attr("src", image);
+    cnt = 0;
     updateImageCounter();
     $(".img_slider_modal").hide();
 });
@@ -152,7 +161,7 @@ $(".detail_mainImg").click(function(e) {
     var startIndex = 0; // 시작 카운터 값을 0으로 설정
     
     slideImage.attr("src", clickedImageSrc);
-    cnt = startIndex + 1; // 시작 카운터 값을 1로 초기화
+    cnt = startIndex; // 시작 카운터 값을 1로 초기화
     updateImageCounter();
     $(".img_slider_modal").show();
 });
@@ -165,7 +174,7 @@ $(".detail_img a").click(function(e) {
     
     // 슬라이드 이미지 소스 변경 및 카운터 업데이트
     slideImage.attr("src", clickedImageSrc);
-    cnt = startIndex + 2;
+    cnt = startIndex + 1;
     updateImageCounter();
     $(".img_slider_modal").show(); // 모달을 보여줍니다.
 });

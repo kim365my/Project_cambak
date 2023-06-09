@@ -7,6 +7,8 @@ public class CampingcarViewVO {
 	private int campingcar_cnt;
 	private String user_id;
 	private String campingcar_name;
+	private String[] campingcar_img;
+	private String campingcar_imgFolder;
 	// get, set
 	public int getCampingcar_no() {
 		return campingcar_no;
@@ -44,6 +46,19 @@ public class CampingcarViewVO {
 	public void setCampingcar_name(String campingcar_name) {
 		this.campingcar_name = campingcar_name;
 	}
+	public String[] getCampingcar_img() {
+		return campingcar_img;
+	}
+	public void setCampingcar_img(String[] campingcar_img) {
+		this.campingcar_img = campingcar_img;
+	}
+	public String getCampingcar_imgFolder() {
+		return campingcar_imgFolder;
+	}
+	public void setCampingcar_imgFolder(String campingcar_imgFolder) {
+		this.campingcar_imgFolder = campingcar_imgFolder;
+	}
+	
 	
 
 }

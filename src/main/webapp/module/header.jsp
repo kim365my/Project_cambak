@@ -16,7 +16,7 @@
       <div><i class="material-icons">person</i></div>
     </li>
 
-    <div class="name">
+    <div class="name" id="login">
       <div>
         <span class="span">로그인</span>
       </div>
@@ -33,7 +33,7 @@
   </li>
   <div class="name gnb_toggle">
     <div>
-      <span class="span">${user_id } 님 </span>
+      <a href="dashboard.jsp"><span class="span">${user_id } 님 </span></a>
       <span class="material-symbols-outlined">expand_more</span>
     </div>
   </c:if>
