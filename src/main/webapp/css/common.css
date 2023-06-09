@@ -54,6 +54,9 @@
 .header_icon .bell {
   margin: 20px 12px;
 }
+.gnb_toggle{
+  position: relative;
+}
 .name{
   height: 27px;
   line-height: 27px;
@@ -90,8 +93,8 @@
   /* 포지션 */
   position: absolute;
   /* 대시보드 페이지 헤더 패딩변경으로 right값 변경 */
-  right: 230px;
-  top: 76px;
+  right: 0;
+  top: 60px;
   z-index: 999999999;
 
   /*  로딩 시  메뉴 숨기기 */

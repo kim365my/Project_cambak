@@ -23,52 +23,42 @@
         </div>
     </c:if>
     <c:if test="${not empty user_id }">
-    <li class="cart">
-      <div class="material-icons">shopping_basket</div>
-    </li>
-    <li class="bell">
-      <div class="material-icons">notification_important</div> 
-    </li>
-    <li class="mypage">
-      <div class="material-icons">person</div>
-    </li>
-    <div class="name gnb_toggle">
-      <div>
-        <a href="dashboard.jsp"><span class="span">${user_id } 님 </span></a>
-        <span class="material-symbols-outlined">expand_more</span>
+      <li class="cart">
+        <div class="material-icons">shopping_basket</div>
+      </li>
+      <li class="bell">
+        <div class="material-icons">notification_important</div> 
+      </li>
+      <li class="mypage">
+        <div class="material-icons">person</div>
+      </li>
+      <div class="name gnb_toggle">
+        <div>
+          <a href="dashboard.jsp"><span class="span">${user_id } 님 </span></a>
+          <span class="material-symbols-outlined">expand_more</span>
+        </div>
+        <!-- 로그인 안됐을때 gnb 부분도 안보여야함 -->
+        <div class="header_gnb">
+          <ul>
+            <li><a href="./dashboard.jsp">대시보드</a></li>
+            <li>채팅</li>
+            <li>예약</li>
+            <li>찜목록</li>
+            <li class="list"></li>
+            <li><a href="GetDashBoardCampingcarListCtrl">등록슬롯</a></li>
+            <li>정산 및 출금</li>
+            <li class="list"></li>
+            <li>계정 상세정보</li>
+            <!-- 추후 if문으로 로그인 안됐을때 -->
+            <li><a href="LogoutCtrl">로그아웃</a></li>
+          </ul>
+        </div>
       </div>
     </c:if>
-      <!-- 로그인 안됐을때 gnb 부분도 안보여야함 -->
-      <div class="header_gnb">
-        <ul>
-          <li><a href="./dashboard.jsp">대시보드</a></li>
-          <li>채팅</li>
-          <li>예약</li>
-          <li>찜목록</li>
-          <li class="list"></li>
-          <li><a href="GetDashBoardCampingcarListCtrl">등록슬롯</a></li>
-          <li>정산 및 출금</li>
-          <li class="list"></li>
-          <li>계정 상세정보</li>
-          <!-- 추후 if문으로 로그인 안됐을때 -->
-          <li><a href="LogoutCtrl">로그아웃</a></li>
-        </ul>
-      </div>
-    </div>
     <p><a href="./resist.jsp">차량 및 장소 등록하기</a></p>
   </ul>  
   
-  <!-- 로그인 안됐을때 나오는 아이콘-->
-  <!-- <ul class="header_icon">
-    <li>
-      <div><i class="material-icons">person</i></div>
-    </li>
-    <div class="name">
-        <span class="span">로그인</span>
-    </div>
-    <p><a href="./resist.jsp">차량 및 장소 등록하기</a></p>
-  </ul> -->
-  
+
   <!-- 로그인 모달창 -->
   <div class="login_modal">
     <div class="login_modal_content">
