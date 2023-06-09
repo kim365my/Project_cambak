@@ -36,21 +36,11 @@ update.forEach(element => {
   });
 });
 
-// 닫는 코드
-update_area.addEventListener("close", ()=>{
-  // 콘솔에 출력
-  console.log(update_area.returnValue);
-});
-
 // 닫기 함수
 function closeModal() {
   update_area.close();
   location.reload();
 } 
-
-$('.update_close').click(function(){
-  $('.update_modal').hide();
-});
 
 /* footer */
 $('.footer').load('./module/footer.jsp');

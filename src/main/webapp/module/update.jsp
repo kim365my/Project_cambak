@@ -59,6 +59,9 @@
         <div class="update_modal_content">
             <div class="update_modal_content_title">
                 <h1>수정하기</h1>
+                <p>
+                    <button value="close"><p class="update_close"><i class="fa fa-times" aria-hidden="true"></i></p></button>
+                </p>
             </div>
             <div class="update_modal_content_thumb">
                 <!-- 등록페이지에서 업로드한 썸네일 이미지로 src수정해야 함 -->
@@ -453,6 +456,12 @@ function setDefaultFont() {
 	var nFontSize = 24;
 	oEditors.getById["campingcar_detail"].setDefaultFont(sDefaultFont, nFontSize);
 }
+</script>
+<script type="text/javascript">
+	const close = document.querySelector(".close");
+    close.addEventListener("click", (e) => {
+        window.parent.closeModal();
+    });
 </script>
 </html>
     

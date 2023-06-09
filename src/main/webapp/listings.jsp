@@ -172,9 +172,6 @@
     <dialog class="update_area">
       <!-- 수정하기 인클루드 -->
       <iframe src="" frameborder="0" id="if1"></iframe>
-      <form method="dialog" class="close">
-        <button value="close"><p class="update_close"><i class="fa fa-times" aria-hidden="true"></i></p></button>
-      </form>
     </dialog>
     <!-- /수정하기 모달창 -->
     

@@ -7,15 +7,19 @@
   height: 60px;
   background-color: rgb(255, 255, 255, 0.8);
   box-shadow: 0 1px 15px 0 rgba(0,0,0,.045);
-  /* 플렉스 */
-  display: flex;
-  justify-content: space-between;
   /* 포지션 */
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 999999999;
+}
+.head_cover {
+  height: 60px;
+  /* 플렉스 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .logo {
   /* 플렉스 */
@@ -85,7 +89,8 @@
   cursor: pointer;
   /* 포지션 */
   position: absolute;
-  right: 531px;
+  /* 대시보드 페이지 헤더 패딩변경으로 right값 변경 */
+  right: 230px;
   top: 76px;
   z-index: 999999999;
 
@@ -105,10 +110,11 @@
 
 /* footer */
 .footer {
-  padding: 48px 390px;
-  height: 286px;
   font-size: 1.2rem;
   background-color: #f5f5f5;
+}
+.footer_cover {
+  padding: 48px 0;
 }
 .footer p {
   line-height: 1.5;

@@ -53,13 +53,13 @@
 </head>
 <body>
   <div id="wrap">
-    <header class="header w1140">
+    <header class="header">
     	<!-- header include -->
       <jsp:include page="./module/header.jsp" />
     </header>
     <main role="main">
       <div class="main_img">
-        <div class="main_text">
+        <div class="main_text w1140">
           <h1>
             <p>잠시, <br></p>
             <div class="cover">
@@ -69,6 +69,8 @@
             </div>
             <span class="fix_text">가자</span>
           </h1>
+        </div>
+        <div class="rent_date_cover w1140">
           <div class="rent_date">
             <p>캠핑카, 간편하게 예약 후 바로 떠나세요!</p>
             <ul class="rent_table">
@@ -223,8 +225,7 @@
             CampingcarVO cvo = campingcarList.get(i);
         %>
         <div class="rent_car">  
-          <span class="material-symbols-outlined favorite">favorite</span>
-         <a href="GetCampingcarCtrl?campingcar_no=<%=cvo.getCampingcar_no()%>">
+          <a href="GetCampingcarCtrl?campingcar_no=<%=cvo.getCampingcar_no()%>">
             <%
                if(cvo.getCampingcar_img() != null) {
                   %>                     
@@ -237,9 +238,10 @@
                }
             %>
            <!-- 상세보기 링크 -->
-             <p>즉시예약가능</p>
-                
-              </div>
+            <p>즉시예약가능</p>
+          </a>
+        </div>
+            <i class="fas fa-heart icon-outline"></i>
             <div class="car_info">
               <div class="car_name">
                 <h3><i class="rz--verified fas fa-check-circle"></i>[위캠프] <%=cvo.getCampingcar_name() %></h3>
@@ -263,12 +265,11 @@
                 <i class="far fa-calendar-check"></i>잊지못할 밤, <%=cvo.getCampingcar_ph_fare() %>원 부터
               </p>
             </div>
-            </a>
           </div>
 		<%}%>
-          <div class="more">
-            더 많은 차량 보러가기<i class="fas fa-arrow-right rz-ml-1"></i>
-          </div>
+        </div>  
+        <div class="more">
+          더 많은 차량 보러가기<i class="fas fa-arrow-right rz-ml-1"></i>
         </div>
       </section>
       <!-- 키워드 -->

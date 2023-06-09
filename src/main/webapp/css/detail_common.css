@@ -4,6 +4,7 @@
 .w1140 {
     width: 1140px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 html, body {
@@ -15,11 +16,6 @@ html, body {
     position: relative;
     display: flex;
     flex-flow: row nowrap;
-}
-
-/* header */
-.header {
-    padding: 0 390px; 
 }
 
 

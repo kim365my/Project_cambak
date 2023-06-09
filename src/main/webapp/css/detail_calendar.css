@@ -2,20 +2,15 @@
 
 .calendar_container {
     margin: 0 auto;
-/* position:absolute;
-left:29%;
-top:25%; */
-display: flex;
-/* justify-content:space-evenly; */
-width: 303px;
-background-color: white;
-box-shadow: 1px 1px 25px rgb(0, 0, 0 / 17%);
-/* border: 1px solid black; */
-border-radius: 50px;
+    display: flex;
+    width: 260px;
+    background-color: white;
+    box-shadow: 1px 1px 25px rgb(0, 0, 0 / 17%);
+    border-radius: 50px;
 }
 
 .hide {
-display:none;
+    display:none;
 }
 
 .calendar_container > button {
@@ -47,7 +42,7 @@ cursor: pointer;
 }
 
 .calendar {
-    width: 330px;
+    width: 260px;
     display:flex;
     flex-direction: column;
     justify-content:center;
@@ -98,13 +93,9 @@ background-color: rgb(241, 241, 241) !important;
 position: relative;
 }
 .calendar_button {
-width: 330px;
-position: absolute;
-/* display: flex; */
-/* justify-content: space-between; */
-top: 16px;
-/* left: 0; */
-/* right: 0; */
+    width: 292px;
+    position: absolute;
+    top: 5px;
 }
 .calendar_button .right_button{
 position: absolute;

@@ -1,5 +1,8 @@
 /* 상세페이지 css */
 @charset "utf-8";
+button {
+	font-family: 'Noto Sans KR', sans-serif;
+}
 .header {
     margin-bottom: 35px;
 }
@@ -16,9 +19,7 @@
     margin-bottom: 43px;
 }
 .detail_mainImg img {
-/*     background-image: url(./images/detail/realtime01-detail/realtime01-detail01.jpg); */
-/*     background-size: cover; */
-    width: 564px;
+    width: 524px;
     height: 480px;
     margin-right: 8px;
 }
@@ -98,6 +99,7 @@
 /* 보유시설 */
 .mod_listing ul {
     display: flex;
+    justify-content: left;
     flex-flow: row wrap;
     margin-bottom: 62px;
 }
@@ -218,7 +220,7 @@
 
 /* 오른쪽 예약 */
 .info_right{
-    width: 350px;
+    width: 310px;
     height: 1000px;
     position: sticky !important;
     top: 80px;
@@ -592,7 +594,7 @@ position: absolute;
     border-bottom: 1px solid #ccc
     
 }
-.review_cancelUP {
+.review_cancel, .review_cancelUP {
     display: inline-block;
     width: 33px;
     height: 33px;
@@ -605,6 +607,10 @@ position: absolute;
     transform: translateY(-50%);
     font-size: 1.6rem;
     line-height: 33px;
+}
+.review_cancel:hover, .review_cancelUP:hover{
+    background: #000;
+    color: #fff;
 }
 .review_up_data{
     height: 480px;
@@ -783,7 +789,6 @@ button, a{
 
 /* footer */
 .footer {
-    padding: 76px 0 18px 0;
     background-color: #f1f1f1;
 }
 .footer_content {

@@ -1,12 +1,12 @@
 /*
    프로젝트명 : Project_cambak
-   작업명 : 
+   작업명 : 프론트엔드 기반 웹작업 및 백엔드 기반 CRUD 구현
    회원가입 테이블명 : cb_user
    후기등록 테이블명 : cb_review
    캠핑카 등록 테이블명 : cb_campingcar
  */
 
--- 회원가입 테이블
+-- 1. 회원가입 테이블
 CREATE TABLE cb_user(
     user_id          VARCHAR2(30)            PRIMARY KEY, -- 유저아이디
     user_pw          VARCHAR2(30)            NOT NULL, -- 유저비번
@@ -14,20 +14,7 @@ CREATE TABLE cb_user(
     user_tel          VARCHAR2(30)           NOT NULL -- 유저전화번호
 );
 
--- 후기등록 테이블
-CREATE TABLE cb_review(
-    review_no      NUMBER      PRIMARY KEY, -- 리뷰번호
-    review_score  NUMBER      not null, -- 리뷰별점
-    review_content    VARCHAR2(2000)  NOT NULL, -- 리뷰내용
-    user_id        VARCHAR2(30)      NOT NULL, -- 유저 아이디
-        foreign key(user_id) references cb_user(user_id),
-    campingcar_no NUMBER NOT NULL, -- 캠핑카 번호
-        foreign key(campingcar_no) references cb_campingcar(campingcar_no)
-);
--- 리뷰글 번호 시퀀스
-CREATE SEQUENCE review_no_seq INCREMENT by 1 START with 1001;
-
--- 캠핑카 등록 테이블
+-- 2. 캠핑카 등록 테이블
 CREATE TABLE cb_campingcar(
     campingcar_no              NUMBER      PRIMARY KEY,
     campingcar_name         VARCHAR2(30), -- 상품명
@@ -53,7 +40,20 @@ CREATE TABLE cb_campingcar(
 -- 캠핑카 등록 넘버 시퀀스
 CREATE SEQUENCE campingcar_no_seq INCREMENT by 1 START with 101;
 
--- 뷰 생성 : 캠핑카 + 리뷰 테이블
+-- 3. 후기등록 테이블
+CREATE TABLE cb_review(
+    review_no      NUMBER      PRIMARY KEY, -- 리뷰번호
+    review_score  NUMBER      not null, -- 리뷰별점
+    review_content    VARCHAR2(2000)  NOT NULL, -- 리뷰내용
+    user_id        VARCHAR2(30)      NOT NULL, -- 유저 아이디
+        foreign key(user_id) references cb_user(user_id),
+    campingcar_no NUMBER NOT NULL, -- 캠핑카 번호
+        foreign key(campingcar_no) references cb_campingcar(campingcar_no)
+);
+-- 리뷰글 번호 시퀀스
+CREATE SEQUENCE review_no_seq INCREMENT by 1 START with 1001;
+
+-- 4. 뷰 생성 : 캠핑카 + 리뷰 테이블
 Create view cd_deshBoard_view AS
 select
     a1.campingcar_no, --게시글 번호
@@ -66,6 +66,7 @@ from cb_campingcar a1
     left join cb_review a2 on a1.campingcar_no = a2.campingcar_no
 group by a1.campingcar_no, a1.campingcar_regdate, a1.campingcar_cnt, a1.user_id, a1.campingcar_name
 ORDER by a1.campingcar_no DESC;
+
 
 -- 조회구문
 select * from cb_user;

@@ -318,16 +318,6 @@ input::-webkit-inner-spin-button {
 
 
 /* ================ 수정하기 모달창 ================= */
-.update_modal {
-    /* z-index: 99999999999; */
-    /* background: rgba(255,255,255,0.95); */
-    /* border-radius: 10px; */
-    /* border: 1px solid #ddd; */
-    /* display: none; */
-
-    
-}
-
 .update_modal_content {
     width: 800px;
     background: white;
@@ -344,23 +334,19 @@ input::-webkit-inner-spin-button {
 .update_modal_content_title {
     margin: 0 auto;
     padding: 24px;
-    text-align: center;
     border-bottom: 1px solid #ddd;
     width: 800px;
     position: fixed;
     top: 0;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .update_modal_content_title h1 {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: center;
+    margin-top: 30px;
     font-size: 2.4rem;
     font-weight: 700;
-    margin-left: 340px;
 }
 
 .update_modal_content_thumb {
@@ -397,6 +383,7 @@ input[value="변경사항 저장"] {
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
+    margin-bottom: 40px;
 }
 .line {
 	width: 100%;
@@ -413,4 +400,30 @@ input[value="변경사항 저장"] {
     height: 10%;
     background: #111;
     border-radius: 10px;
+}
+
+/* 닫기 버튼 */
+.close {
+	margin-right: 100px;
+}
+.update_close {
+   border: 1px solid #ddd;
+   border-radius: 50%;
+   width: 30px;
+   height: 30px;
+   background: white;
+}
+
+.update_close i {
+   font-size: 1.6rem;
+   text-align: center;
+   line-height: 30px;
+}
+.update_close:hover {
+   border: 1px solid black;
+   border-radius: 50%;
+   background: black;
+   color: white;
+   width: 30px;
+   height: 30px;
 }

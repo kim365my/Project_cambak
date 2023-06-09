@@ -28,6 +28,9 @@ header {
   right: 0;
   z-index: 999999999;
 }
+.head_cover {
+  width: 100%;
+}
 .logo {
   /* 플렉스 */
   display: flex;
@@ -181,9 +184,10 @@ main {
   margin-top: 60px;
 }
 .resist {
-  margin-left: 100px;
-  margin-top: 126px;
   background-color: #f7f7f7;
+  width: 1140px;
+  margin-left: 120px;
+  padding: 50px 0;
 }
 .resist h1 {
   font-size: 3rem;
@@ -209,14 +213,14 @@ main {
   border-radius: 10px;
 }
 .slot_flex {
-  width: 100%;
   /* 플렉스 */
   display: flex;
   flex-flow: row wrap;
+  justify-content: left;
 }
 .slot {
   width: 364px;
-  margin: 0 17px 20px 0;
+  margin: 0 15px 40px 0;
   background-color: #ffffff;
   box-shadow: 5px 5px 10px #ddd;
   border-radius: 10px;
@@ -318,25 +322,3 @@ main {
   color: #3974d9;
 }
 
-/* 닫기 버튼 */
-.update_close {
-   border: 1px solid #ddd;
-   border-radius: 50%;
-   width: 30px;
-   height: 30px;
-   background: white;
-}
-
-.update_close i {
-   font-size: 1.6rem;
-   text-align: center;
-   line-height: 30px;
-}
-.update_close:hover {
-   border: 1px solid black;
-   border-radius: 50%;
-   background: black;
-   color: white;
-   width: 30px;
-   height: 30px;
-}

@@ -16,10 +16,11 @@
     display: none;
 }
 .calendar_title {
+    height: 60px;
     /* 플렉스 */
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
 }
 p.calendar_month_title {
     font-size: 2.0rem;

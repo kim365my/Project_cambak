@@ -135,22 +135,22 @@
               <ul>
                 <li>
                   <i class="far fa-clock"></i>
-                  대여일 출차시간 : <span><%=cvo.getCampingcar_release_time() %></span>
+                  대여일 출차시간 : <span><%=cvo.getCampingcar_release_time() == null ? "" : cvo.getCampingcar_release_time()  %></span>
                 </li>
                 <li>
                   <i class="far fa-clock"></i>
-                  반납일 반납시간 : <span><%=cvo.getCampingcar_return_time() %></span>
+                  반납일 반납시간 : <span><%=cvo.getCampingcar_return_time() == null ? "" : cvo.getCampingcar_return_time()  %></span>
                 </li>
               </ul>
               <!-- 가격 -->
               <ul>
                 <li>
                   <i class="fas fa-money-check"></i>
-                  평일가격 : <span><%=cvo.getCampingcar_wd_fare() %></span>원&nbsp;/박
+                  평일가격 : <span><%=cvo.getCampingcar_wd_fare() %></span>원&nbsp;/1박
                 </li>
                 <li>
                   <i class="fas fa-bed"></i>
-                  주말가격 : <span><%=cvo.getCampingcar_ph_fare() %></span>원&nbsp;/박
+                  주말가격 : <span><%=cvo.getCampingcar_ph_fare() %></span>원&nbsp;/1박
                 </li>
               </ul>
               <!-- 라이센스 -->

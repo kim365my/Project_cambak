@@ -6,9 +6,9 @@ html,body {
 }
 /* safe area */
 .w1140{
-    width: 1920px;
-    padding: 0 390px;
+    width: 1140px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 /* 제목 font-face */
 @font-face {
@@ -50,27 +50,24 @@ main .main_img {
     width: 100%;
     height: 780px;
     background: url("../images/main/visual_key.png") no-repeat center;
-    background-size: 100% 100%;
+    background-size: cover;
 }
-main .main_text {
-    margin: 0 auto;
-    width: 1920px;
-    /* 포지션 기준값 */
-    position: relative;
-}
+
 /* 메인 텍스트 */
+.main_text {
+    position: relative;
+    height: 320px;
+}
 .main_img h1 p{
     font-size: 7.4rem;
     font-weight: 900;
     color: #ffffff;
     /* 포지션 */
     position: absolute;
-    left: 390px;
+    left: 20px;
     top: 107px;
 }
-.cover {
-    display: block;
-}
+
 .cover span {
     margin-top: 10px;
     font-size: 7.4rem;
@@ -78,7 +75,7 @@ main .main_text {
     color: #ffffff;
     /* 포지션 */
     position: absolute;
-    left: 390px;
+    left: 20px;
     top: 180px;
     opacity: 0;
     transform: translate(-100%, 0);
@@ -90,7 +87,7 @@ main .main_text {
     color: #ffffff;
      /* 포지션 */
      position: absolute;
-     left: 545px;
+     left: 180px;
      top: 190px;
      z-index: 99;
 }
@@ -124,27 +121,21 @@ main .main_text {
 }
 
 .rent_date {
-    margin: 0 auto;
     width: 566px;
     height: 311px;
     background-color: #ffffff;
     border-radius: 10px;
-    /* 포지션 */
-    position: absolute;
-    left: 390px;
-    top: 298px;
+    padding-top: 39px;
+    position: relative;
 }
-.rent_date p {
-    margin: 39px 0 24px;
+.rent_date > p {
+    margin-bottom: 39px;
     font-size: 2.5rem;
     font-weight: 700;
     text-align: center;
     color: #3a3a3a;
-    /* 포지션 */
-    position: relative;
-    left: 0;
-    top: 0;
 }
+
 .rent_table{
     margin: 0 auto;
     width: 491px;
@@ -203,24 +194,31 @@ main .main_text {
     /* 플렉스 */
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 .realtime .more {
     margin: 29px auto 24px;
     cursor: pointer;
 }
 .rent_car {
+    margin-right: 16px;
     position: relative;
     padding-bottom: 24px;
     cursor: pointer;
 }
+.rent_car a{
+    width: 100%;
+ }
+ .rent_car i{
+    height: 10px;
+ }
 .car_img {
-    width: 357px;       
+    width: 350px;       
     height: 237px;
     padding: 9px 10px 0;
     filter: drop-shadow(5px 5px 5px rgb(209, 209, 209));
     background: url("../images/main/realtime/realtime01.jpg") no-repeat center;
-    background-size: 100% 100%;
+    background-size: cover;
     border-radius: 10px;
     /* 플렉스 */
     display: flex;
@@ -236,16 +234,16 @@ main .main_text {
     color: #ffffff;
     font-weight: 700;
 }
-.favorite {
-    position: absolute;
+.car_img i {
+    /* position: absolute;
     right: 25px;
-    top: 12px;
+    top: 12px; */
     color: #ffffff;
     font-size: 1.9rem;
     font-weight: 700;
-    z-index: 999;
+    /* z-index: 999; */
 }
-.favorite:hover {
+.car_img i:hover {
     -webkit-text-stroke: 1px #3974d9;
 }
 
@@ -259,7 +257,7 @@ main .main_text {
     -webkit-text-stroke: 1px #3974d9;
 }
 .car_info {
-    width: 363px;
+    width: 350px;
 }
 .car_info .car_name {
     margin: 16px 0 7px;
@@ -407,14 +405,14 @@ main .main_text {
     position: absolute;
     right: 10px;
     top: 9px;
-    z-index: 999;
+    z-index: 99999;
 }
 .map_contents div i:hover {
     -webkit-text-stroke: 1px #3974d9;
 }
 .map_section .map_contents {
     padding: 12px;
-    width: 373px;
+    width: 365px;
 }
 
 .map_contents div:first-child {
@@ -556,8 +554,6 @@ main .main_text {
 }
 #banner button {
 	margin-top: 20px;
-/* 	width: 196px;
-	height: 47px; */
 	line-height: 1.7;
 	padding: 10px 30px;
 	border-radius: 40px;
