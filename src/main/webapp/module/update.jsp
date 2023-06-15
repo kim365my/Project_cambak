@@ -343,7 +343,7 @@
                                    <td>
                                        <div class="count-wrap _count">
                                            <button type="button" class="minus">-</button>
-                                           <input type="text" class="inp" value="${i.campingcar_rider } 명" name="campingcar_rider" />
+                                           <input type="text" class="inp" value="${i.campingcar_rider }명" name="campingcar_rider" />
                                            <button type="button" class="plus">+</button>
                                        </div>
                                    </td>
@@ -458,7 +458,7 @@ function setDefaultFont() {
 }
 </script>
 <script type="text/javascript">
-	const close = document.querySelector(".close");
+	const close = document.querySelector(".update_close");
     close.addEventListener("click", (e) => {
         window.parent.closeModal();
     });

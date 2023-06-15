@@ -9,6 +9,8 @@
    // 로그인처리
    String user_id = (String)session.getAttribute("user_id");
    if(user_id==null) {response.sendRedirect("./index.jsp");}
+   
+   String context = request.getContextPath();
 %>
 
 <!DOCTYPE html>
@@ -105,13 +107,13 @@
           <div class="slot_title">
             <p>
 	          	<%
-	          		if(bean.getCampingcar_img() != null) {
+	          		if(bean.getCampingcar_img() == null) {
 	          			%>	          			
 			            	<i class="fas fa-map-marker-alt"></i>
 	          			<%
 	          		} else {
 	          			%>
-	          				<img alt="" src="<%= bean.getCampingcar_img()[0] %>">
+	          				<img alt="" src="<%=context %>/images/detail/<%= bean.getCampingcar_imgFolder() %>/<%= bean.getCampingcar_img()[0] %>">
 	          			<%
 	          		}
 	          	%>

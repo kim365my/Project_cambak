@@ -16,11 +16,12 @@
       <li>
         <div><i class="material-icons">person</i></div>
       </li>
-  
+      
       <div class="name" id="login">
         <div>
           <span class="span">로그인</span>
         </div>
+      </div>
     </c:if>
     <c:if test="${not empty user_id }">
       <li class="cart">

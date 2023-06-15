@@ -239,6 +239,8 @@ main {
   height: 40px;
   border-radius: 50%;
   background-color: #222;
+  overflow: hidden;
+  border: 1px solid black;
 
 }
 .slot p i {
@@ -250,6 +252,11 @@ main {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+.slot img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .slot_info {
   margin: 20px 0 18px;

@@ -198,7 +198,6 @@ public class CampingcarDAO {
 				vo.setCampingcar_name(rs.getString(6));
 				String ig = rs.getString(7);
 				if(ig != null) vo.setCampingcar_img(ig.split(", ")); // 이미지
-
 				vo.setCampingcar_imgFolder(rs.getString(8));
 				
 				// 리스트에 주가하기

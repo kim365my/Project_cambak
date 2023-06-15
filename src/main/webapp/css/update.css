@@ -407,15 +407,20 @@ input[value="변경사항 저장"] {
 	margin-right: 100px;
 }
 .update_close {
-   border: 1px solid #ddd;
+   border: 1px solid #ccc;
    border-radius: 50%;
-   width: 30px;
-   height: 30px;
+   width: 33px;
+   height: 33px;
    background: white;
+   position: absolute;
+   right: 24px;
+   top: 59%;
+   transform: translateY(-50%);
+   font-size: 1.6rem;
+   cursor: pointer;
 }
 
 .update_close i {
-   font-size: 1.6rem;
    text-align: center;
    line-height: 30px;
 }
@@ -424,6 +429,5 @@ input[value="변경사항 저장"] {
    border-radius: 50%;
    background: black;
    color: white;
-   width: 30px;
-   height: 30px;
 }
+
