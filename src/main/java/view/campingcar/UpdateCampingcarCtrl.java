@@ -73,9 +73,17 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 			int campingcar_ph_fare = (ph_fare == null) ? 0 :Integer.parseInt(ph_fare);
 			
 			String campingcar_detail = request.getParameter("campingcar_detail");
-
-			String path = request.getParameter("campingcar_imgFolder");	
+			
+			ServletContext context = getServletContext(); 
+			String path = context.getRealPath(request.getParameter("campingcar_imgFolder"));	
+			
 			System.out.println("절대 경로 : " + path);
+			// 이전 사진 삭제하기
+			String[] campingcar_img_old = request.getParameterValues("campingcar_img_old");
+			for (String delete_img : campingcar_img_old) {
+				File file = new File(path + File.separator  + delete_img);
+				file.delete();
+			}
 			
 			// Part 객체로 파일 이름 받아서 처리하기 
 			String img = "";
@@ -91,6 +99,7 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 				img = img.substring(0, img.length() - 2); // 마지막 ", " 지우기
 			}
 			String[] campingcar_img = img.split(", ");
+			System.out.println(campingcar_img);
 			
 			// no와 조회수와 생성일은 DB에서 초기값으로 넣음
 			CampingcarVO vo = new CampingcarVO(campingcar_no, campingcar_name, campingcar_infos, campingcar_tel, campingcar_address, campingcar_website, campingcar_img, campingcar_option, campingcar_rider, campingcar_sleeper, campingcar_release_time, campingcar_return_time, campingcar_license, campingcar_wd_fare, campingcar_ph_fare, campingcar_detail, user_id, 0, null, null);

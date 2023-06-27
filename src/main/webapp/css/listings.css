@@ -30,6 +30,7 @@ header {
 }
 .head_cover {
   width: 100%;
+  padding: 0 20px;
 }
 .logo {
   /* 플렉스 */
@@ -185,7 +186,6 @@ main {
 }
 .resist {
   background-color: #f7f7f7;
-  width: 1140px;
   margin-left: 120px;
   padding: 50px 0;
 }
@@ -240,8 +240,11 @@ main {
   border-radius: 50%;
   background-color: #222;
   overflow: hidden;
-  border: 1px solid black;
-
+}
+.slot p img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .slot p i {
   font-size: 16px;

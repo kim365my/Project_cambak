@@ -6,3 +6,6 @@
   1. 제이쿼리
   2. Apache Commons FileUpload
   3. 네이버 스마트 에디터
+
+!(./readme/20211227020205rsr9e97smc.mp4)
+<video src="./readme/20211227020205rsr9e97smc.mp4"></video>

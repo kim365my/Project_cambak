@@ -128,7 +128,7 @@
                            <p>사진</p>
                            <div class="filebox preview-image">
                                <label for="input-file" class="upload">업로드&nbsp;&nbsp;<i class="fa fa-arrow-up" aria-hidden="true"></i></label>
-                               <input type="file" id="input-file" multiple class="upload-hidden" />
+                               <input type="file" id="input-file" name="campingcar_img"  multiple class="upload-hidden" />
                                <div id="thumb_img">
                               		<%
                               			if(vo.getCampingcar_img() != null) {
@@ -142,6 +142,7 @@
                               			}
                               		%>
                                </div>
+                               <input type="hidden" name="campingcar_img_old">
                            </div>
            
                            <!-- 썸네일 업로드 이미지 미리보기 모달창 -->
