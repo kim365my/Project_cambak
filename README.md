@@ -8,7 +8,6 @@
   1. 제이쿼리
   2. Apache Commons FileUpload
   3. 네이버 스마트 에디터
-![./readme/20211227020205rsr9e97smc.mp4](https://github.com/kim365my/Project_cambak/assets/102598905/8776ed9d-5d3c-4f2b-a3ff-b469467471dd)
 
 
 ## 2. DB 구성
