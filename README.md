@@ -9,7 +9,8 @@
   2. Apache Commons FileUpload
   3. 네이버 스마트 에디터
 
-![](./readme/20211227020205rsr9e97smc.mp4)
+
+<iframe width="1044" height="587" src="./readme/20211227020205rsr9e97smc.mp4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ## 2. DB 구성
