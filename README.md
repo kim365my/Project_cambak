@@ -8,7 +8,10 @@
   1. 제이쿼리
   2. Apache Commons FileUpload
   3. 네이버 스마트 에디터
-![[20211227020205rsr9e97smc.mp4]]
+
+![[./readme/20211227020205rsr9e97smc.mp4]]
+
+
 ## 2. DB 구성
 - 테이블 구성
   1. 회원가입 테이블
