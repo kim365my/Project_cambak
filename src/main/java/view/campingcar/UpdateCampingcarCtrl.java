@@ -74,16 +74,19 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 			
 			String campingcar_detail = request.getParameter("campingcar_detail");
 			
-			ServletContext context = getServletContext(); 
-			String path = context.getRealPath(request.getParameter("campingcar_imgFolder"));	
+			// 이전 사진 목록
+			String campingcar_img_old = request.getParameter("campingcar_img_old");
+			System.out.println(campingcar_img_old);
 			
+			// 실제 경로 값 받아오기
+			ServletContext context = getServletContext(); 
+			String path = context.getRealPath("images/detail");
+			String imgFolder = request.getParameter("campingcar_imgFolder");
+			path += File.separator + imgFolder;
 			System.out.println("절대 경로 : " + path);
-			// 이전 사진 삭제하기
-			String[] campingcar_img_old = request.getParameterValues("campingcar_img_old");
-			for (String delete_img : campingcar_img_old) {
-				File file = new File(path + File.separator  + delete_img);
-				file.delete();
-			}
+			
+			File fileData = new File(path);				
+			if(!fileData.exists()) fileData.mkdir(); // 폴더 없을 경우 생성
 			
 			// Part 객체로 파일 이름 받아서 처리하기 
 			String img = "";
@@ -91,15 +94,20 @@ public class UpdateCampingcarCtrl extends HttpServlet {
 			for (Part part : parts) {
 				String name = getImgFilename(part);
 				if(name != null && name != "") {
-					part.write(path + File.separator  + name); // null 처리 필요
+					part.write(path + File.separator + name); // 이미지 파일 올리기
 					img += name + ", "; // 반환
 				}
 			}
-			if(!img.isEmpty()) {					
+			
+			String[] campingcar_img = null;
+			if(!img.isEmpty()) {
+				// 이미지 파일 리스트 등록
 				img = img.substring(0, img.length() - 2); // 마지막 ", " 지우기
+				campingcar_img = img.split(", ");
+				
+			} else if(campingcar_img_old != null) {
+				campingcar_img = campingcar_img_old.split(", ");
 			}
-			String[] campingcar_img = img.split(", ");
-			System.out.println(campingcar_img);
 			
 			// no와 조회수와 생성일은 DB에서 초기값으로 넣음
 			CampingcarVO vo = new CampingcarVO(campingcar_no, campingcar_name, campingcar_infos, campingcar_tel, campingcar_address, campingcar_website, campingcar_img, campingcar_option, campingcar_rider, campingcar_sleeper, campingcar_release_time, campingcar_return_time, campingcar_license, campingcar_wd_fare, campingcar_ph_fare, campingcar_detail, user_id, 0, null, null);
@@ -138,7 +146,7 @@ public class UpdateCampingcarCtrl extends HttpServlet {
         for (int i = 0; i < tamva.length; i++) {
             String temp2 = tamva[i];
             if (temp2.trim().startsWith("filename")) {
-            	return temp2.substring(temp2.indexOf("=") + 2, temp2.length() - 1);
+            	return temp2.substring(temp2.indexOf("=") + 2, temp2.length() - 1); // 이미지 이름 반환
             }
         }
 

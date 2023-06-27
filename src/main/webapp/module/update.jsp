@@ -131,18 +131,19 @@
                                <input type="file" id="input-file" name="campingcar_img"  multiple class="upload-hidden" />
                                <div id="thumb_img">
                               		<%
+                             			String imgTxt = "";
                               			if(vo.getCampingcar_img() != null) {
                               				for(String img : vo.getCampingcar_img()) {
+                              					imgTxt += img + ", ";
                               					%>
                               					<div style="display: inline-flex; padding: 10px;">
-		                                            <li><img src="<%= context %>/images/detail/<%=vo.getCampingcar_imgFolder() %>/<%=img %>"></li>
+		                                            <li><img src="<%= context %>/images/detail/<%=vo.getCampingcar_imgFolder() %>/<%=img %>"/></li>
 		                                        </div>
                               					<%
                               				}
                               			}
                               		%>
                                </div>
-                               <input type="hidden" name="campingcar_img_old">
                            </div>
            
                            <!-- 썸네일 업로드 이미지 미리보기 모달창 -->
@@ -390,6 +391,7 @@
                         <textarea name="campingcar_detail" id="ir1" rows="10" cols="100" style="width:100%; height:412px;"><%= vo.getCampingcar_detail() %></textarea>
                         </div>
                         <div class="line"></div>
+                        <input type="hidden" name="campingcar_img_old" value="<%=imgTxt %>">
                         <input type="hidden" value="<%= vo.getCampingcar_imgFolder()%>" name="campingcar_imgFolder">
                         <input type="submit" value="변경사항 저장" class="update_btn">
                    </form>
