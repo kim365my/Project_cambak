@@ -11,6 +11,7 @@
 
 ---
 
+
 <h1>조별 자바 프로젝트 CRUD</h1>
 <dl>
   <dt>조명 : 중.꺾.마(중요한건 꺾이지 않는 마음이죠..)</dt> <br>
@@ -23,8 +24,8 @@
 </dl>
 
 <h2>#1. 개요</h2>
-  <p>프로젝트 사용법</p>
   <p>주제 : 캠박<span>(캠핑카 대여사이트)</span></p>
+  <p>프로젝트 사용법</p>
     <ol>
       <li>ojdbc6.jar, Server에 해당 프로젝트 db연결</li>
       <li>sql문을 사용하여 db에 테이블 생성</li>
@@ -62,49 +63,36 @@
 <h2>#5. 프로젝트 시연</h2>
 
 
-<blockquote><h3>회원가입</h3></blockquote>
+<blockquote><h3>회원가입/로그인, 로그아웃</h3></blockquote>
 <br>
 
-https://github.com/khy1913/backend/assets/131340725/370bcccd-637e-4c16-b7da-16ec8cecc3ab
-  
-  <br>
-  <br>
-<blockquote><h3>로그인</h3></blockquote>
-<br>
-
-https://github.com/khy1913/backend/assets/131340725/45b2d3ca-fdb0-49be-b3e9-130d0e85211e
+https://github.com/khy1913/backend/assets/131340725/9a2c795e-d6dd-4e65-8efb-aa5259125a11
 
 <br>
 <br>
 <blockquote><h3>이미지 null처리</h3></blockquote>
 <br>
 
-https://github.com/khy1913/backend/assets/131340725/4f4dbc1b-69ea-403a-a474-e3496869ad7e
+https://github.com/khy1913/backend/assets/131340725/77ad0dd7-79f5-4114-9293-a6d92df05ea2
 
 <br>
 <br>
-<blockquote><h3>차량 등록리스트</h3></blockquote>
+<blockquote><h3>차량 등록 및 확인</h3></blockquote>
 <br>
 
-https://github.com/khy1913/backend/assets/131340725/e5099b48-bd34-48c4-a36a-4ec36e0d037b
-
-<br>
-<br>
-<blockquote><h3>차량 등록정보 수정</h3></blockquote>
-<br>
-
-https://github.com/khy1913/backend/assets/131340725/cc93a5cc-1c80-48ba-990b-5e6d1ad2f5b4
+https://github.com/khy1913/backend/assets/131340725/b7b800a6-5aff-44bd-904d-270f12931378
 
 <br>
 <br>
 <blockquote><h3>리뷰</h3></blockquote>
 <br>
 
-https://github.com/khy1913/backend/assets/131340725/839a5b3f-9cb4-48c7-8d0b-02f890a0885f
+https://github.com/khy1913/backend/assets/131340725/0af77ab4-f43a-4701-8ead-f2d028af7695
 
 <br>
 <br>
-<blockquote><h3>차량등록 확인 및 삭제</h3></blockquote>
+<blockquote><h3>차량등록 수정 및 삭제</h3></blockquote>
 <br>
 
+https://github.com/khy1913/backend/assets/131340725/2b0d9f93-d718-47e6-a7f8-8db77c21aa7e
 https://github.com/khy1913/backend/assets/131340725/41579683-9155-412d-9b14-a2358da2ff4e
